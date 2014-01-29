@@ -31,7 +31,9 @@ Download or clone this repo, then..
         sudo npm install -g generator-cg-angular
 
 
-## To run (from the root dir of the module worked on):
+## To run
+
+*From the root dir of the module worked on*
 
 New Directive bundle:
 
@@ -58,7 +60,7 @@ Compile:
 
         grunt build
 
-* * *
+
 
 notes
 
