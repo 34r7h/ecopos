@@ -20,7 +20,7 @@ Each submodule is a standalone and test-ready application that compiles to it's 
 
 **ecoposshop** - shopping submodule (deps on *ecoposcommon*)
 
-**ecoposcommon** - a common submodule that (no deps)
+**ecoposcommon** - a common submodule (no deps)
 
 ## To install:
 
