@@ -26,7 +26,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="1268" selection-end="1268" vertical-scroll-proportion="-8.125" vertical-offset="240" max-vertical-offset="1020">
+            <state line="35" column="0" selection-start="1522" selection-end="1522" vertical-scroll-proportion="-8.125" vertical-offset="330" max-vertical-offset="1110">
               <folding />
             </state>
           </provider>
@@ -86,10 +86,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bower.json" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="bower.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bower.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="28" selection-start="287" selection-end="287" vertical-scroll-proportion="0.5691057" vertical-offset="0" max-vertical-offset="480">
+            <state line="13" column="22" selection-start="258" selection-end="258" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="480">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="148" selection-start="455" selection-end="455" vertical-scroll-proportion="0.4066265" vertical-offset="0" max-vertical-offset="405">
               <folding />
             </state>
           </provider>
@@ -105,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/service/todo.js" />
         <option value="$PROJECT_DIR$/service/fairTrade.js" />
         <option value="$PROJECT_DIR$/service/employee.js" />
         <option value="$PROJECT_DIR$/service/orders.js" />
@@ -156,6 +164,7 @@
         <option value="$PROJECT_DIR$/modules/ecoposcommon/Gruntfile.js" />
         <option value="$PROJECT_DIR$/modules/ecoposresources/Gruntfile.js" />
         <option value="$PROJECT_DIR$/modules/ecoposshop/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -517,7 +526,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1268" selection-end="1268" vertical-scroll-proportion="-8.125" vertical-offset="240" max-vertical-offset="1020">
+        <state line="35" column="0" selection-start="1522" selection-end="1522" vertical-scroll-proportion="-8.125" vertical-offset="330" max-vertical-offset="1110">
           <folding />
         </state>
       </provider>
@@ -566,7 +575,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="28" selection-start="287" selection-end="287" vertical-scroll-proportion="0.5691057" vertical-offset="0" max-vertical-offset="480">
+        <state line="13" column="22" selection-start="258" selection-end="258" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="148" selection-start="455" selection-end="455" vertical-scroll-proportion="0.4066265" vertical-offset="0" max-vertical-offset="405">
           <folding />
         </state>
       </provider>
