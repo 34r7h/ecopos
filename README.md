@@ -27,6 +27,7 @@ ecoposcommon - a common submodule that (no deps)
 Download or clone this repo, then..
 
 > sudo npm install yeoman -g
+
 > sudo npm install -g generator-cg-angular
 
 
