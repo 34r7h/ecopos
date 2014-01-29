@@ -71,4 +71,6 @@ Git set-up:
         git add .
         git commit -m "Update msg"
         git remote set-url origin https://github.com/irthos/ecopos.git
-        git push origin HEAD:pat
+        git push origin HEAD:branchName
+
+*branchName can be new or established*
