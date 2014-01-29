@@ -6,6 +6,8 @@
 This app was generated using Yeoman and the cg-angular generator.
 Cg-angular generates a module with it's specified directives, partials, and services.
 
+[CG-angular](https://github.com/cgross/generator-cg-angular‎)
+
 Moderate hacking of grunt files has allowed for relatively seamless configurations of nested submodules in /modules.
 
 Each submodule is a standalone and test-ready application that compiles to it's own .js file that the main module includes in the primary build.
