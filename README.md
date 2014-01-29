@@ -26,32 +26,42 @@ ecoposcommon - a common submodule that (no deps)
 
 Download or clone this repo, then..
 
-> sudo npm install yeoman -g
+        sudo npm install yeoman -g
 
-> sudo npm install -g generator-cg-angular
+        sudo npm install -g generator-cg-angular
 
 
 ## To run (from the root dir of the module worked on):
 
 New Directive bundle:
-> yo cg-angular:directive my-awesome-directive
+
+        yo cg-angular:directive my-awesome-directive
 
 New Partial bundle:
-> yo cg-angular:partial my-partial
+
+        yo cg-angular:partial my-partial
 
 New Service:
-> yo cg-angular:service my-service
+
+        yo cg-angular:service my-service
 
 New Filter:
-> yo cg-angular:filter my-filter
+
+        yo cg-angular:filter my-filter
 
 
 Test server:
-> grunt server
+
+        grunt server
 
 Compile:
-> grunt build
 
-### *** notes ***
+        grunt build
+
+* * *
+
+notes
+
+* * *
 
 Changes to ecoposcommon must be compiled before it can be used by the other submodules or ecopos. Each submodule must be compiled prior to compiling ecopos. derp.
