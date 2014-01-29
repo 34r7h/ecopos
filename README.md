@@ -1,4 +1,4 @@
-ecopos
+EcoPOS
 ======
 
 Angular-powered POS and e-commerce.
