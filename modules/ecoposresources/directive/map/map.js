@@ -1,4 +1,4 @@
-angular.module('ecoposResources').directive('map', function() {
+angular.module('ecopos.resources').directive('map', function() {
 	return {
 		restrict: 'E',
 		replace: true,

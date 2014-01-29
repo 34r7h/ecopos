@@ -1,4 +1,4 @@
-angular.module('ecoposResources').controller('FaqCtrl',function($scope){
+angular.module('ecopos.resources').controller('FaqCtrl',function($scope){
 
 
 });

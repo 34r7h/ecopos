@@ -1,6 +1,6 @@
 describe('TestshoppartialCtrl', function() {
 
-	beforeEach(module('ecoposShop'));
+	beforeEach(module('ecopos.shop'));
 
 	var scope,ctrl;
 

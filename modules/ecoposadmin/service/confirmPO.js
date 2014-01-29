@@ -1,4 +1,4 @@
-angular.module('ecoposAdmin').factory('confirmPO',function() {
+angular.module('ecopos.admin').factory('confirmPO',function() {
 
 	var confirmPO = {};
 

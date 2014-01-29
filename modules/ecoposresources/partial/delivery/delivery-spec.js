@@ -1,6 +1,6 @@
 describe('DeliveryCtrl', function() {
 
-	beforeEach(module('ecoposResources'));
+	beforeEach(module('ecopos.resources'));
 
 	var scope,ctrl;
 

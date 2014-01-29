@@ -1,6 +1,6 @@
 describe('schedule', function() {
 
-  beforeEach(module('ecoposResources'));
+  beforeEach(module('ecopos.resources'));
 
   it('should ...', inject(function(schedule) {
 

@@ -23,28 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name=".npmignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.npmignore">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bower.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bower.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="22" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="480">
+            <state line="35" column="22" selection-start="1544" selection-end="1544" vertical-scroll-proportion="7.9166665" vertical-offset="715" max-vertical-offset="1110">
               <folding />
             </state>
           </provider>
@@ -53,16 +35,34 @@
       <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="50" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="1215">
+            <state line="16" column="45" selection-start="689" selection-end="689" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1215">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gruntfile.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gruntfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="165" selection-start="792" selection-end="792" vertical-scroll-proportion="0.41483516" vertical-offset="299" max-vertical-offset="3495">
+            <state line="37" column="33" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0" vertical-offset="329" max-vertical-offset="3495">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/directive/login/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="135">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/directive/login/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="0" selection-start="230" selection-end="230" vertical-scroll-proportion="0.5645161" vertical-offset="0" max-vertical-offset="372">
               <folding />
             </state>
           </provider>
@@ -80,16 +80,16 @@
       <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/Gruntfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="35" selection-start="1594" selection-end="1594" vertical-scroll-proportion="0.0" vertical-offset="704" max-vertical-offset="3540">
+            <state line="67" column="35" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0" vertical-offset="704" max-vertical-offset="3540">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="setup.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/js/setup.js">
+        <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/js/setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="3" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+            <state line="8" column="3" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
               <folding />
             </state>
           </provider>
@@ -107,7 +107,7 @@
       <file leaf-file-name="setup.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/ecoposShop/js/setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="26" selection-start="192" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+            <state line="5" column="26" selection-start="195" selection-end="211" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
               <folding />
             </state>
           </provider>
@@ -162,7 +162,6 @@
         <option value="$PROJECT_DIR$/partial/test/test.js" />
         <option value="$PROJECT_DIR$/partial/test/test.html" />
         <option value="$PROJECT_DIR$/modules/ecoposshop/index.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/modules/ecoposshop/service/shopTest.js" />
         <option value="$PROJECT_DIR$/modules/ecoposshop/partial/testShopPartial/testShopPartial.js" />
         <option value="$PROJECT_DIR$/modules/ecoposshop/partial/testShopPartial/testShopPartial.html" />
@@ -172,8 +171,9 @@
         <option value="$PROJECT_DIR$/modules/ecoposshop/Gruntfile.js" />
         <option value="$PROJECT_DIR$/modules/ecoposadmin/bower.json" />
         <option value="$PROJECT_DIR$/modules/ecoposadmin/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -310,6 +310,72 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="ecoposCommon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecoposCommon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directive" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecoposCommon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directive" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="login" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ecoposAdmin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -428,9 +494,9 @@
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33490565" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33490565" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32704404" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32704404" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981132" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25283018" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -474,20 +540,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/Gruntfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="20" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="3525">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposShop/Gruntfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="9" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="3525">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.editorconfig">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
@@ -530,14 +582,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/Gruntfile.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="20" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="3540">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/Gruntfile.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="20" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="3525">
           <folding />
@@ -643,12 +695,12 @@
         <state line="32" column="1" selection-start="1546" selection-end="1609" vertical-scroll-proportion="-7.5" vertical-offset="300" max-vertical-offset="960" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/index.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="48" selection-start="1652" selection-end="1652" vertical-scroll-proportion="0.73170733" vertical-offset="255" max-vertical-offset="975" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/index.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="0" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.83468837" vertical-offset="202" max-vertical-offset="975" />
       </provider>
@@ -668,7 +720,7 @@
         <state line="36" column="0" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.73170733" vertical-offset="270" max-vertical-offset="990" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/service/commonTest.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/service/commonTest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="60" selection-start="123" selection-end="123" vertical-scroll-proportion="0.07633588" vertical-offset="0" max-vertical-offset="393" />
       </provider>
@@ -688,21 +740,14 @@
         <state line="0" column="57" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1522" selection-end="1522" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="1110">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/Gruntfile.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="20" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3540">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/Gruntfile.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="20" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3525">
           <folding />
@@ -744,9 +789,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/js/setup.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/js/setup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="3" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+        <state line="8" column="3" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
           <folding />
         </state>
       </provider>
@@ -760,7 +805,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/ecoposShop/js/setup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="26" selection-start="192" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+        <state line="5" column="26" selection-start="195" selection-end="211" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
           <folding />
         </state>
       </provider>
@@ -774,21 +819,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="35" selection-start="1594" selection-end="1594" vertical-scroll-proportion="0.0" vertical-offset="704" max-vertical-offset="3540">
+        <state line="67" column="35" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.0" vertical-offset="704" max-vertical-offset="3540">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/directive/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="50" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="1215">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="377">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="165" selection-start="792" selection-end="792" vertical-scroll-proportion="0.41483516" vertical-offset="299" max-vertical-offset="3495">
+        <state line="37" column="33" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0" vertical-offset="329" max-vertical-offset="3495">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="45" selection-start="689" selection-end="689" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1215">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="22" selection-start="1544" selection-end="1544" vertical-scroll-proportion="7.9166665" vertical-offset="715" max-vertical-offset="1110">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/directive/login/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="230" selection-end="230" vertical-scroll-proportion="0.5645161" vertical-offset="0" max-vertical-offset="372">
           <folding />
         </state>
       </provider>

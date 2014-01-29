@@ -1,4 +1,4 @@
-angular.module('ecoposCommon').factory('authority',function() {
+angular.module('ecopos.common').factory('authority',function() {
 
 	var authority = {};
 

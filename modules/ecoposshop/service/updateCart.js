@@ -1,4 +1,4 @@
-angular.module('ecoposShop').factory('updateCart',function() {
+angular.module('ecopos.shop').factory('updateCart',function() {
 
 	var updateCart = {};
 

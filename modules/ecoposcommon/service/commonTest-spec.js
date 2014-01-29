@@ -1,6 +1,6 @@
 describe('commonTest', function() {
 
-  beforeEach(module('ecoposCommon'));
+  beforeEach(module('ecopos.common'));
 
   it('should ...', inject(function(commonTest) {
 

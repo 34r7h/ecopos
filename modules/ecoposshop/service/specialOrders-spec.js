@@ -1,6 +1,6 @@
 describe('specialOrders', function() {
 
-  beforeEach(module('ecoposShop'));
+  beforeEach(module('ecopos.shop'));
 
   it('should ...', inject(function(specialOrders) {
 

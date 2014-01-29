@@ -1,6 +1,6 @@
 describe('deliveryFulfillment', function() {
 
-  beforeEach(module('ecoposResources'));
+  beforeEach(module('ecopos.resources'));
 
   it('should ...', inject(function(deliveryFulfillment) {
 

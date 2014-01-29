@@ -1,4 +1,4 @@
-angular.module('ecoposCommon').directive('login', function() {
+angular.module('ecopos.common').directive('login', function() {
 	return {
 		restrict: 'E',
 		replace: true,

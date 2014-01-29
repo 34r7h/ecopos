@@ -1,4 +1,4 @@
-angular.module('ecoposShop').factory('shopTest',function() {
+angular.module('ecopos.shop').factory('shopTest',function() {
 
 	var shopTest = {test: "Shop Module Working Service"};
 

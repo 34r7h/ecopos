@@ -1,4 +1,4 @@
-angular.module('ecoposShop').factory('payment',function() {
+angular.module('ecopos.shop').factory('payment',function() {
 
 	var payment = {};
 

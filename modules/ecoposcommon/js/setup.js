@@ -1,6 +1,6 @@
-angular.module('ecoposCommon', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
+angular.module('ecopos.common', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
 
-angular.module('ecoposCommon').config(function($routeProvider) {
+angular.module('ecopos.common').config(function($routeProvider) {
 
     $routeProvider.
     /* Add New Routes Above */

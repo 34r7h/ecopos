@@ -1,4 +1,4 @@
-angular.module('ecoposAdmin').controller('DashboardCtrl',function($scope){
+angular.module('ecopos.admin').controller('DashboardCtrl',function($scope){
 
 
 });
