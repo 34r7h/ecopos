@@ -5,7 +5,7 @@ Angular-powered POS and e-commerce.
 This app was generated using Yeoman and the cg-angular generator.
 Cg-angular generates a module with it's specified directives, partials, and services.
 
-Moderate hacking of grunt files has allowed for relatively seemless configurations of nested submodules.
+Moderate hacking of grunt files has allowed for relatively seamless configurations of nested submodules in /modules.
 
 Each submodule is a standalone and test-ready application that compiles to it's own .js file that the main module includes in the primary build.
 
@@ -21,9 +21,20 @@ ecoposshop - shopping submodule (deps on ecoposcommon)
 
 ecoposcommon - a common submodule that (no deps)
 
-To run:
+To install:
 
-cd to the app or submodule dir and type 'grunt server'. Compile 'grunt build'.
+$ npm install yeoman
+$ npm install -g generator-cg-angular
+
+To run (from the root dir of the module worked on):
+
+yo cg-angular:directive my-awesome-directive
+yo cg-angular:partial my-partial
+yo cg-angular:service my-service
+yo cg-angular:filter my-filter
+
+
+Test server: $ grunt server Compile: $ grunt build
 
 *** note ***
 
