@@ -12,15 +12,15 @@ Each submodule is a standalone and test-ready application that compiles to it's 
 
 ## Modules:
 
-ecopos - main module (deps on ecoposadmin, ecoposcommon, ecoposresources, and ecoposshop)
+**ecopos** - main module (deps on ecoposadmin, ecoposcommon, ecoposresources, and ecoposshop)
 
-ecoposadmin - admin submodule (deps on ecoposcommon)
+**ecoposadmin** - admin submodule (deps on ecoposcommon)
 
-ecoposresources - resources submodule (deps on ecoposcommon)
+**ecoposresources** - resources submodule (deps on ecoposcommon)
 
-ecoposshop - shopping submodule (deps on ecoposcommon)
+**ecoposshop** - shopping submodule (deps on ecoposcommon)
 
-ecoposcommon - a common submodule that (no deps)
+**ecoposcommon** - a common submodule that (no deps)
 
 ## To install:
 
