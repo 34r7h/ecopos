@@ -61,9 +61,7 @@ Compile:
         grunt build
 
 
-
-notes
-
 * * *
+notes
 
 Changes to ecoposcommon must be compiled before it can be used by the other submodules or ecopos. Each submodule must be compiled prior to compiling ecopos. derp.
