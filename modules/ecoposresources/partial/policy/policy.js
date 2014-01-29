@@ -1,4 +1,4 @@
-angular.module('ecoposresources').controller('PolicyCtrl',function($scope){
+angular.module('ecoposResources').controller('PolicyCtrl',function($scope){
 
 
 });

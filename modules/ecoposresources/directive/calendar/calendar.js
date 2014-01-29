@@ -1,4 +1,4 @@
-angular.module('ecoposresources').directive('calendar', function() {
+angular.module('ecoposResources').directive('calendar', function() {
 	return {
 		restrict: 'E',
 		replace: true,

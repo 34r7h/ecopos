@@ -1,6 +1,6 @@
-angular.module('ecoposresources', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
+angular.module('ecoposResources', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
 
-angular.module('ecoposresources').config(function($routeProvider) {
+angular.module('ecoposResources').config(function($routeProvider) {
 
     $routeProvider.
     when('agenda',{templateUrl: 'partial/agenda/agenda.html'}).

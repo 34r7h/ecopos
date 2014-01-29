@@ -1,6 +1,6 @@
 describe('FaqCtrl', function() {
 
-	beforeEach(module('ecoposresources'));
+	beforeEach(module('ecoposResources'));
 
 	var scope,ctrl;
 

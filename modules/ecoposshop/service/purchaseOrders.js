@@ -1,4 +1,4 @@
-angular.module('ecoposshop').factory('purchaseOrders',function() {
+angular.module('ecoposShop').factory('purchaseOrders',function() {
 
 	var purchaseOrders = {};
 

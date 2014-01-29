@@ -1,4 +1,4 @@
-angular.module('ecoposshop').directive('editCart', function() {
+angular.module('ecoposShop').directive('editCart', function() {
 	return {
 		restrict: 'E',
 		replace: true,

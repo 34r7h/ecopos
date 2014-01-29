@@ -1,4 +1,4 @@
-angular.module('ecoposcommon').factory('messaging',function() {
+angular.module('ecoposCommon').factory('messaging',function() {
 
 	var messaging = {};
 

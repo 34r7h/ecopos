@@ -1,4 +1,4 @@
-angular.module('ecoposcommon').factory('DBfirebase',function() {
+angular.module('ecoposCommon').factory('DBfirebase',function() {
 
 	var DBfirebase = {};
 

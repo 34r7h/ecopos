@@ -60,7 +60,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       main: {
         options: {
-            module:'ecoposadmin',
+            module:'ecoposAdmin',
             htmlmin: {
               collapseBooleanAttributes: true,
               collapseWhitespace: true,

@@ -1,5 +1,5 @@
 {
-  "name": "ecoposresources",
+  "name": "ecoposResources",
   "version": "0.0.0",
   "devDependencies": {
     "grunt": "~0.4",

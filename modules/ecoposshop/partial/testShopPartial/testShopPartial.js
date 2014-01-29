@@ -1,4 +1,4 @@
-angular.module('ecoposshop').controller('TestshoppartialCtrl',function($scope, commonTest){
+angular.module('ecoposShop').controller('TestshoppartialCtrl',function($scope, commonTest){
 
 $scope.commonTest = commonTest.test;
 

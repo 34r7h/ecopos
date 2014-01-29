@@ -1,4 +1,4 @@
-angular.module('ecoposshop').filter('productsFilter', function() {
+angular.module('ecoposShop').filter('productsFilter', function() {
 	return function(input,arg) {
 		return 'output';
 	};

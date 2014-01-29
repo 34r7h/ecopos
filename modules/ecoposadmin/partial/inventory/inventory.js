@@ -1,4 +1,4 @@
-angular.module('ecoposadmin').controller('InventoryCtrl',function($scope){
+angular.module('ecoposAdmin').controller('InventoryCtrl',function($scope){
 
 
 });

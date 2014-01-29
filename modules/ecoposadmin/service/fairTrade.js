@@ -1,4 +1,4 @@
-angular.module('ecoposadmin').factory('fairTrade',function() {
+angular.module('ecoposAdmin').factory('fairTrade',function() {
 
 	var fairTrade = {};
 

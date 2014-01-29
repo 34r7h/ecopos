@@ -12,15 +12,15 @@ Each submodule is a standalone and test-ready application that compiles to it's 
 
 ## Modules:
 
-**ecopos** - main module (deps on *ecoposadmin*, *ecoposcommon*, *ecoposresources*, and *ecoposshop*)
+**ecopos** - main module (deps on *ecoposAdmin*, *ecoposCommon*, *ecoposResources*, and *ecoposShop*)
 
-**ecoposadmin** - admin submodule (deps on *ecoposcommon*)
+**ecoposAdmin** - admin submodule (deps on *ecoposCommon*)
 
-**ecoposresources** - resources submodule (deps on *ecoposcommon*)
+**ecoposResources** - resources submodule (deps on *ecoposCommon*)
 
-**ecoposshop** - shopping submodule (deps on *ecoposcommon*)
+**ecoposShop** - shopping submodule (deps on *ecoposCommon*)
 
-**ecoposcommon** - a common submodule (no deps)
+**ecoposCommon** - a common submodule (no deps)
 
 ## To install:
 
@@ -64,7 +64,7 @@ Compile:
 * * *
 **Notes:**
 
-Changes to ecoposcommon must be compiled before it can be used by the other submodules or ecopos. Each submodule must be compiled prior to compiling ecopos. derp.
+Changes to ecoposCommon must be compiled before it can be used by the other submodules or ecopos. Each submodule must be compiled prior to compiling ecopos. derp.
 
 Git set-up:
 

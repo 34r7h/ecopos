@@ -1,6 +1,6 @@
-angular.module('ecoposshop', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecoposcommon']);
+angular.module('ecoposShop', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecoposCommon']);
 
-angular.module('ecoposshop').config(function($routeProvider) {
+angular.module('ecoposShop').config(function($routeProvider) {
 
     $routeProvider.
     when('/testShopPartial',{templateUrl: 'partial/testShopPartial/testShopPartial.html'}).
