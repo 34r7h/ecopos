@@ -1,6 +1,6 @@
 describe('payment', function() {
 
-  beforeEach(module('ecoposshop'));
+  beforeEach(module('ecoposShop'));
 
   it('should ...', inject(function(payment) {
 

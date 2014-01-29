@@ -1,6 +1,6 @@
 describe('deliveryRoute', function() {
 
-  beforeEach(module('ecoposresources'));
+  beforeEach(module('ecoposResources'));
 
   it('should ...', inject(function(deliveryRoute) {
 

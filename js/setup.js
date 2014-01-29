@@ -1,4 +1,4 @@
-angular.module('ecopos', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecoposadmin', 'ecoposresources', 'ecoposshop', 'ecoposcommon']);
+angular.module('ecopos', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecoposAdmin', 'ecoposResources', 'ecoposShop', 'ecoposCommon']);
 
 angular.module('ecopos').config(function($routeProvider) {
 

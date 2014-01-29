@@ -1,6 +1,6 @@
 describe('CartCtrl', function() {
 
-	beforeEach(module('ecoposshop'));
+	beforeEach(module('ecoposShop'));
 
 	var scope,ctrl;
 

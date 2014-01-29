@@ -1,4 +1,4 @@
-angular.module('ecoposresources').factory('deliveryRoute',function() {
+angular.module('ecoposResources').factory('deliveryRoute',function() {
 
 	var deliveryRoute = {};
 

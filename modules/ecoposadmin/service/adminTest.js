@@ -1,4 +1,4 @@
-angular.module('ecoposadmin').factory('adminTest',function() {
+angular.module('ecoposAdmin').factory('adminTest',function() {
 
 	var adminTest = {test: "Admin Module Working Service"};
 

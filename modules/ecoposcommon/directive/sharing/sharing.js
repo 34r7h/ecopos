@@ -1,4 +1,4 @@
-angular.module('ecoposcommon').directive('sharing', function() {
+angular.module('ecoposCommon').directive('sharing', function() {
 	return {
 		restrict: 'E',
 		replace: true,

@@ -1,6 +1,6 @@
 describe('editStore', function() {
 
-  beforeEach(module('ecoposadmin'));
+  beforeEach(module('ecoposAdmin'));
 
   it('should ...', inject(function(editStore) {
 

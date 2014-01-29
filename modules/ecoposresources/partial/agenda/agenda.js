@@ -1,4 +1,4 @@
-angular.module('ecoposresources').controller('AgendaCtrl',function($scope){
+angular.module('ecoposResources').controller('AgendaCtrl',function($scope){
 
 
 });

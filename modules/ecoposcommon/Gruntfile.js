@@ -60,7 +60,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       main: {
         options: {
-            module:'ecoposcommon',
+            module:'ecoposCommon',
             htmlmin: {
               collapseBooleanAttributes: true,
               collapseWhitespace: true,
@@ -83,9 +83,9 @@ module.exports = function (grunt) {
           {src: ['img/**'], dest: 'dist/'},
           {src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
           {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},
-          {src: ['dist/common.js'], dest: '../ecoposshop/js/'},
-            {src: ['dist/common.js'], dest: '../ecoposresources/js/'},
-            {src: ['dist/common.js'], dest: '../ecoposadmin/js/'}
+          {src: ['dist/common.js'], dest: '../ecoposShop/js/'},
+            {src: ['dist/common.js'], dest: '../ecoposResources/js/'},
+            {src: ['dist/common.js'], dest: '../ecoposAdmin/js/'}
           // {src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
           // {src: ['bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
         ]

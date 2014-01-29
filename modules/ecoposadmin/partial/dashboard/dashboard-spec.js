@@ -1,6 +1,6 @@
 describe('DashboardCtrl', function() {
 
-	beforeEach(module('ecoposadmin'));
+	beforeEach(module('ecoposAdmin'));
 
 	var scope,ctrl;
 

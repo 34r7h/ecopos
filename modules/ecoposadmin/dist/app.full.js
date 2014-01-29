@@ -1,6 +1,6 @@
-angular.module('ecoposadmin', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
+angular.module('ecoposAdmin', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
 
-angular.module('ecoposadmin').config(function($routeProvider) {
+angular.module('ecoposAdmin').config(function($routeProvider) {
 
     $routeProvider.
     /* Add New Routes Above */
@@ -8,7 +8,7 @@ angular.module('ecoposadmin').config(function($routeProvider) {
 
 });
 
-angular.module('ecoposadmin').factory('adminTest',function() {
+angular.module('ecoposAdmin').factory('adminTest',function() {
 
 	var adminTest = {test: "Admin Module Working Service"};
 

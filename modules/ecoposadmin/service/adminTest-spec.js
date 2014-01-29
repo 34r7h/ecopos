@@ -1,6 +1,6 @@
 describe('adminTest', function() {
 
-  beforeEach(module('ecoposadmin'));
+  beforeEach(module('ecoposAdmin'));
 
   it('should ...', inject(function(adminTest) {
 

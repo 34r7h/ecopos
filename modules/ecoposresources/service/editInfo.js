@@ -1,4 +1,4 @@
-angular.module('ecoposresources').factory('editInfo',function() {
+angular.module('ecoposResources').factory('editInfo',function() {
 
 	var editInfo = {};
 

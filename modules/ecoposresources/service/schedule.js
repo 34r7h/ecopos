@@ -1,4 +1,4 @@
-angular.module('ecoposresources').factory('schedule',function() {
+angular.module('ecoposResources').factory('schedule',function() {
 
 	var schedule = {};
 

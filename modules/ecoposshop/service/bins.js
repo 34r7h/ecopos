@@ -1,4 +1,4 @@
-angular.module('ecoposshop').factory('bins',function() {
+angular.module('ecoposShop').factory('bins',function() {
 
 	var bins = {};
 

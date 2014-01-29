@@ -1,6 +1,6 @@
 describe('DBappEngine', function() {
 
-  beforeEach(module('ecoposcommon'));
+  beforeEach(module('ecoposCommon'));
 
   it('should ...', inject(function(DBappEngine) {
 

@@ -1,4 +1,4 @@
-angular.module('ecoposadmin').directive('graph', function() {
+angular.module('ecoposAdmin').directive('graph', function() {
 	return {
 		restrict: 'E',
 		replace: true,

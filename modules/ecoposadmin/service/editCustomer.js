@@ -1,4 +1,4 @@
-angular.module('ecoposadmin').factory('editCustomer',function() {
+angular.module('ecoposAdmin').factory('editCustomer',function() {
 
 	var editCustomer = {};
 

@@ -1,4 +1,4 @@
-angular.module('ecoposresources').controller('DeliveryCtrl',function($scope){
+angular.module('ecoposResources').controller('DeliveryCtrl',function($scope){
 
 
 });

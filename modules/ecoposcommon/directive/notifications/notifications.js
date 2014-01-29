@@ -1,4 +1,4 @@
-angular.module('ecoposcommon').directive('notifications', function() {
+angular.module('ecoposCommon').directive('notifications', function() {
 	return {
 		restrict: 'E',
 		replace: true,

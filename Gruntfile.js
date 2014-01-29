@@ -28,7 +28,7 @@ module.exports = function (grunt) {
             livereload: true,
             spawn: false
         },
-        files: ['js/**/*','css/**/*','img/**/*','partial/**/*','service/**/*','filter/**/*','directive/**/*','index.html', 'modules/ecoposadmin/dist/*.js', 'modules/ecoposresources/dist/*.js', 'modules/ecoposshop/dist/*.js'],
+        files: ['js/**/*','css/**/*','img/**/*','partial/**/*','service/**/*','filter/**/*','directive/**/*','index.html', 'modules/ecoposAdmin/dist/*.js', 'modules/ecoposResources/dist/*.js', 'modules/ecoposShop/dist/*.js'],
         tasks: [] //all the tasks are run dynamically during the watch event handler
       }
     },
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         options: {
             jshintrc: '.jshintrc'
         },
-        src: ['js/**/*.js','partial/**/*.js','service/**/*.js','filter/**/*.js','directive/**/*.js', 'modules/ecoposadmin/dist/*.js', 'modules/ecoposresources/dist/*.js', 'modules/ecoposshop/dist/*.js']
+        src: ['js/**/*.js','partial/**/*.js','service/**/*.js','filter/**/*.js','directive/**/*.js', 'modules/ecoposAdmin/dist/*.js', 'modules/ecoposResources/dist/*.js', 'modules/ecoposShop/dist/*.js']
       }
     },
     clean: {

@@ -1,6 +1,6 @@
-angular.module('ecoposshop', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecoposcommon']);
+angular.module('ecoposShop', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecoposCommon']);
 
-angular.module('ecoposshop').config(function($routeProvider) {
+angular.module('ecoposShop').config(function($routeProvider) {
 
     $routeProvider.
     when('/testShopPartial',{templateUrl: 'partial/testShopPartial/testShopPartial.html'}).
@@ -11,18 +11,18 @@ angular.module('ecoposshop').config(function($routeProvider) {
 
 
 
-angular.module('ecoposshop').factory('shopTest',function() {
+angular.module('ecoposShop').factory('shopTest',function() {
 
 	var shopTest = {test: "Shop Module Working Service"};
 
 	return shopTest;
 });
-angular.module('ecoposshop').controller('TestshoppartialCtrl',function($scope, commonTest){
+angular.module('ecoposShop').controller('TestshoppartialCtrl',function($scope, commonTest){
 
 $scope.commonTest = commonTest.test;
 
 });
-angular.module('ecoposshop').run(['$templateCache', function($templateCache) {
+angular.module('ecoposShop').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('partial/testShopPartial/testShopPartial.html',
