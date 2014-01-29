@@ -1,4 +1,4 @@
-angular.module('ecoposShop').controller('ProductsCtrl',function($scope){
+angular.module('ecopos.shop').controller('ProductsCtrl',function($scope){
 
 
 });

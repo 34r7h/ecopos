@@ -1,6 +1,6 @@
 describe('ManageCtrl', function() {
 
-	beforeEach(module('ecoposAdmin'));
+	beforeEach(module('ecopos.admin'));
 
 	var scope,ctrl;
 

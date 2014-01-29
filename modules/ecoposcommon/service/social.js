@@ -1,4 +1,4 @@
-angular.module('ecoposCommon').factory('social',function() {
+angular.module('ecopos.common').factory('social',function() {
 
 	var social = {};
 

@@ -1,6 +1,6 @@
 describe('fairTrade', function() {
 
-  beforeEach(module('ecoposAdmin'));
+  beforeEach(module('ecopos.admin'));
 
   it('should ...', inject(function(fairTrade) {
 

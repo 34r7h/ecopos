@@ -1,6 +1,6 @@
 describe('bins', function() {
 
-  beforeEach(module('ecoposShop'));
+  beforeEach(module('ecopos.shop'));
 
   it('should ...', inject(function(bins) {
 

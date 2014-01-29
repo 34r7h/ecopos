@@ -1,4 +1,4 @@
-angular.module('ecoposCommon').factory('DBappEngine',function() {
+angular.module('ecopos.common').factory('DBappEngine',function() {
 
 	var DBappEngine = {};
 

@@ -1,4 +1,4 @@
-angular.module('ecoposResources').filter('mapFilter', function() {
+angular.module('ecopos.resources').filter('mapFilter', function() {
 	return function(input,arg) {
 		return 'output';
 	};

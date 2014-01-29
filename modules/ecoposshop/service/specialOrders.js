@@ -1,4 +1,4 @@
-angular.module('ecoposShop').factory('specialOrders',function() {
+angular.module('ecopos.shop').factory('specialOrders',function() {
 
 	var specialOrders = {};
 

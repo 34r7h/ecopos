@@ -1,4 +1,4 @@
-angular.module('ecoposAdmin').directive('stock', function() {
+angular.module('ecopos.admin').directive('stock', function() {
 	return {
 		restrict: 'E',
 		replace: true,

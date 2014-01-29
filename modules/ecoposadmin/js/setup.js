@@ -1,6 +1,6 @@
-angular.module('ecoposAdmin', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
+angular.module('ecopos.admin', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
 
-angular.module('ecoposAdmin').config(function($routeProvider) {
+angular.module('ecopos.admin').config(function($routeProvider) {
 
     $routeProvider.
     when('dashboard',{templateUrl: 'partial/dashboard/dashboard.html'}).

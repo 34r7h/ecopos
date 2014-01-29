@@ -1,4 +1,4 @@
-angular.module('ecoposCommon').factory('notify',function() {
+angular.module('ecopos.common').factory('notify',function() {
 
 	var notify = {};
 

@@ -1,4 +1,4 @@
-angular.module('ecoposAdmin').controller('AcctPrefsCtrl',function($scope){
+angular.module('ecopos.admin').controller('AcctPrefsCtrl',function($scope){
 
 
 });

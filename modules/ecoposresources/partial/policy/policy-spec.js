@@ -1,6 +1,6 @@
 describe('PolicyCtrl', function() {
 
-	beforeEach(module('ecoposResources'));
+	beforeEach(module('ecopos.resources'));
 
 	var scope,ctrl;
 

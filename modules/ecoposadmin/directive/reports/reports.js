@@ -1,4 +1,4 @@
-angular.module('ecoposAdmin').directive('reports', function() {
+angular.module('ecopos.admin').directive('reports', function() {
 	return {
 		restrict: 'E',
 		replace: true,
