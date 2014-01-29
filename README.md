@@ -19,7 +19,11 @@ ecoposshop - shopping submodule (deps on ecoposcommon)
 
 ecoposcommon - a common submodule that (no deps)
 
-To run cd to the app or submodule dir and type 'grunt server'. Compile 'grunt build'.
+To run:
+
+cd to the app or submodule dir and type 'grunt server'. Compile 'grunt build'.
+
 *** note ***
+
 Changes to ecoposcommon must be compiled before it can be used by the other submodules or ecopos.
 Each submodule must be compiled prior to compiling ecopos. derp.
