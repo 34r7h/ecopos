@@ -3,7 +3,8 @@ angular.module('ecoposresources', ['ui.bootstrap','ui.utils','ngRoute','ngAnimat
 angular.module('ecoposresources').config(function($routeProvider) {
 
     $routeProvider.
-    /* Add New Routes Above */
+    when('agenda',{templateUrl: 'partial/agenda/agenda.html'}).
+	/* Add New Routes Above */
     otherwise({redirectTo:'/home'});
 
 });
