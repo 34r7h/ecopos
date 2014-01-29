@@ -4,9 +4,7 @@
 ## Angular-powered POS and e-commerce.
 
 This app was generated using Yeoman and the cg-angular generator.
-Cg-angular generates a module with it's specified directives, partials, and services.
-
-[CG-angular](https://github.com/cgross/generator-cg-angular‎)
+[CG-angular](https://github.com/cgross/generator-cg-angular‎) generates a module with it's specified directives, partials, and services.
 
 Moderate hacking of grunt files has allowed for relatively seamless configurations of nested submodules in /modules.
 
