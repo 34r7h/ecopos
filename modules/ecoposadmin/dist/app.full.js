@@ -182,12 +182,12 @@ angular.module('ecopos.admin').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('partial/acct-prefs/acct-prefs.html',
-    "<div class=col-md-12 ng-controller=AcctPrefsCtrl></div>"
+    "<div class=col-md-12 ng-controller=AcctPrefsCtrl>Account and Preferences Partial</div>"
   );
 
 
   $templateCache.put('partial/dashboard/dashboard.html',
-    "<div class=col-md-12 ng-controller=DashboardCtrl></div>"
+    "<div class=col-md-12 ng-controller=DashboardCtrl>Dashboard Partial</div>"
   );
 
 
@@ -202,37 +202,37 @@ angular.module('ecopos.admin').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directive/accounting/accounting.html',
-    "<div></div>"
+    "<div>Accounting Directive</div>"
   );
 
 
   $templateCache.put('directive/customer/customer.html',
-    "<div></div>"
+    "<div>Customer Directive</div>"
   );
 
 
   $templateCache.put('directive/employee/employee.html',
-    "<div></div>"
+    "<div>Employee Directive</div>"
   );
 
 
   $templateCache.put('directive/graph/graph.html',
-    "<div></div>"
+    "<div>Graph Directive</div>"
   );
 
 
   $templateCache.put('directive/reports/reports.html',
-    "<div></div>"
+    "<div>Reports Directive</div>"
   );
 
 
   $templateCache.put('directive/stock/stock.html',
-    "<div></div>"
+    "<div>Stock Directive</div>"
   );
 
 
   $templateCache.put('directive/supplier/supplier.html',
-    "<div></div>"
+    "<div>Supplier Directive</div>"
   );
 
 }]);
