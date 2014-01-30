@@ -3,7 +3,10 @@ angular.module('ecopos', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecop
 angular.module('ecopos').config(function($routeProvider) {
 
     $routeProvider.
-    when('/test',{templateUrl: 'partial/test/test.html'}).
+    when('/',{templateUrl: 'partial/test/test.html'}).
+	when('/dashboard/:id',{templateUrl: 'partial/dashboard/dashboard.html'}).
+	when('/shop/:id',{templateUrl: 'partial/shop/shop.html'}).
+	when('/resources/:id',{templateUrl: 'partial/resources/resources.html'}).
 	/* Add New Routes Above */
     otherwise({redirectTo:'/home'});
 

@@ -1,4 +1,5 @@
-angular.module('ecopos').controller('HeaderCtrl',function($scope){
+angular.module('ecopos').controller('HeaderCtrl',function($scope, navigation){
 
+$scope.links = navigation;
 
 });

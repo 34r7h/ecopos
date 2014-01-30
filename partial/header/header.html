@@ -1,4 +1,10 @@
 <div class="col-md-12" ng-controller="HeaderCtrl">
+Header Partial
 
+    <div ng-repeat="(key, link) in links">
+        <ul>
+            <li><a ng-href="{{link}}">{{key}}</a></li>
+        </ul>
+    </div>
 
 </div>
