@@ -59,11 +59,9 @@ angular.module('ecopos.admin').factory('fairTrade',function() {
 });
 angular.module('ecopos.admin').directive('accounting', function() {
 	return {
-		restrict: 'E',
+		restrict: '[E,A]',
 		replace: true,
-		scope: {
-
-		},
+        scope: {},
 		templateUrl: 'directive/accounting/accounting.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -174,20 +172,11 @@ angular.module('ecopos.admin').controller('AcctPrefsCtrl',function($scope){
 
 
 });
-angular.module('ecopos.admin').controller('DashboardCtrl',function($scope){
-
-
-});
 angular.module('ecopos.admin').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('partial/acct-prefs/acct-prefs.html',
     "<div class=col-md-12 ng-controller=AcctPrefsCtrl>Account and Preferences Partial</div>"
-  );
-
-
-  $templateCache.put('partial/dashboard/dashboard.html',
-    "<div class=col-md-12 ng-controller=DashboardCtrl>Dashboard Partial</div>"
   );
 
 
