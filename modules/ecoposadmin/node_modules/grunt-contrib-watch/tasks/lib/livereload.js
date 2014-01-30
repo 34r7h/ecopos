@@ -15,7 +15,7 @@ var servers = Object.create(null);
 
 module.exports = function(grunt) {
 
-  var defaults = { port: 35729 };
+  var defaults = { port: 35730 };
 
   function LR(options) {
     if (options === true) {
