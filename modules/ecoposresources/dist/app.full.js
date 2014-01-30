@@ -148,22 +148,22 @@ angular.module('ecopos.resources').run(['$templateCache', function($templateCach
 
 
   $templateCache.put('directive/calendar/calendar.html',
-    "<div></div>"
+    "<div>Calendar Directive</div>"
   );
 
 
   $templateCache.put('directive/info/info.html',
-    "<div></div>"
+    "<div>Info Directive</div>"
   );
 
 
   $templateCache.put('directive/map/map.html',
-    "<div></div>"
+    "<div>Map Directive</div>"
   );
 
 
   $templateCache.put('directive/todo/todo.html',
-    "<div></div>"
+    "<div>To Do Directive</div>"
   );
 
 }]);

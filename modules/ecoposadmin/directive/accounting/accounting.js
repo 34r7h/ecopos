@@ -1,10 +1,8 @@
 angular.module('ecopos.admin').directive('accounting', function() {
 	return {
-		restrict: 'E',
+		restrict: '[E,A]',
 		replace: true,
-		scope: {
-
-		},
+        scope: {},
 		templateUrl: 'directive/accounting/accounting.html',
 		link: function(scope, element, attrs, fn) {
 

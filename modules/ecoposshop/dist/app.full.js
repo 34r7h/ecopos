@@ -92,72 +92,66 @@ angular.module('ecopos.shop').directive('productDetail', function() {
 	};
 });
 
+angular.module('ecopos.shop').directive('cart', function() {
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: {
+
+		},
+		templateUrl: 'directive/cart/cart.html',
+		link: function(scope, element, attrs, fn) {
+
+
+		}
+	};
+});
+
+angular.module('ecopos.shop').directive('checkout', function() {
+	return {
+		restrict: 'E',
+		replace: true,
+		scope: {
+
+		},
+		templateUrl: 'directive/checkout/checkout.html',
+		link: function(scope, element, attrs, fn) {
+
+
+		}
+	};
+});
+
 angular.module('ecopos.shop').filter('productsFilter', function() {
 	return function(input,arg) {
 		return 'output';
 	};
 });
-angular.module('ecopos.shop').controller('TestshoppartialCtrl',function($scope, commonTest){
-
-$scope.commonTest = commonTest.test;
-
-});
-angular.module('ecopos.shop').controller('CartCtrl',function($scope){
-
-
-});
-angular.module('ecopos.shop').controller('ProductCtrl',function($scope){
-
-
-});
-angular.module('ecopos.shop').controller('ProductsCtrl',function($scope){
-
-
-});
-angular.module('ecopos.shop').controller('CheckoutCtrl',function($scope){
-
-
-});
 angular.module('ecopos.shop').run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('partial/cart/cart.html',
-    "<div class=col-md-12 ng-controller=CartCtrl></div>"
+  $templateCache.put('directive/cart/cart.html',
+    "<div>Cart Directive</div>"
   );
 
 
-  $templateCache.put('partial/checkout/checkout.html',
-    "<div class=col-md-12 ng-controller=CheckoutCtrl></div>"
-  );
-
-
-  $templateCache.put('partial/product/product.html',
-    "<div class=col-md-12 ng-controller=ProductCtrl></div>"
-  );
-
-
-  $templateCache.put('partial/products/products.html',
-    "<div class=col-md-12 ng-controller=ProductsCtrl></div>"
-  );
-
-
-  $templateCache.put('partial/testShopPartial/testShopPartial.html',
-    "<div class=col-md-12 ng-controller=TestshoppartialCtrl>{{commonTest}}</div>"
+  $templateCache.put('directive/checkout/checkout.html',
+    "<div>Checkout Directive</div>"
   );
 
 
   $templateCache.put('directive/editCart/editCart.html',
-    "<div></div>"
+    "<div>Edit Cart Directive</div>"
   );
 
 
   $templateCache.put('directive/productDetail/productDetail.html',
-    "<div></div>"
+    "<div>Product Detail Directive</div>"
   );
 
 
   $templateCache.put('directive/productList/productList.html',
-    "<div></div>"
+    "<div>Product List Directive</div>"
   );
 
 }]);
