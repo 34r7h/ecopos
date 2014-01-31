@@ -1,5 +1,10 @@
 <div class="col-md-12" ng-controller="HeaderCtrl">
 <em><b>Header Partial</b></em>
+    <button ng-click="addItem()">Add Item</button>
+    <button ng-click="loseItem()">Lose Item</button>
+    <button ng-click="loseAllItems()">Lose All Items</button>
+    <div ng-repeat="item in items">{{item}}</div>
+
     <div class="nav">
         <div>
             <ul ng-repeat="(key, link) in links">

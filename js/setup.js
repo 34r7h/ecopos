@@ -1,11 +1,20 @@
-angular.module('ecopos', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ui.router', 'ecopos.admin', 'ecopos.resources', 'ecopos.shop', 'ecopos.common']);
+angular.module('ecopos', [
+    'ui.bootstrap',
+    'ui.utils',
+    'ngRoute',
+    'ngAnimate',
+    'ui.router',
+    'ecopos.admin',
+    'ecopos.resources',
+    'ecopos.shop',
+    'ecopos.common',
+    'firebase'
+]);
 
 angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider) {
 
-
-
-    $urlRouterProvider.otherwise('/');
-
+    $urlRouterProvider.
+        otherwise('/');
 
     $stateProvider.
         state('shop', {
