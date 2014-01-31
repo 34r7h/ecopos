@@ -1,16 +1,76 @@
-angular.module('ecopos', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ecopos.admin', 'ecopos.resources', 'ecopos.shop', 'ecopos.common']);
+angular.module('ecopos', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'ui.router', 'ecopos.admin', 'ecopos.resources', 'ecopos.shop', 'ecopos.common']);
 
-angular.module('ecopos').config(function($routeProvider) {
+angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider) {
 
-    $routeProvider.
-    when('/',{templateUrl: 'partial/test/test.html'}).
-	when('/dashboard/:id',{templateUrl: 'partial/dashboard/dashboard.html'}).
-	when('/shop/:id',{templateUrl: 'partial/shop/shop.html'}).
-	when('/resources/:id',{templateUrl: 'partial/resources/resources.html'}).
-	/* Add New Routes Above */
-    otherwise({redirectTo:'/home'});
 
-});
+
+    $urlRouterProvider.otherwise('/');
+
+
+    $stateProvider.
+        state('shop', {
+            url: '/shop/:id',
+            template: "<div ui-view></div>"
+        }).
+            state('shop.pos',{
+                url: '/pos',
+                templateUrl: '/partial/shop/shop.html'
+            }).
+            state('shop.cafe',{
+                url: '/cafe',
+                template: 'Cafe State'
+            }).
+            state('shop.so',{
+                url: '/sunshine',
+                template: 'Sunshine Organics'
+            }).
+            state('shop.cart',{
+                url: '/cart',
+                template: 'A Le Cart'
+            }).
+            state('shop.checkout',{
+                url: '/checkout',
+                template: 'Check me out'
+            }).
+
+        state('admin',{
+            url: '/dashboard/:id',
+            templateUrl: 'partial/dashboard/dashboard.html'
+        }).
+            state('admin.settings',{
+                url: '/settings',
+                template: 'admin settings'
+            }).
+            state('admin.inventory',{
+                url: '/inventory',
+                template: 'admin inventory'
+            }).
+            state('admin.store',{
+                url: '/store',
+                template: 'admin store management'
+            }).
+
+        state('resources',{
+            url: '/resources/:id',
+            template: '<div ui-view></div>'
+        }).
+            state('resources.agenda',{
+                url: '/agenda',
+                template: 'Agenda Resources'
+            }).
+            state('resources.delivery',{
+                url: '/delivery',
+                template: 'Delivery Resources'
+            }).
+            state('resources.info',{
+                url: '/info',
+                templateUrl: 'Informative Resources'
+            });
+
+ });
+
+
+
 
 angular.module('ecopos').run(function($rootScope) {
 

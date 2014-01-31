@@ -3,9 +3,7 @@ angular.module('ecopos.resources', ['ui.bootstrap','ui.utils','ngRoute','ngAnima
 angular.module('ecopos.resources').config(function($routeProvider) {
 
     $routeProvider.
-    when('agenda',{templateUrl: 'partial/agenda/agenda.html'}).
-	/* Add New Routes Above */
-    otherwise({redirectTo:'/home'});
+    when('agenda',{templateUrl: 'partial/agenda/agenda.html'});
 
 });
 angular.module('ecopos.resources').factory('resourcesTest',function() {
