@@ -81,7 +81,23 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 
 
-angular.module('ecopos').run(function($rootScope) {
+angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
+
+    $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
+
+    $rootScope.addItem = function(){
+        $rootScope.items.$add({test:"run"});
+    };
+
+    $rootScope.loseItem = function(){
+        $rootScope.items.$remove("test");
+    };
+
+    $rootScope.loseAllItems = function(){
+        $rootScope.items.$remove();
+    };
+
+
 
 	$rootScope.safeApply = function(fn) {
 		var phase = $rootScope.$$phase;
