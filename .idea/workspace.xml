@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="14" selection-start="2739" selection-end="2739" vertical-scroll-proportion="-5.625" vertical-offset="975" max-vertical-offset="1380">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
               <folding />
             </state>
           </provider>
@@ -41,10 +41,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="setup.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="31" selection-start="833" selection-end="833" vertical-scroll-proportion="0.22841226" vertical-offset="308" max-vertical-offset="1410">
+            <state line="26" column="31" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1410">
               <folding />
             </state>
           </provider>
@@ -108,7 +108,10 @@
         <entry file="file://$PROJECT_DIR$/partial/header/header.less">
           <provider selected="true" editor-type-id="text-editor">
             <state line="13" column="1" selection-start="133" selection-end="133" vertical-scroll-proportion="-3.9795918" vertical-offset="0" max-vertical-offset="285">
-              <folding />
+              <folding>
+                <marker date="1391139263000" expanded="true" signature="5:9" placeholder="{...}" />
+                <marker date="1391139263000" expanded="true" signature="19:42" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -167,13 +170,13 @@
         <option value="$PROJECT_DIR$/modules/ecoposCommon/js/setup.js" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/js/setup.js" />
         <option value="$PROJECT_DIR$/modules/ecoposShop/js/setup.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/partial/shop/shop.html" />
         <option value="$PROJECT_DIR$/service/navigation.js" />
         <option value="$PROJECT_DIR$/partial/dashboard/dashboard.html" />
         <option value="$PROJECT_DIR$/partial/header/header.less" />
         <option value="$PROJECT_DIR$/partial/header/header.html" />
         <option value="$PROJECT_DIR$/js/setup.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -665,13 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="396" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/accounting/accounting.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="6" selection-start="34" selection-end="34" vertical-scroll-proportion="0.1212938" vertical-offset="0" max-vertical-offset="371">
@@ -740,13 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="14" selection-start="2739" selection-end="2739" vertical-scroll-proportion="-5.625" vertical-offset="975" max-vertical-offset="1380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/partial/shop/shop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="46" selection-start="38" selection-end="46" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="330">
@@ -799,7 +788,10 @@
     <entry file="file://$PROJECT_DIR$/partial/header/header.less">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="1" selection-start="133" selection-end="133" vertical-scroll-proportion="-3.9795918" vertical-offset="0" max-vertical-offset="285">
-          <folding />
+          <folding>
+            <marker date="1391139263000" expanded="true" signature="5:9" placeholder="{...}" />
+            <marker date="1391139263000" expanded="true" signature="19:42" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -812,7 +804,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/setup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="31" selection-start="833" selection-end="833" vertical-scroll-proportion="0.22841226" vertical-offset="308" max-vertical-offset="1410">
+        <state line="26" column="31" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1410">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
           <folding />
         </state>
       </provider>
