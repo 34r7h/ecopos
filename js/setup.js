@@ -44,7 +44,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
         state('admin',{
             url: '/dashboard/:id',
-            templateUrl: 'partial/dashboard/dashboard.html'
+            templateUrl: '/partial/dashboard/dashboard.html'
         }).
             state('admin.settings',{
                 url: '/settings',
