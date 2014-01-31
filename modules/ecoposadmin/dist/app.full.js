@@ -3,7 +3,7 @@ angular.module('ecopos.admin', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']
 angular.module('ecopos.admin').config(function($routeProvider) {
 
     $routeProvider.
-    when('dashboard',{templateUrl: 'partial/dashboard/dashboard.html'});
+	when('/dashtest',{templateUrl: 'partial/dashTest/dashTest.html'});
 	/* Add New Routes Above */
 
 
@@ -172,11 +172,20 @@ angular.module('ecopos.admin').controller('AcctPrefsCtrl',function($scope){
 
 
 });
+angular.module('ecopos.admin').controller('DashtestCtrl',function($scope){
+
+
+});
 angular.module('ecopos.admin').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('partial/acct-prefs/acct-prefs.html',
     "<div class=col-md-12 ng-controller=AcctPrefsCtrl>Account and Preferences Partial</div>"
+  );
+
+
+  $templateCache.put('partial/dashTest/dashTest.html',
+    "<div class=col-md-12 ng-controller=DashtestCtrl><p>≈We're at Test Dash! Home to the following directives:</p><accounting></accounting><customer></customer><employee></employee><graph></graph><reports></reports><stock></stock><supplier></supplier></div>"
   );
 
 
@@ -191,7 +200,7 @@ angular.module('ecopos.admin').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directive/accounting/accounting.html',
-    "<div>Accounting Directive</div>"
+    "<div class=panel>Accounting Directive</div>"
   );
 
 
