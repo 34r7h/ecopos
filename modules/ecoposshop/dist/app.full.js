@@ -3,9 +3,7 @@ angular.module('ecopos.shop', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 
 angular.module('ecopos.shop').config(function($routeProvider) {
 
     $routeProvider.
-    when('/testShopPartial',{templateUrl: 'partial/testShopPartial/testShopPartial.html'}).
-	/* Add New Routes Above */
-    otherwise({redirectTo:'/home'});
+    when('/testShopPartial',{templateUrl: 'partial/testShopPartial/testShopPartial.html'});
 
 });
 
