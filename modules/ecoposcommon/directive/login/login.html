@@ -1,4 +1,32 @@
 <div>
-
-
+  <div class="register-block">
+    <h3>Register</h3>
+    <div>
+      <label for="username">Username: </label><input type="text" name="username" id="username" data-ng-model="username" />
+    </div>
+    <div>
+      <label for="password">Password: </label><input type="password" name="password" id="password" data-ng-model="password" />
+    </div>
+    <div>
+      <label for="passwordConfirm">Confirm password: </label><input type="password" name="passwordConfirm" id="passwordConfirm" data-ng-model="passwordConfirm" />
+    </div>
+    <div>
+      <input type="button" value="Create User" />
+    </div>
+  </div>
+  <div class="login-block">
+    <h3>Login</h3>
+    <div>
+      <label for="username">Username: </label><input type="text" name="username" id="username" data-ng-model="username" />
+    </div>
+    <div>
+      <label for="password">Password: </label><input type="password" name="password" id="password" data-ng-model="password" />
+    </div>
+    <div>
+      <input type="button" value="Login" />
+    </div>
+  </div>
+  <div class="user-block">
+      <span>Logged in as: {{ username }}</span>
+  </div>
 </div>

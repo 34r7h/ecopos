@@ -1,9 +1,9 @@
 angular.module('ecopos.common', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
 
 angular.module('ecopos.common').config(function($routeProvider) {
-
-
-
+  $routeProvider.
+      when('/', {templateUrl: 'directive/login/login.html'}).
+      otherwise({ redirectTo: '/' });
 });
 angular.module('ecopos.common').factory('commonTest',function() {
 
@@ -96,7 +96,7 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
-    "<div></div>"
+    "<div><div class=login-block><div><label for=username>Username:</label><input name=username id=username data-ng-model=username></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=\"\\\"password\"></div></div><div class=register-block><div><label for=username>Username:</label><input name=username id=username data-ng-model=username></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=\"\\\"password\"></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=\"\\\"passwordConfirm\"></div></div><div class=user-block><span>Logged in as: {{ user.username }}</span></div></div>"
   );
 
 
