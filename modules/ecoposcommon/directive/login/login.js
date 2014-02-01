@@ -21,7 +21,19 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
         }
         else{
           authority.createUser(scope.email, scope.password, function(err, user){
-            console.log('created user:'+user.id);
+            if(err){
+              //scope.err = err.toString();
+              scope.err = err;
+              // switch(scope.err.code)
+            }
+            else if(user){
+              console.log('created user:'+user.id);
+              scope.user = user;
+            }
+            else{
+              console.log('strange brew.');
+            }
+
           });
         }
       };

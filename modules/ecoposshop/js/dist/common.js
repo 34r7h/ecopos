@@ -47746,13 +47746,28 @@ angular.module('ecopos.common').factory('notify',function() {
 
 	return notify;
 });
-angular.module('ecopos.common').factory('authority',function($firebaseSimpleLogin) {
+angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin) {
 	var authority = {
     createUser: function(email, password, callback){
-      console.log('authority kickin it.'+($firebaseSimpleLogin)+':');
-      if(callback){
-        callback(null, {id:'test'});
-      }
+      $rootScope.auth = $firebaseSimpleLogin($rootScope.DBFBref);
+
+      $rootScope.auth.$createUser(email, password, true).then(
+          function(user){
+            if(callback){
+              callback(null, user);
+            }
+            //console.log('user created:'+(user.id)+':');
+          },
+          function(error){
+            if(callback){
+              callback(error, null);
+            }
+            //console.log('there was an error:'+error+':');
+          }
+      );
+
+
+
       /**angularFireAuth._authClient.createUser(email, password, function(err, user) {
         if(callback){
           callback(err, user);
@@ -47825,7 +47840,19 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
         }
         else{
           authority.createUser(scope.email, scope.password, function(err, user){
-            console.log('created user:'+user.id);
+            if(err){
+              //scope.err = err.toString();
+              scope.err = err;
+              // switch(scope.err.code)
+            }
+            else if(user){
+              console.log('created user:'+user.id);
+              scope.user = user;
+            }
+            else{
+              console.log('strange brew.');
+            }
+
           });
         }
       };
@@ -47852,7 +47879,7 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
-    "<div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser();></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login></div></div><div class=user-block><span>Logged in as: {{ user.email }}</span></div><div><table><tr><th>email</th><th>password</th></tr><tr data-ng-repeat=\"t in test\"><td>{{ t.life }}</td><td>ya right.</td></tr></table></div></div>"
+    "<div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser();></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login></div></div><div class=user-block><span>Logged in as: {{ user.email }} (#{{ user.id }})</span></div><div><table><tr><th>email</th><th>password</th></tr><tr data-ng-repeat=\"t in test\"><td>{{ t.life }}</td><td>ya right.</td></tr></table></div></div>"
   );
 
 
