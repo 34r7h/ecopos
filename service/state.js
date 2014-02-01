@@ -1,6 +1,7 @@
 angular.module('ecopos').factory('state',function() {
 
-	var state = {};
+	var state = {
+  };
 
 	return state;
 });

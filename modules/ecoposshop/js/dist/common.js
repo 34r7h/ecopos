@@ -47730,7 +47730,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
   };
 })();
 
-angular.module('ecopos.common', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate']);
+angular.module('ecopos.common', ['ui.bootstrap','ui.utils','ngRoute','ngAnimate', 'firebase']);
 
 angular.module('ecopos.common').config(function($routeProvider) {
 });
@@ -47746,10 +47746,10 @@ angular.module('ecopos.common').factory('notify',function() {
 
 	return notify;
 });
-angular.module('ecopos.common').factory('authority',function(angularFireAuth) {
+angular.module('ecopos.common').factory('authority',function($firebaseSimpleLogin) {
 	var authority = {
     createUser: function(email, password, callback){
-      console.log('authority kickin it.');
+      console.log('authority kickin it.'+($firebaseSimpleLogin)+':');
       if(callback){
         callback(null, {id:'test'});
       }
