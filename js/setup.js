@@ -73,7 +73,11 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             }).
             state('resources.info',{
                 url: '/info',
-                templateUrl: 'Informative Resources'
+                template: 'Informative Resources'
+            }).
+            state('testpat', {
+                url: '/testpat',
+                template: '<login></login>'
             });
 
  });
@@ -81,7 +85,9 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 
 
-angular.module('ecopos').run(function($rootScope) {
+angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
+
+  $rootScope.DBFB = $firebase(new Firebase('https://ecopos.firebaseio.com/'));
 
 	$rootScope.safeApply = function(fn) {
 		var phase = $rootScope.$$phase;

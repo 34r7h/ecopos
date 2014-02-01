@@ -1,4 +1,17 @@
 <div>
+  <div>
+    <table>
+      <tr>
+        <th>username</th>
+        <th>password</th>
+      </tr>
+      <tr data-ng-repeat="t in test">
+        <td>{{ t.life }}</td>
+        <td>ya right.</td>
+      </tr>
+    </table>
+  </div>
+
   <div class="register-block">
     <h3>Register</h3>
     <div>
@@ -11,7 +24,7 @@
       <label for="passwordConfirm">Confirm password: </label><input type="password" name="passwordConfirm" id="passwordConfirm" data-ng-model="passwordConfirm" />
     </div>
     <div>
-      <input type="button" value="Create User" />
+      <input type="button" value="Create User" ng-click="foo();" />
     </div>
   </div>
   <div class="login-block">
