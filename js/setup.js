@@ -87,7 +87,8 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
 
-  $rootScope.DBFB = $firebase(new Firebase('https://ecopos.firebaseio.com/'));
+  $rootScope.DBFBref = new Firebase('https://ecopos.firebaseio.com/');
+  $rootScope.DBFB = $firebase($rootScope.DBFBref);
 
 	$rootScope.safeApply = function(fn) {
 		var phase = $rootScope.$$phase;

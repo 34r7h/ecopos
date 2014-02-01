@@ -1,7 +1,12 @@
-angular.module('ecopos.common').factory('authority',function($firebaseSimpleLogin) {
+angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin) {
 	var authority = {
     createUser: function(email, password, callback){
-      console.log('authority kickin it.'+($firebaseSimpleLogin)+':');
+
+      var loginObj = $firebaseSimpleLogin($rootScope.DBFBref);
+
+      console.log('authority kickin it.'+($firebaseSimpleLogin)+':'+($rootScope.DBFBref)+':'+(loginObj)+':');
+
+
       if(callback){
         callback(null, {id:'test'});
       }
