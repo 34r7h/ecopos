@@ -47746,9 +47746,20 @@ angular.module('ecopos.common').factory('notify',function() {
 
 	return notify;
 });
-angular.module('ecopos.common').factory('authority',function() {
-
-	var authority = {};
+angular.module('ecopos.common').factory('authority',function(angularFireAuth) {
+	var authority = {
+    createUser: function(email, password, callback){
+      console.log('authority kickin it.');
+      if(callback){
+        callback(null, {id:'test'});
+      }
+      /**angularFireAuth._authClient.createUser(email, password, function(err, user) {
+        if(callback){
+          callback(err, user);
+        }
+      });*/
+    }
+  };
 
 	return authority;
 });
@@ -47791,7 +47802,7 @@ angular.module('ecopos.common').directive('sharing', function() {
 	};
 });
 
-angular.module('ecopos.common').directive('login', function($rootScope) {
+angular.module('ecopos.common').directive('login', function(authority, $rootScope) {
 	return {
 		restrict: 'E',
 		replace: true,
@@ -47799,6 +47810,25 @@ angular.module('ecopos.common').directive('login', function($rootScope) {
 		link: function(scope, element, attrs, fn) {
       scope.test = $rootScope.DBFB.$child('love');
 
+      scope.users = $rootScope.DBFB.$child('users');
+      scope.user = null;
+      scope.email = '';
+      scope.password = '';
+      scope.err = 'no errors.';
+
+      scope.addUser = function(){
+        if( !scope.email ) {
+          scope.err = 'Please enter an email address';
+        }
+        else if( !scope.password ) {
+          scope.err = 'Please enter a password';
+        }
+        else{
+          authority.createUser(scope.email, scope.password, function(err, user){
+            console.log('created user:'+user.id);
+          });
+        }
+      };
 		}
 	};
 });
@@ -47822,7 +47852,7 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
-    "<div><div><table><tr><th>username</th><th>password</th></tr><tr data-ng-repeat=\"t in test\"><td>{{ t.life }}</td><td>ya right.</td></tr></table></div><div class=register-block><h3>Register</h3><div><label for=username>Username:</label><input name=username id=username data-ng-model=username></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=foo();></div></div><div class=login-block><h3>Login</h3><div><label for=username>Username:</label><input name=username id=username data-ng-model=username></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login></div></div><div class=user-block><span>Logged in as: {{ username }}</span></div></div>"
+    "<div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser();></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login></div></div><div class=user-block><span>Logged in as: {{ user.email }}</span></div><div><table><tr><th>email</th><th>password</th></tr><tr data-ng-repeat=\"t in test\"><td>{{ t.life }}</td><td>ya right.</td></tr></table></div></div>"
   );
 
 
