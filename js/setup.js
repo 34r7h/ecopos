@@ -77,7 +77,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             }).
             state('testpat', {
                 url: '/testpat',
-                template: '<notifications></notifications><login></login>'
+                template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
             });
 
  });

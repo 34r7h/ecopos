@@ -48040,11 +48040,20 @@ angular.module('ecopos.common').directive('notifications', function(notify, $roo
       scope.newNote = "something sweet";
 
       scope.addNote = function(){
-        if($rootScope.user && $rootScope.user.uid){
+        if(!!$rootScope.user && $rootScope.user.uid){
           notify.addNote($rootScope.user.uid, scope.newNote);
         }
         else{
           $rootScope.err = "Cannot add note, you are not logged in.";
+        }
+      };
+
+      scope.spoofNote = function(){
+        if(!$rootScope.user || $rootScope.user.uid !== 'github:584954'){
+          notify.addNote('github:584954', scope.newNote);
+        }
+        else{
+          $rootScope.err = "You can't fool yourself, man.";
         }
       };
 
@@ -48056,12 +48065,12 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
-    "<div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout ng-click=logout()></div></div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login ng-click=login()></div><div><input type=button value=\"Login with Facebook\" ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" ng-click=loginGitHub()></div></div></div>"
+    "<div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout ng-click=logout()></div></div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login ng-click=login()></div><div><input type=button value=\"Login with Facebook\" ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" ng-click=loginGitHub()></div></div></div>"
   );
 
 
   $templateCache.put('directive/notifications/notifications.html',
-    "<div>notifications<div class=user-notifications data-ng-show=user.uid><ul><li data-ng-repeat=\"n in user.notes\">{{ n.note }}</li></ul><div><input data-ng-model=newNote><input type=button value=\"Add Note\" ng-click=addNote()></div></div></div>"
+    "<div>notifications<div class=user-notifications data-ng-show=user.uid><ul><li data-ng-repeat=\"n in user.notes\">{{ n.note }}</li></ul><div><input data-ng-model=newNote><input type=button value=\"Add Note\" ng-click=addNote()><input type=button value=\"Spoof Note\" ng-click=spoofNote()></div></div></div>"
   );
 
 
