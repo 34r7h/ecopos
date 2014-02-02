@@ -48,6 +48,15 @@ module.exports = function (grunt) {
         src:['temp']
       }
     },
+      sass: {
+          production: {
+              options: {
+              },
+              files: {
+                  "temp/app.css": "css/app.scss"
+              }
+          }
+      },
     less: {
       production: {
         options: {

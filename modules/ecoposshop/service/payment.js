@@ -1,6 +1,6 @@
 angular.module('ecopos.shop').factory('payment',function() {
 
-	var payment = {};
+	var payment = {test: "Payment Service"};
 
 	return payment;
 });

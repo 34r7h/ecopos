@@ -14,25 +14,25 @@ angular.module('ecopos.resources').factory('resourcesTest',function() {
 });
 angular.module('ecopos.resources').factory('deliveryRoute',function() {
 
-	var deliveryRoute = {};
+	var deliveryRoute = {test:"Delivery Route Service"};
 
 	return deliveryRoute;
 });
 angular.module('ecopos.resources').factory('deliveryFulfillment',function() {
 
-	var deliveryFulfillment = {};
+	var deliveryFulfillment = {test:"Delivery Fulfillment Service"};
 
 	return deliveryFulfillment;
 });
 angular.module('ecopos.resources').factory('schedule',function() {
 
-	var schedule = {};
+	var schedule = {test: "Schedule Service"};
 
 	return schedule;
 });
 angular.module('ecopos.resources').factory('editInfo',function() {
 
-	var editInfo = {};
+	var editInfo = {test:"Edit Info Service"};
 
 	return editInfo;
 });
@@ -40,9 +40,7 @@ angular.module('ecopos.resources').directive('calendar', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/calendar/calendar.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -55,9 +53,7 @@ angular.module('ecopos.resources').directive('todo', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/todo/todo.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -70,9 +66,7 @@ angular.module('ecopos.resources').directive('map', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/map/map.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -85,9 +79,7 @@ angular.module('ecopos.resources').directive('info', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/info/info.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -106,8 +98,8 @@ angular.module('ecopos.resources').filter('infoFilter', function() {
 		return 'output';
 	};
 });
-angular.module('ecopos.resources').controller('AgendaCtrl',function($scope){
-
+angular.module('ecopos.resources').controller('AgendaCtrl',function($scope, schedule){
+$scope.test = schedule.test;
 
 });
 angular.module('ecopos.resources').controller('FaqCtrl',function($scope){
@@ -126,12 +118,12 @@ angular.module('ecopos.resources').run(['$templateCache', function($templateCach
   'use strict';
 
   $templateCache.put('partial/agenda/agenda.html',
-    "<div class=col-md-12 ng-controller=AgendaCtrl></div>"
+    "<div class=col-md-12 ng-controller=AgendaCtrl><h3>Agenda</h3><div class=row><div class=\"col-lg-5 panel panel-default\"><calendar></calendar></div><div class=\"col-lg-6 panel panel-default\"><todo></todo></div></div></div>"
   );
 
 
   $templateCache.put('partial/delivery/delivery.html',
-    "<div class=col-md-12 ng-controller=DeliveryCtrl></div>"
+    "<div class=col-md-12 ng-controller=DeliveryCtrl><h3>Delivery Partial</h3><div class=row><div class=\"col-lg-7 panel panel-default\"><map></map></div><div class=\"col-lg-5 panel panel-default\"><info></info></div></div>Partial Services {{deliveryFulfillment}}, {{deliveryRoute}}, {{editInfo}}</div>"
   );
 
 
@@ -146,22 +138,22 @@ angular.module('ecopos.resources').run(['$templateCache', function($templateCach
 
 
   $templateCache.put('directive/calendar/calendar.html',
-    "<div>Calendar Directive</div>"
+    "<div><h4>Calendar Directive</h4>{{test}}</div>"
   );
 
 
   $templateCache.put('directive/info/info.html',
-    "<div>Info Directive</div>"
+    "<div><h4>Info Directive</h4>{{editInfo}}</div>"
   );
 
 
   $templateCache.put('directive/map/map.html',
-    "<div>Map Directive</div>"
+    "<div><h4>Map Directive</h4>{{deliveryFulfillment}}, {{deliveryRoute}}</div>"
   );
 
 
   $templateCache.put('directive/todo/todo.html',
-    "<div>To Do Directive</div>"
+    "<div><h4>To Do Directive</h4>{{test}}</div>"
   );
 
 }]);
