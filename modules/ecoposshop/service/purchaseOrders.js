@@ -1,6 +1,6 @@
 angular.module('ecopos.shop').factory('purchaseOrders',function() {
 
-	var purchaseOrders = {};
+	var purchaseOrders = {test:"purchase Order Service"};
 
 	return purchaseOrders;
 });

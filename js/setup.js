@@ -19,62 +19,76 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
     $stateProvider.
         state('shop', {
             url: '/shop/:id',
-            template: "<div ui-view></div>"
+            controller: 'ShopCtrl',
+            template: '<h2>Shop</h2><div ui-view></div>'
         }).
             state('shop.pos',{
                 url: '/pos',
-                templateUrl: '/partial/shop/shop.html'
+                templateUrl: 'partial/shop/shop.html'
             }).
             state('shop.cafe',{
                 url: '/cafe',
-                template: 'Cafe State'
+                templateUrl: 'partial/cafe/cafe.html'
             }).
             state('shop.so',{
                 url: '/sunshine',
-                template: 'Sunshine Organics'
+                templateUrl: 'partial/sunshine/sunshine.html'
             }).
             state('shop.cart',{
                 url: '/cart',
-                template: 'A Le Cart'
+
+                template: '<cart></cart>'
             }).
             state('shop.checkout',{
                 url: '/checkout',
-                template: 'Check me out'
+
+                template: '<checkout></checkout>'
             }).
 
         state('admin',{
             url: '/dashboard/:id',
-            templateUrl: '/partial/dashboard/dashboard.html'
+            controller: 'DashboardCtrl',
+            template: '<h2>Dashboard</h2><div ui-view></div>'
         }).
             state('admin.settings',{
                 url: '/settings',
-                template: 'admin settings'
+
+                templateUrl: 'partial/acct-prefs/acct-prefs.html'
             }).
             state('admin.inventory',{
                 url: '/inventory',
-                template: 'admin inventory'
+
+                templateUrl: 'partial/inventory/inventory.html'
             }).
             state('admin.store',{
                 url: '/store',
-                template: 'admin store management'
+
+                templateUrl: 'partial/manage/manage.html'
             }).
 
         state('resources',{
             url: '/resources/:id',
-            template: '<div ui-view></div>'
+            controller: 'ResourcesCtrl',
+            template: '<h2>Resources</h2><div ui-view></div>'
         }).
             state('resources.agenda',{
                 url: '/agenda',
-                template: 'Agenda Resources'
+                templateUrl: 'partial/agenda/agenda.html'
             }).
             state('resources.delivery',{
                 url: '/delivery',
-                template: 'Delivery Resources'
+
+                templateUrl: 'partial/delivery/delivery.html'
             }).
             state('resources.info',{
                 url: '/info',
-                templateUrl: 'Informative Resources'
-            });
+
+                template: '<info></info>'
+            }).
+            state('resources.map',{
+                url:'/map',
+                template: '<map></map>'
+        });
 
  });
 

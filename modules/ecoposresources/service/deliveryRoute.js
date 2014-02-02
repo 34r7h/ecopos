@@ -1,6 +1,6 @@
 angular.module('ecopos.resources').factory('deliveryRoute',function() {
 
-	var deliveryRoute = {};
+	var deliveryRoute = {test:"Delivery Route Service"};
 
 	return deliveryRoute;
 });

@@ -1,0 +1,21 @@
+@import "../bower_components/foundation/scss/foundation.scss";
+//@import "../bower_components/bootstrap/less/theme.less";
+@import "../bower_components/font-awesome/scss/font-awesome.scss";
+@fa-font-path: "../bower_components/font-awesome/fonts";
+
+/* Directive LESS */
+@import "../directive/brand/brand.less";
+@import "../directive/nav/nav.less";
+/* Add Directive LESS Above */
+
+/* Partial LESS */
+@import "../partial/test/test.less";
+@import "../partial/header/header.less";
+@import "../partial/footer/footer.less";
+@import "../partial/dashboard/dashboard.less";
+@import "../partial/shop/shop.less";
+@import "../partial/resources/resources.scss";
+/* Add Partial LESS Above */
+
+/* Required for Angular UI Bootstrap */
+.nav, .pagination, .carousel a { cursor: pointer; }

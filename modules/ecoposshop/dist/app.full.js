@@ -17,31 +17,31 @@ angular.module('ecopos.shop').factory('shopTest',function() {
 });
 angular.module('ecopos.shop').factory('updateCart',function() {
 
-	var updateCart = {};
+	var updateCart = {test:"Update Cart Service"};
 
 	return updateCart;
 });
 angular.module('ecopos.shop').factory('bins',function() {
 
-	var bins = {};
+	var bins = {test:"Bin Service"};
 
 	return bins;
 });
 angular.module('ecopos.shop').factory('purchaseOrders',function() {
 
-	var purchaseOrders = {};
+	var purchaseOrders = {test:"purchase Order Service"};
 
 	return purchaseOrders;
 });
 angular.module('ecopos.shop').factory('specialOrders',function() {
 
-	var specialOrders = {};
+	var specialOrders = {test:"Special Order Service"};
 
 	return specialOrders;
 });
 angular.module('ecopos.shop').factory('payment',function() {
 
-	var payment = {};
+	var payment = {test: "Payment Service"};
 
 	return payment;
 });
@@ -49,9 +49,7 @@ angular.module('ecopos.shop').directive('editCart', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/editCart/editCart.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -64,9 +62,7 @@ angular.module('ecopos.shop').directive('productList', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/productList/productList.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -79,9 +75,7 @@ angular.module('ecopos.shop').directive('productDetail', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/productDetail/productDetail.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -94,9 +88,7 @@ angular.module('ecopos.shop').directive('cart', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/cart/cart.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -109,9 +101,7 @@ angular.module('ecopos.shop').directive('checkout', function() {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
 
-		},
 		templateUrl: 'directive/checkout/checkout.html',
 		link: function(scope, element, attrs, fn) {
 
@@ -125,31 +115,54 @@ angular.module('ecopos.shop').filter('productsFilter', function() {
 		return 'output';
 	};
 });
+angular.module('ecopos.shop').controller('CafeCtrl',function($scope, bins, payment, purchaseOrders, specialOrders, updateCart){
+    $scope.bins = bins.test;
+    $scope.payment = payment.test;
+    $scope.purchaseOrders = purchaseOrders.test;
+    $scope.specialOrders = specialOrders.test;
+    $scope.updateCart = updateCart.test;
+
+
+});
+angular.module('ecopos.shop').controller('SunshineCtrl',function($scope){
+
+
+});
 angular.module('ecopos.shop').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('partial/cafe/cafe.html',
+    "<div class=col-md-12 ng-controller=CafeCtrl><h3>Cafe Partial</h3><div class=row><div class=\"col-lg-8 panel panel-default\"><product-list></product-list><product-detail></product-detail></div><div class=\"col-lg-4 panel panel-default\"><cart></cart><edit-cart></edit-cart><checkout></checkout></div></div></div>"
+  );
+
+
+  $templateCache.put('partial/sunshine/sunshine.html',
+    "<div class=col-md-12 ng-controller=SunshineCtrl><h3>Sunshine Partial</h3><div class=row><div class=\"col-lg-8 panel panel-default\"><product-list></product-list><product-detail></product-detail></div><div class=\"col-lg-4 panel panel-default\"><cart></cart><edit-cart></edit-cart><checkout></checkout></div></div></div>"
+  );
+
+
   $templateCache.put('directive/cart/cart.html',
-    "<div>Cart Directive</div>"
+    "<div><h4>Cart Directive</h4>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</div>"
   );
 
 
   $templateCache.put('directive/checkout/checkout.html',
-    "<div>Checkout Directive</div>"
+    "<div><h4>Checkout Directive</h4>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</div>"
   );
 
 
   $templateCache.put('directive/editCart/editCart.html',
-    "<div>Edit Cart Directive</div>"
+    "<div><h4>Edit Cart Directive</h4>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</div>"
   );
 
 
   $templateCache.put('directive/productDetail/productDetail.html',
-    "<div>Product Detail Directive</div>"
+    "<div><h4>Product Detail Directive</h4>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</div>"
   );
 
 
   $templateCache.put('directive/productList/productList.html',
-    "<div>Product List Directive</div>"
+    "<div><h4>Product List Directive</h4>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</div>"
   );
 
 }]);
