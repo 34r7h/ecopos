@@ -4,37 +4,38 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 		replace: true,
 		templateUrl: 'directive/login/login.html',
 		link: function(scope, element, attrs, fn) {
-      scope.test = $rootScope.DBFB.$child('love');
+      $rootScope.user = null;
+      $rootScope.err = 'no errors.';
 
-      scope.users = $rootScope.DBFB.$child('users');
-      scope.user = null;
       scope.email = '';
       scope.password = '';
-      scope.err = 'no errors.';
 
-      scope.$on('$firebaseSimpleLogin:logout', function(event){
-        scope.user = authority.getUserData();
+
+      $rootScope.$on('$firebaseSimpleLogin:login', function(event){
+        $rootScope.user = authority.getUserData();
+      });
+      $rootScope.$on('$firebaseSimpleLogin:logout', function(event){
+        $rootScope.user = authority.getUserData();
       });
 
       scope.addUser = function(){
         if( !scope.email ) {
-          scope.err = 'Please enter an email address';
+          $rootScope.err = 'Please enter an email address';
         }
         else if( !scope.password ) {
-          scope.err = 'Please enter a password';
+          $rootScope.err = 'Please enter a password';
         }
         else{
           authority.createUser(scope.email, scope.password, function(err, user){
             if(err){
-              //scope.err = err.toString();
-              scope.err = err.message;
-              // switch(scope.err.code)
+              $rootScope.err = err.message;
             }
             else if(user){
+              // TODO: visual notify of user creation
               console.log('created user:'+user.id);
             }
             else{
-              scope.err = 'Unknown error (Add user)';
+              $rootScope.err = 'Unknown error (Add user)';
             }
 
           });
@@ -43,21 +44,19 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 
       scope.login = function(){
         if( !scope.email ) {
-          scope.err = 'Please enter an email address';
+          $rootScope.err = 'Please enter an email address';
         }
         else if( !scope.password ) {
-          scope.err = 'Please enter a password';
+          $rootScope.err = 'Please enter a password';
         }
         else{
           authority.authUser(scope.email, scope.password, function(err, user){
             if(err){
-              scope.err = err.message;
+              $rootScope.err = err.message;
             }
-            else if(user){
-              scope.user = authority.getUserData();
-            }
+            else if(user){}
             else{
-              scope.err = 'Unknown error (Authentication)';
+              $rootScope.err = 'Unknown error (Authentication)';
             }
           });
         }
@@ -70,13 +69,11 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.loginFacebook = function(){
         authority.authFacebook(function(err, user){
           if(err){
-            scope.err = err.message;
+            $rootScope.err = err.message;
           }
-          else if(user){
-            scope.user = authority.getUserData();
-          }
+          else if(user){}
           else{
-            scope.err = 'Unknown error (Facebook)';
+            $rootScope.err = 'Unknown error (Facebook)';
           }
         });
       };
@@ -84,13 +81,11 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.loginTwitter = function(){
         authority.authTwitter(function(err, user){
           if(err){
-            scope.err = err.message;
+            $rootScope.err = err.message;
           }
-          else if(user){
-            scope.user = authority.getUserData();
-          }
+          else if(user){}
           else{
-            scope.err = 'Unknown error (Twitter)';
+            $rootScope.err = 'Unknown error (Twitter)';
           }
         });
       };
@@ -98,13 +93,11 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.loginGitHub = function(){
         authority.authGitHub(function(err, user){
           if(err){
-            scope.err = err.message;
+            $rootScope.err = err.message;
           }
-          else if(user){
-            scope.user = authority.getUserData();
-          }
+          else if(user){}
           else{
-            scope.err = 'Unknown error (GitHub)';
+            $rootScope.err = 'Unknown error (GitHub)';
           }
         });
       };

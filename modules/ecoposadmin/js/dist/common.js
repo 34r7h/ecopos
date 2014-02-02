@@ -47740,9 +47740,14 @@ angular.module('ecopos.common').factory('commonTest',function() {
 
 	return commonTest;
 });
-angular.module('ecopos.common').factory('notify',function() {
+angular.module('ecopos.common').factory('notify',function($rootScope) {
 
-	var notify = {};
+	var notify = {
+    addNote: function(uid, note){
+      var notes = $rootScope.DBFB.$child('notes');
+      notes.$child(uid).$add({'note': note});
+    }
+  };
 
 	return notify;
 });
@@ -47867,13 +47872,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
           userData.email = auth.user.email;
           userData.displayName = (auth.user.displayName?auth.user.displayName:auth.user.username);
         }
-      }
 
-      console.log('look at userData:');
-      for(var prop3 in userData){
-        console.log('   '+prop3+' = '+userData[prop3]);
+        if(userData.uid){
+          userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
+        }
       }
-      console.log('done');
 
       return userData;
     }
@@ -47926,37 +47929,38 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 		replace: true,
 		templateUrl: 'directive/login/login.html',
 		link: function(scope, element, attrs, fn) {
-      scope.test = $rootScope.DBFB.$child('love');
+      $rootScope.user = null;
+      $rootScope.err = 'no errors.';
 
-      scope.users = $rootScope.DBFB.$child('users');
-      scope.user = null;
       scope.email = '';
       scope.password = '';
-      scope.err = 'no errors.';
 
-      scope.$on('$firebaseSimpleLogin:logout', function(event){
-        scope.user = authority.getUserData();
+
+      $rootScope.$on('$firebaseSimpleLogin:login', function(event){
+        $rootScope.user = authority.getUserData();
+      });
+      $rootScope.$on('$firebaseSimpleLogin:logout', function(event){
+        $rootScope.user = authority.getUserData();
       });
 
       scope.addUser = function(){
         if( !scope.email ) {
-          scope.err = 'Please enter an email address';
+          $rootScope.err = 'Please enter an email address';
         }
         else if( !scope.password ) {
-          scope.err = 'Please enter a password';
+          $rootScope.err = 'Please enter a password';
         }
         else{
           authority.createUser(scope.email, scope.password, function(err, user){
             if(err){
-              //scope.err = err.toString();
-              scope.err = err.message;
-              // switch(scope.err.code)
+              $rootScope.err = err.message;
             }
             else if(user){
+              // TODO: visual notify of user creation
               console.log('created user:'+user.id);
             }
             else{
-              scope.err = 'Unknown error (Add user)';
+              $rootScope.err = 'Unknown error (Add user)';
             }
 
           });
@@ -47965,22 +47969,19 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 
       scope.login = function(){
         if( !scope.email ) {
-          scope.err = 'Please enter an email address';
+          $rootScope.err = 'Please enter an email address';
         }
         else if( !scope.password ) {
-          scope.err = 'Please enter a password';
+          $rootScope.err = 'Please enter a password';
         }
         else{
           authority.authUser(scope.email, scope.password, function(err, user){
             if(err){
-              scope.err = err.message;
+              $rootScope.err = err.message;
             }
-            else if(user){
-              scope.user = authority.getUserData();
-              console.log('logged in:'+user);
-            }
+            else if(user){}
             else{
-              scope.err = 'Unknown error (Authentication)';
+              $rootScope.err = 'Unknown error (Authentication)';
             }
           });
         }
@@ -47993,30 +47994,23 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.loginFacebook = function(){
         authority.authFacebook(function(err, user){
           if(err){
-            scope.err = err.message;
+            $rootScope.err = err.message;
           }
-          else if(user){
-            scope.user = authority.getUserData();
-            console.log('logged in via Facebook:'+user);
-          }
+          else if(user){}
           else{
-            scope.err = 'Unknown error (Facebook)';
+            $rootScope.err = 'Unknown error (Facebook)';
           }
         });
       };
 
       scope.loginTwitter = function(){
         authority.authTwitter(function(err, user){
-          console.log('calling me back twitter?');
           if(err){
-            scope.err = err.message;
+            $rootScope.err = err.message;
           }
-          else if(user){
-            scope.user = authority.getUserData();
-            console.log('logged in via Twitter:'+user);
-          }
+          else if(user){}
           else{
-            scope.err = 'Unknown error (Twitter)';
+            $rootScope.err = 'Unknown error (Twitter)';
           }
         });
       };
@@ -48024,14 +48018,11 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.loginGitHub = function(){
         authority.authGitHub(function(err, user){
           if(err){
-            scope.err = err.message;
+            $rootScope.err = err.message;
           }
-          else if(user){
-            scope.user = authority.getUserData();
-            console.log('logged in via GitHub:'+user);
-          }
+          else if(user){}
           else{
-            scope.err = 'Unknown error (GitHub)';
+            $rootScope.err = 'Unknown error (GitHub)';
           }
         });
       };
@@ -48040,16 +48031,22 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 	};
 });
 
-angular.module('ecopos.common').directive('notifications', function() {
+angular.module('ecopos.common').directive('notifications', function(notify, $rootScope) {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
-
-		},
 		templateUrl: 'directive/notifications/notifications.html',
 		link: function(scope, element, attrs, fn) {
+      scope.newNote = "something sweet";
 
+      scope.addNote = function(){
+        if($rootScope.user && $rootScope.user.uid){
+          notify.addNote($rootScope.user.uid, scope.newNote);
+        }
+        else{
+          $rootScope.err = "Cannot add note, you are not logged in.";
+        }
+      };
 
 		}
 	};
@@ -48059,12 +48056,12 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
-    "<div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login ng-click=login()></div><div><input type=button value=\"Login with Facebook\" ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" ng-click=loginGitHub()></div></div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout ng-click=logout()></div></div><div><table><tr><th>email</th><th>password</th></tr><tr data-ng-repeat=\"t in test\"><td>{{ t.life }}</td><td>ya right.</td></tr></table></div></div>"
+    "<div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout ng-click=logout()></div></div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login ng-click=login()></div><div><input type=button value=\"Login with Facebook\" ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" ng-click=loginGitHub()></div></div></div>"
   );
 
 
   $templateCache.put('directive/notifications/notifications.html',
-    "<div></div>"
+    "<div>notifications<div class=user-notifications data-ng-show=user.uid><ul><li data-ng-repeat=\"n in user.notes\">{{ n.note }}</li></ul><div><input data-ng-model=newNote><input type=button value=\"Add Note\" ng-click=addNote()></div></div></div>"
   );
 
 

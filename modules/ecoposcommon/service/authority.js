@@ -119,13 +119,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
           userData.email = auth.user.email;
           userData.displayName = (auth.user.displayName?auth.user.displayName:auth.user.username);
         }
-      }
 
-      console.log('look at userData:');
-      for(var prop3 in userData){
-        console.log('   '+prop3+' = '+userData[prop3]);
+        if(userData.uid){
+          userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
+        }
       }
-      console.log('done');
 
       return userData;
     }

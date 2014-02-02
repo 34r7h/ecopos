@@ -1,4 +1,11 @@
 <div>
+  <div class="user-block" data-ng-show="user.uid">
+    <span data-ng-show="user.displayName">Logged in as: {{ user.displayName }}<span data-ng-show="user.loginService">&nbsp;via {{ user.loginService }}</span><span data-ng-show="user.id">&nbsp;(#{{ user.id }})</span></span>
+    <div>
+      <input type="button" value="Logout" ng-click="logout()" />
+    </div>
+  </div>
+
   <div class="error">{{ err }}</div>
 
   <div class="register-block">
@@ -36,25 +43,5 @@
     <div>
       <input type="button" value="Login with GitHub" ng-click="loginGitHub()" />
     </div>
-  </div>
-  <div class="user-block" data-ng-show="user.uid">
-      <span data-ng-show="user.displayName">Logged in as: {{ user.displayName }}<span data-ng-show="user.loginService">&nbsp;via {{ user.loginService }}</span><span data-ng-show="user.id">&nbsp;(#{{ user.id }})</span></span>
-    <div>
-      <input type="button" value="Logout" ng-click="logout()" />
-    </div>
-  </div>
-
-
-  <div>
-    <table>
-      <tr>
-        <th>email</th>
-        <th>password</th>
-      </tr>
-      <tr data-ng-repeat="t in test">
-        <td>{{ t.life }}</td>
-        <td>ya right.</td>
-      </tr>
-    </table>
   </div>
 </div>

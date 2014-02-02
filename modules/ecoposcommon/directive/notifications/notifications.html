@@ -1,4 +1,18 @@
 <div>
+  notifications
+  <div class="user-notifications" data-ng-show="user.uid">
+    <ul>
+      <li data-ng-repeat="n in user.notes">
+        {{ n.note }}
+      </li>
+    </ul>
 
+    <div>
+      <input type="text" data-ng-model="newNote" />
+      <input type="button" value="Add Note" ng-click="addNote()" />
+    </div>
+
+
+  </div>
 
 </div>
