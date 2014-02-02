@@ -7,6 +7,13 @@
       </li>
     </ul>
 
+    <h4>spoofable?</h4>
+    <ul>
+      <li data-ng-repeat="s in spoofNotes">
+        {{ s.note }}
+      </li>
+    </ul>
+
     <div>
       <input type="text" data-ng-model="newNote" />
       <input type="button" value="Add Note" ng-click="addNote()" />

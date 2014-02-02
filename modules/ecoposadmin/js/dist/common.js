@@ -48039,6 +48039,18 @@ angular.module('ecopos.common').directive('notifications', function(notify, $roo
 		link: function(scope, element, attrs, fn) {
       scope.newNote = "something sweet";
 
+      $rootScope.$on('$firebaseSimpleLogin:login', function(event){
+      //  $rootScope.user = authority.getUserData();
+        /** TODO:
+         *  how do we wait for other $firebaseSimpleLogin:login
+         *  event handlers to fire first
+         *  specifically loading of $rootScope.user
+         */
+        scope.spoofNotes = $rootScope.DBFB.$child('notes/github:584954');
+      });
+
+
+
       scope.addNote = function(){
         if(!!$rootScope.user && $rootScope.user.uid){
           notify.addNote($rootScope.user.uid, scope.newNote);
@@ -48070,7 +48082,7 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('directive/notifications/notifications.html',
-    "<div>notifications<div class=user-notifications data-ng-show=user.uid><ul><li data-ng-repeat=\"n in user.notes\">{{ n.note }}</li></ul><div><input data-ng-model=newNote><input type=button value=\"Add Note\" ng-click=addNote()><input type=button value=\"Spoof Note\" ng-click=spoofNote()></div></div></div>"
+    "<div>notifications<div class=user-notifications data-ng-show=user.uid><ul><li data-ng-repeat=\"n in user.notes\">{{ n.note }}</li></ul><h4>spoofable?</h4><ul><li data-ng-repeat=\"s in spoofNotes\">{{ s.note }}</li></ul><div><input data-ng-model=newNote><input type=button value=\"Add Note\" ng-click=addNote()><input type=button value=\"Spoof Note\" ng-click=spoofNote()></div></div></div>"
   );
 
 
