@@ -47747,32 +47747,135 @@ angular.module('ecopos.common').factory('notify',function() {
 	return notify;
 });
 angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin) {
+  var auth = $firebaseSimpleLogin($rootScope.DBFBref);
+
 	var authority = {
     createUser: function(email, password, callback){
-      $rootScope.auth = $firebaseSimpleLogin($rootScope.DBFBref);
 
-      $rootScope.auth.$createUser(email, password, true).then(
+      auth.$createUser(email, password, true).then(
           function(user){
             if(callback){
               callback(null, user);
             }
-            //console.log('user created:'+(user.id)+':');
           },
           function(error){
             if(callback){
               callback(error, null);
             }
-            //console.log('there was an error:'+error+':');
           }
       );
+    },
+    authUser: function(email, password, callback){
+      auth.$login('password', {email: email, password: password}).then(
+          function(user){
+            console.log('Logged in as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            console.log('Login failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    authFacebook: function(callback){
+      auth.$login('facebook').then(
+          function(user){
+            console.log('Logged in via Facebook as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            console.log('Login via Facebook failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    authTwitter: function(callback){
+      auth.$login('twitter').then(
+          function(user){
+            //console.log('Logged in via Twitter as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            //console.log('Login via Twitter failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    authGitHub: function(callback){
+      auth.$login('github').then(
+          function(user){
+            console.log('Logged in via GitHub as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            console.log('Login via GitHub failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    logout: function(){
+      auth.$logout();
+    },
+    getUserData: function(){
+      var userData = {};
 
+      if(auth.user && auth.user.id){
+        userData = {
+          provider: auth.user.provider,
+          id: auth.user.id,
+          uid: auth.user.uid,
+          authToken: auth.user.firebaseAuthToken
+        };
 
-
-      /**angularFireAuth._authClient.createUser(email, password, function(err, user) {
-        if(callback){
-          callback(err, user);
+        if(auth.user.provider === 'password'){
+          userData.loginService = 'User Account';
+          userData.username = auth.user.email;
+          userData.email = auth.user.email;
+          userData.displayName = auth.user.email;
         }
-      });*/
+        else if(auth.user.provider === 'facebook'){
+          userData.loginService = 'Facebook';
+          userData.username = auth.user.username;
+          userData.email = auth.user.email;
+          userData.displayName = auth.user.displayName;
+        }
+        else if(auth.user.provider === 'twitter'){
+          userData.loginService = 'Twitter';
+          userData.username = auth.user.username;
+          userData.email = auth.user.email;
+          userData.displayName = auth.user.displayName;
+        }
+        else if(auth.user.provider === 'github'){
+          userData.loginService = 'GitHub';
+          userData.username = auth.user.username;
+          userData.email = auth.user.email;
+          userData.displayName = (auth.user.displayName?auth.user.displayName:auth.user.username);
+        }
+      }
+
+      console.log('look at userData:');
+      for(var prop3 in userData){
+        console.log('   '+prop3+' = '+userData[prop3]);
+      }
+      console.log('done');
+
+      return userData;
     }
   };
 
@@ -47831,6 +47934,10 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.password = '';
       scope.err = 'no errors.';
 
+      scope.$on('$firebaseSimpleLogin:logout', function(event){
+        scope.user = authority.getUserData();
+      });
+
       scope.addUser = function(){
         if( !scope.email ) {
           scope.err = 'Please enter an email address';
@@ -47842,20 +47949,93 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
           authority.createUser(scope.email, scope.password, function(err, user){
             if(err){
               //scope.err = err.toString();
-              scope.err = err;
+              scope.err = err.message;
               // switch(scope.err.code)
             }
             else if(user){
               console.log('created user:'+user.id);
-              scope.user = user;
             }
             else{
-              console.log('strange brew.');
+              scope.err = 'Unknown error (Add user)';
             }
 
           });
         }
       };
+
+      scope.login = function(){
+        if( !scope.email ) {
+          scope.err = 'Please enter an email address';
+        }
+        else if( !scope.password ) {
+          scope.err = 'Please enter a password';
+        }
+        else{
+          authority.authUser(scope.email, scope.password, function(err, user){
+            if(err){
+              scope.err = err.message;
+            }
+            else if(user){
+              scope.user = authority.getUserData();
+              console.log('logged in:'+user);
+            }
+            else{
+              scope.err = 'Unknown error (Authentication)';
+            }
+          });
+        }
+      };
+
+      scope.logout = function(){
+        authority.logout();
+      };
+
+      scope.loginFacebook = function(){
+        authority.authFacebook(function(err, user){
+          if(err){
+            scope.err = err.message;
+          }
+          else if(user){
+            scope.user = authority.getUserData();
+            console.log('logged in via Facebook:'+user);
+          }
+          else{
+            scope.err = 'Unknown error (Facebook)';
+          }
+        });
+      };
+
+      scope.loginTwitter = function(){
+        authority.authTwitter(function(err, user){
+          console.log('calling me back twitter?');
+          if(err){
+            scope.err = err.message;
+          }
+          else if(user){
+            scope.user = authority.getUserData();
+            console.log('logged in via Twitter:'+user);
+          }
+          else{
+            scope.err = 'Unknown error (Twitter)';
+          }
+        });
+      };
+
+      scope.loginGitHub = function(){
+        authority.authGitHub(function(err, user){
+          if(err){
+            scope.err = err.message;
+          }
+          else if(user){
+            scope.user = authority.getUserData();
+            console.log('logged in via GitHub:'+user);
+          }
+          else{
+            scope.err = 'Unknown error (GitHub)';
+          }
+        });
+      };
+
 		}
 	};
 });
@@ -47879,7 +48059,7 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
-    "<div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser();></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login></div></div><div class=user-block><span>Logged in as: {{ user.email }} (#{{ user.id }})</span></div><div><table><tr><th>email</th><th>password</th></tr><tr data-ng-repeat=\"t in test\"><td>{{ t.life }}</td><td>ya right.</td></tr></table></div></div>"
+    "<div><div class=error>{{ err }}</div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login ng-click=login()></div><div><input type=button value=\"Login with Facebook\" ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" ng-click=loginGitHub()></div></div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout ng-click=logout()></div></div><div><table><tr><th>email</th><th>password</th></tr><tr data-ng-repeat=\"t in test\"><td>{{ t.life }}</td><td>ya right.</td></tr></table></div></div>"
   );
 
 

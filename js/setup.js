@@ -102,10 +102,4 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
 	};
 
 }).
-constant('FB_URL', 'https://ecopos.firebaseio.com/').
-constant('FB_FACEBOOK_ID', '261894380637984').
-constant('FB_FACEBOOK_SECRET', '7e5a3746e1f6430872fdbd53c3bcffa6').
-constant('FB_TWITTER_KEY', 'gwVw6d9gxJrGWPLS5EVW3Q').
-constant('FB_TWITTER_SECRET', '38476UIfaUlGABeBI1U6baFKkRO8y9aFBIOQXcPONU').
-constant('FB_GITHUB_ID', 'de0f0e824dc35b9f8af5').
-constant('FB_GITHUB_SECRET', '959cc315e799d93da944365dccf08fab4b57e24b');
+constant('FB_URL', 'https://ecopos.firebaseio.com/');

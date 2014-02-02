@@ -1,30 +1,133 @@
 angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin) {
+  var auth = $firebaseSimpleLogin($rootScope.DBFBref);
+
 	var authority = {
     createUser: function(email, password, callback){
-      $rootScope.auth = $firebaseSimpleLogin($rootScope.DBFBref);
 
-      $rootScope.auth.$createUser(email, password, true).then(
+      auth.$createUser(email, password, true).then(
           function(user){
             if(callback){
               callback(null, user);
             }
-            //console.log('user created:'+(user.id)+':');
           },
           function(error){
             if(callback){
               callback(error, null);
             }
-            //console.log('there was an error:'+error+':');
           }
       );
+    },
+    authUser: function(email, password, callback){
+      auth.$login('password', {email: email, password: password}).then(
+          function(user){
+            console.log('Logged in as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            console.log('Login failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    authFacebook: function(callback){
+      auth.$login('facebook').then(
+          function(user){
+            console.log('Logged in via Facebook as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            console.log('Login via Facebook failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    authTwitter: function(callback){
+      auth.$login('twitter').then(
+          function(user){
+            //console.log('Logged in via Twitter as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            //console.log('Login via Twitter failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    authGitHub: function(callback){
+      auth.$login('github').then(
+          function(user){
+            console.log('Logged in via GitHub as: '+ user.uid);
+            if(callback){
+              callback(null, user);
+            }
+          },
+          function(error){
+            console.log('Login via GitHub failed: '+ error);
+            if(callback){
+              callback(error, null);
+            }
+          }
+      );
+    },
+    logout: function(){
+      auth.$logout();
+    },
+    getUserData: function(){
+      var userData = {};
 
+      if(auth.user && auth.user.id){
+        userData = {
+          provider: auth.user.provider,
+          id: auth.user.id,
+          uid: auth.user.uid,
+          authToken: auth.user.firebaseAuthToken
+        };
 
-
-      /**angularFireAuth._authClient.createUser(email, password, function(err, user) {
-        if(callback){
-          callback(err, user);
+        if(auth.user.provider === 'password'){
+          userData.loginService = 'User Account';
+          userData.username = auth.user.email;
+          userData.email = auth.user.email;
+          userData.displayName = auth.user.email;
         }
-      });*/
+        else if(auth.user.provider === 'facebook'){
+          userData.loginService = 'Facebook';
+          userData.username = auth.user.username;
+          userData.email = auth.user.email;
+          userData.displayName = auth.user.displayName;
+        }
+        else if(auth.user.provider === 'twitter'){
+          userData.loginService = 'Twitter';
+          userData.username = auth.user.username;
+          userData.email = auth.user.email;
+          userData.displayName = auth.user.displayName;
+        }
+        else if(auth.user.provider === 'github'){
+          userData.loginService = 'GitHub';
+          userData.username = auth.user.username;
+          userData.email = auth.user.email;
+          userData.displayName = (auth.user.displayName?auth.user.displayName:auth.user.username);
+        }
+      }
+
+      console.log('look at userData:');
+      for(var prop3 in userData){
+        console.log('   '+prop3+' = '+userData[prop3]);
+      }
+      console.log('done');
+
+      return userData;
     }
   };
 
