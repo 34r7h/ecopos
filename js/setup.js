@@ -20,7 +20,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
         state('shop', {
             url: '/shop/:id',
             controller: 'ShopCtrl',
-            template: '<h2>Shop</h2><div ui-view></div>'
+            template: '<h2>Shop</h2><div class="ui-view-container"><div ui-view></div>'
         }).
             state('shop.pos',{
                 url: '/pos',
@@ -48,7 +48,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
         state('admin',{
             url: '/dashboard/:id',
             controller: 'DashboardCtrl',
-            template: '<h2>Dashboard</h2><div ui-view></div>'
+            template: '<h2>Dashboard</h2><div class="ui-view-container"><div ui-view></div>'
         }).
             state('admin.settings',{
                 url: '/settings',
@@ -69,7 +69,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
         state('resources',{
             url: '/resources/:id',
             controller: 'ResourcesCtrl',
-            template: '<h2>Resources</h2><div ui-view></div>'
+            template: '<h2>Resources</h2><div class="ui-view-container"><div ui-view></div>'
         }).
             state('resources.agenda',{
                 url: '/agenda',
