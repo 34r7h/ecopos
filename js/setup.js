@@ -8,7 +8,8 @@ angular.module('ecopos', [
     'ecopos.resources',
     'ecopos.shop',
     'ecopos.common',
-    'firebase'
+    'firebase',
+    'google-maps'
 ]);
 
 angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider) {
@@ -20,7 +21,8 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
         state('shop', {
             url: '/shop/:id',
             controller: 'ShopCtrl',
-            template: '<h2>Shop</h2><div class="ui-view-container"><div ui-view></div>'
+            templateUrl: 'partial/shop/shop.html'
+
         }).
             state('shop.pos',{
                 url: '/pos',
@@ -41,14 +43,13 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             }).
             state('shop.checkout',{
                 url: '/checkout',
-
                 template: '<checkout></checkout>'
             }).
 
         state('admin',{
             url: '/dashboard/:id',
             controller: 'DashboardCtrl',
-            template: '<h2>Dashboard</h2><div class="ui-view-container"><div ui-view></div>'
+            templateUrl: 'partial/dashboard/dashboard.html'
         }).
             state('admin.settings',{
                 url: '/settings',
@@ -69,7 +70,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
         state('resources',{
             url: '/resources/:id',
             controller: 'ResourcesCtrl',
-            template: '<h2>Resources</h2><div class="ui-view-container"><div ui-view></div>'
+            templateUrl: 'partial/resources/resources.html'
         }).
             state('resources.agenda',{
                 url: '/agenda',
@@ -110,6 +111,7 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
     $rootScope.loseAllItems = function(){
         $rootScope.items.$remove();
     };
+
 
 
 
