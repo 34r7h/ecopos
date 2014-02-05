@@ -100,7 +100,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 
 
-angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
+angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
   $rootScope.DBFBref = new Firebase(FB_URL);
   $rootScope.DBFB = $firebase($rootScope.DBFBref);
 
@@ -132,4 +132,5 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
 		}
 	};
 
-});
+}).
+constant('FB_URL', 'https://ecopos.firebaseio.com/');
