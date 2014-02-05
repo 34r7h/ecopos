@@ -1,6 +1,6 @@
 angular.module('ecopos.admin').factory('editCustomer',function() {
 
-	var editCustomer = {};
+	var editCustomer = {test:"Edit Customer Service"};
 
 	return editCustomer;
 });

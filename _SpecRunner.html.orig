@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner</title>
+
+  <link rel="stylesheet" type="text/css" href=".grunt/grunt-contrib-jasmine/jasmine.css">
+
+
+  
+  <script src=".grunt/grunt-contrib-jasmine/phantom-polyfill.js"></script>
+  
+  <script src=".grunt/grunt-contrib-jasmine/jasmine.js"></script>
+  
+  <script src=".grunt/grunt-contrib-jasmine/jasmine-html.js"></script>
+  
+  <script src="bower_components/firebase/firebase.js"></script>
+  
+  <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+  
+  <script src="bower_components/jquery/jquery.js"></script>
+  
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  
+  <script src="bower_components/underscore/underscore.js"></script>
+  
+  <script src="bower_components/moment/moment.js"></script>
+  
+  <script src="bower_components/angular/angular.js"></script>
+  
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  
+  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+  
+  <script src="bower_components/angular-ui-router/src/angular-ui-router.js"></script>
+  
+  <script src="js/setup.js"></script>
+  
+  <script src="modules/ecoposAdmin/dist/app.full.js"></script>
+  
+  <script src="modules/ecoposResources/dist/app.full.js"></script>
+  
+  <script src="modules/ecoposShop/dist/app.full.js"></script>
+  
+  <script src="modules/ecoposCommon/dist/common.js"></script>
+  
+  <script src="service/navigation.js"></script>
+  
+  <script src="service/state.js"></script>
+  
+  <script src="directive/brand/brand.js"></script>
+  
+  <script src="directive/nav/nav.js"></script>
+  
+  <script src="directive/ngHtml.js"></script>
+  
+  <script src="partial/test/test.js"></script>
+  
+  <script src="partial/header/header.js"></script>
+  
+  <script src="partial/footer/footer.js"></script>
+  
+  <script src="partial/dashboard/dashboard.js"></script>
+  
+  <script src="partial/shop/shop.js"></script>
+  
+  <script src="partial/resources/resources.js"></script>
+  
+  <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+  
+<<<<<<< HEAD
+  <script src="service/state-spec.js"></script>
+=======
+  <script src="directive/ngHtml-spec.js"></script>
+>>>>>>> master
+  
+  <script src=".grunt/grunt-contrib-jasmine/reporter.js"></script>
+  
+  <script src=".grunt/grunt-contrib-jasmine/jasmine-helper.js"></script>
+  
+
+</head>
+<body>
+</body>
+</html>

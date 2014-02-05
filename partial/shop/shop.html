@@ -1,5 +1,8 @@
-<div class="col-md-12" ng-controller="ShopCtrl">
+<div class="col-md-12 slide" ng-controller="ShopCtrl">
 <h1>Shop Partial</h1>
+    <div ui-view/>
+
+<h6>Partial Testing</h6>
 <cart></cart>
 <checkout></checkout>
 <edit_cart></edit_cart>
@@ -7,10 +10,10 @@
 <product_list></product_list>
 
 
-    <div ui-view="pos"></div>
 
-    <div ui-view="cafe"></div>
 
-    <div ui-view="so"></div>
+
+    <i>Working Shop Services</i>
+    {{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}
 
 </div>

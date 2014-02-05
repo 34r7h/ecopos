@@ -1,6 +1,6 @@
 angular.module('ecopos.resources').factory('schedule',function() {
 
-	var schedule = {};
+	var schedule = {test: "Schedule Service"};
 
 	return schedule;
 });

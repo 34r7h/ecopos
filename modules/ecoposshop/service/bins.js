@@ -1,6 +1,6 @@
 angular.module('ecopos.shop').factory('bins',function() {
 
-	var bins = {};
+	var bins = {test:"Bin Service"};
 
 	return bins;
 });
