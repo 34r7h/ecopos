@@ -81,7 +81,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
                 templateUrl: 'partial/delivery/delivery.html'
             }).
-            state('resources.info',{
+             state('resources.info',{
                 url: '/info',
 
                 template: '<info></info>'
@@ -89,16 +89,24 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             state('resources.map',{
                 url:'/map',
                 template: '<map></map>'
-        });
+            }).
+            state('testpat', {
+                url: '/testpat',
+                template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
+            });
 
  });
 
 
 
 
-angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
 
-    $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
+angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
+
+  $rootScope.DBFBref = new Firebase(FB_URL);
+  $rootScope.DBFB = $firebase($rootScope.DBFBref);
+
+$rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
 
     $rootScope.addItem = function(){
         $rootScope.items.$add({test:"run"});
@@ -112,9 +120,6 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
         $rootScope.items.$remove();
     };
 
-
-
-
 	$rootScope.safeApply = function(fn) {
 		var phase = $rootScope.$$phase;
 		if (phase === '$apply' || phase === '$digest') {
@@ -126,4 +131,5 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
 		}
 	};
 
-});
+}).
+constant('FB_URL', 'https://ecopos.firebaseio.com/');

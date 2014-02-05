@@ -1,0 +1,14 @@
+angular.module('ecopos').factory('state',function() {
+
+	var state = {
+<<<<<<< HEAD
+  };
+=======
+        promise1: function(){
+            console.log("im text");
+        }
+    };
+>>>>>>> master
+
+	return state;
+});
