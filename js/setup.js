@@ -89,7 +89,11 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             state('resources.map',{
                 url:'/map',
                 template: '<map></map>'
-        });
+            }).
+            state('testpat', {
+              url: '/testpat',
+              template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
+            });
 
  });
 
