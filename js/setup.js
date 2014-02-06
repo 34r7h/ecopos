@@ -89,14 +89,20 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             state('resources.map',{
                 url:'/map',
                 template: '<map></map>'
-        });
+            }).
+            state('testpat', {
+              url: '/testpat',
+              template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
+            });
 
  });
 
 
 
 
-angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
+angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
+  $rootScope.DBFBref = new Firebase(FB_URL);
+  $rootScope.DBFB = $firebase($rootScope.DBFBref);
 
     $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
 
@@ -126,4 +132,5 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase) {
 		}
 	};
 
-});
+}).
+constant('FB_URL', 'https://ecopos.firebaseio.com/');
