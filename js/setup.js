@@ -13,7 +13,6 @@ angular.module('ecopos', [
 ]);
 
 angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider) {
-
     $urlRouterProvider.
         otherwise('/');
 
@@ -90,10 +89,24 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
                 url:'/map',
                 template: '<map></map>'
             }).
-            state('testpat', {
-              url: '/testpat',
-              template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
-            });
+        state('testpat', {
+          url: '/testpat',
+          template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
+        }).
+        state('testresolves', {
+          url: '/testresolves',
+          template: '<h3>Testing Resolves</h3><product-list></product-list>',
+          resolve: {
+            TestData: function($q, shopTest){
+              return shopTest.refreshTestData().
+                then(function(data){ return 'message:'+data+':'; });
+
+            }
+          },
+          controller: function($scope, TestData){
+            $scope.testData = TestData;
+          }
+        });
 
  });
 
@@ -101,8 +114,8 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 
 angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
-  $rootScope.DBFBref = new Firebase(FB_URL);
-  $rootScope.DBFB = $firebase($rootScope.DBFBref);
+  //$rootScope.DBFBref = new Firebase(FB_URL);
+  //$rootScope.DBFB = $firebase($rootScope.DBFBref);
 
     $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
 
