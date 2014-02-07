@@ -1,5 +1,28 @@
 <div>
 <h4>Stock Directive</h4>
+
     {{fairTrade}}
+        <div>
+            <div ng-repeat="(key, item) in stock.inventory" ng-init="ikey=key">
+                <div>
+                    <table ng-table="tableParams" class="table">
+                        <tr ng-repeat="(key,variation) in item.variations" ng-init="vkey = key">
+                                <td data-title="ikey">{{vkey}}</td>
+                                <td data-title="'Price'">{{variation.price}}</td>
+                                <td data-title="'In Stock'">{{variation.stock}}{{variation.unit}}</td>
+                        </tr>
+
+                    </table>
+                    Description: <span>
+                        <i>{{item.Description}}</i>
+                    </span>
+                    <br>
+                    Tags: <span ng-repeat="tag in item.tags">
+                        <b>{{tag}}, </b>
+                    </span>
+                </div>
+
+            </div>
+        </div>
 
 </div>

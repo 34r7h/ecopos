@@ -2,6 +2,7 @@
 //@import "../bower_components/bootstrap/less/theme.less";
 @import "../bower_components/font-awesome/less/font-awesome.less";
 @fa-font-path: "../bower_components/font-awesome/fonts";
+@import "../bower_components/nvd3/nv.d3.css";
 
 /* Directive LESS */
 @import "../directive/brand/brand.less";
@@ -33,10 +34,12 @@
 //}
 
 .view-box {
-
-  position: relative;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  margin-bottom: 4em;
 }
-
 
 .slide-left,
 .slide-right {

@@ -154,6 +154,77 @@ angular.module('ecopos.admin').controller('ManageCtrl',function($scope){
 });
 angular.module('ecopos.admin').controller('InventoryCtrl',function($scope){
 
+    this.inventory = {
+        "Banana": {
+            variations:{
+                locallyGrown: {
+                    stock: 200,
+                    unit: "lbs",
+                    price: 0.79,
+                    suppliers:{
+                        "Banana Manna":{
+                            "Cost":0.20,
+                            "Order Number": 34652
+                        }
+                    },
+                    autoOrder:50,
+                    minOrder:250,
+                    category: "Fruit",
+                    taxRate:1
+                }
+            },
+            tags: ["fruit", "potassium"],
+            "Description":"Like avocado, only whiter and sweeter"
+
+        },
+        "Milk": {
+            variations: {
+                "1%": {
+                    stock: 5,
+                    ctType: "ltr",
+                    price: 4,
+                    suppliers:{
+                        "Cow":{
+                            "Cost":0.20,
+                            "Order Number": 34652
+                        },
+                        "Goat":{
+                            "Cost":4,
+                            "Order Number": 064
+                        }
+                    },
+                    autoOrder:50,
+                    minOrder:250,
+                    tags: ["lactose", "grandma"],
+                    category: "Dairy",
+                    taxRate:1
+                },
+                "18%": {
+                    stock: 9,
+                    ctType: "ltr",
+                    price: 5,
+                    "Description":"Like avocado, only whiter and sweeter",
+                    suppliers:{
+                        "Cow":{
+                            "Cost":0.20,
+                            "Order Number": 54269
+                        },
+                        "Goat":{
+                            "Cost":4,
+                            "Order Number": 34652
+                        }
+                    },
+                    autoOrder:50,
+                    minOrder:250,
+                    tags: ["lactose", "mom"],
+                    category: "Dairy",
+                    taxRate:1
+                }
+            },
+            tags: ["lactose", "mom"],
+            "Description":"Thin stuff"
+        }
+    };
 
 });
 angular.module('ecopos.admin').controller('AcctPrefsCtrl',function($scope){
@@ -178,7 +249,7 @@ angular.module('ecopos.admin').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('partial/inventory/inventory.html',
-    "<div class=col-md-12 ng-controller=InventoryCtrl><h3>Inventory Partial</h3><stock></stock></div>"
+    "<div class=col-md-12 ng-controller=\"InventoryCtrl as stock\"><h3>Inventory Partial</h3><stock></stock></div>"
   );
 
 
@@ -203,17 +274,17 @@ angular.module('ecopos.admin').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directive/graph/graph.html',
-    "<div><h4>Graph Directive</h4></div>"
+    "<div><h4>Graph Directive</h4><nvd3-line-chart data=exampleData showxaxis=true showyaxis=true tooltips=true interactive=true></nvd3-line-chart></div>"
   );
 
 
   $templateCache.put('directive/reports/reports.html',
-    "<div><h4>Reports Directive</h4></div>"
+    "<div><h4>Reports Directive</h4><table ng-table=tableParams class=table><tr ng-repeat=\"user in $data\"><td data-title=\"'Name'\">{{user.name}}</td><td data-title=\"'Age'\">{{user.age}}</td></tr></table></div>"
   );
 
 
   $templateCache.put('directive/stock/stock.html',
-    "<div><h4>Stock Directive</h4>{{fairTrade}}</div>"
+    "<div><h4>Stock Directive</h4>{{fairTrade}}<div><div ng-repeat=\"(key, item) in stock.inventory\" ng-init=\"ikey=key\"><div><table ng-table=tableParams class=table><tr ng-repeat=\"(key,variation) in item.variations\" ng-init=\"vkey = key\"><td data-title=ikey>{{vkey}}</td><td data-title=\"'Price'\">{{variation.price}}</td><td data-title=\"'In Stock'\">{{variation.stock}}{{variation.unit}}</td></tr></table>Description: <span><i>{{item.Description}}</i></span><br>Tags: <span ng-repeat=\"tag in item.tags\"><b>{{tag}},</b></span></div></div></div></div>"
   );
 
 
