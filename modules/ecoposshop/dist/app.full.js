@@ -9,9 +9,22 @@ angular.module('ecopos.shop').config(function($routeProvider) {
 
 
 
-angular.module('ecopos.shop').factory('shopTest',function() {
+angular.module('ecopos.shop').factory('shopTest',function($q, $timeout) {
+  var testData = null;
 
-	var shopTest = {test: "Shop Module Working Service"};
+	var shopTest = {
+    test: "Shop Module Working Service",
+    getTestData: function(){
+      return testData;
+    },
+    refreshTestData: function(){
+      var d = $q.defer();
+      $timeout(function() {
+        d.resolve('a simple resolution');
+      }, 2000);
+      return d.promise;
+    }
+  };
 
 	return shopTest;
 });
@@ -65,8 +78,6 @@ angular.module('ecopos.shop').directive('productList', function() {
 
 		templateUrl: 'directive/productList/productList.html',
 		link: function(scope, element, attrs, fn) {
-
-
 		}
 	};
 });
@@ -162,7 +173,7 @@ angular.module('ecopos.shop').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directive/productList/productList.html',
-    "<div><h4>Product List Directive</h4>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</div>"
+    "<div><h4>Product List Directive</h4><p>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</p><div>Let's see what we can load.<p>{{ testData }}</p></div></div>"
   );
 
 }]);

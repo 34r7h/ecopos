@@ -89,6 +89,12 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
                 url:'/map',
                 template: '<map></map>'
             }).
+<<<<<<< HEAD
+            state('testpat', {
+              url: '/testpat',
+              template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
+            });
+=======
         state('testpat', {
           url: '/testpat',
           template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
@@ -107,6 +113,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             $scope.testData = TestData;
           }
         });
+>>>>>>> master
 
  });
 
@@ -114,8 +121,13 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 
 angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
+<<<<<<< HEAD
   $rootScope.DBFBref = new Firebase(FB_URL);
   $rootScope.DBFB = $firebase($rootScope.DBFBref);
+=======
+  //$rootScope.DBFBref = new Firebase(FB_URL);
+  //$rootScope.DBFB = $firebase($rootScope.DBFBref);
+>>>>>>> master
 
     $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
 

@@ -2,6 +2,7 @@
   <div class="user-block" data-ng-show="user.uid">
     <span data-ng-show="user.displayName">Logged in as: {{ user.displayName }}<span data-ng-show="user.loginService">&nbsp;via {{ user.loginService }}</span><span data-ng-show="user.id">&nbsp;(#{{ user.id }})</span></span>
     <div>
+<<<<<<< HEAD
       <input type="button" value="Logout" data-ng-click="logout()" />
     </div>
   </div>
@@ -53,6 +54,46 @@
       <div>
         <input type="button" value="Login with GitHub" data-ng-click="loginGitHub()" />
       </div>
+=======
+      <input type="button" value="Logout" ng-click="logout()" />
+    </div>
+  </div>
+
+  <div class="register-block">
+    <h3>Register</h3>
+    <div>
+      <label for="email">Email: </label><input type="text" name="email" id="email" data-ng-model="email" />
+    </div>
+    <div>
+      <label for="password">Password: </label><input type="password" name="password" id="password" data-ng-model="password" />
+    </div>
+    <div>
+      <label for="passwordConfirm">Confirm password: </label><input type="password" name="passwordConfirm" id="passwordConfirm" data-ng-model="passwordConfirm" />
+    </div>
+    <div>
+      <input type="button" value="Create User" ng-click="addUser()" />
+    </div>
+  </div>
+  <div class="login-block">
+    <h3>Login</h3>
+    <div>
+      <label for="email">Email: </label><input type="text" name="email" id="email" data-ng-model="email" />
+    </div>
+    <div>
+      <label for="password">Password: </label><input type="password" name="password" id="password" data-ng-model="password" />
+    </div>
+    <div>
+      <input type="button" value="Login" ng-click="login()" />
+    </div>
+    <div>
+      <input type="button" value="Login with Facebook" ng-click="loginFacebook()" />
+    </div>
+    <div>
+      <input type="button" value="Login with Twitter" ng-click="loginTwitter()" />
+    </div>
+    <div>
+      <input type="button" value="Login with GitHub" ng-click="loginGitHub()" />
+>>>>>>> master
     </div>
   </div>
 </div>

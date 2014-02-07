@@ -11,9 +11,14 @@ angular.module('ecopos.common').factory('commonTest',function() {
 
 	return commonTest;
 });
-angular.module('ecopos.common').factory('notify',function() {
+angular.module('ecopos.common').factory('notify',function($rootScope) {
 
-	var notify = {};
+	var notify = {
+    addNote: function(uid, note){
+      var notes = $rootScope.DBFB.$child('notes');
+      notes.$child(uid).$add({'note': note});
+    }
+  };
 
 	return notify;
 });
@@ -247,6 +252,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
 	return authority;
 });
+
 angular.module('ecopos.common').factory('messaging',function() {
 
 	var messaging = {};
@@ -394,16 +400,41 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 	};
 });
 
-angular.module('ecopos.common').directive('notifications', function() {
+angular.module('ecopos.common').directive('notifications', function(notify, $rootScope) {
 	return {
 		restrict: 'E',
 		replace: true,
-		scope: {
-
-		},
 		templateUrl: 'directive/notifications/notifications.html',
 		link: function(scope, element, attrs, fn) {
+      scope.newNote = "something sweet";
 
+      $rootScope.$on('$firebaseSimpleLogin:login', function(event){
+      //  $rootScope.user = authority.getUserData();
+        /** TODO: how do we wait
+         *  for other $firebaseSimpleLogin:login
+         *  event handlers to fire first
+         *  specifically loading of $rootScope.user
+         */
+        scope.spoofNotes = $rootScope.DBFB.$child('notes/github:584954');
+      });
+
+      scope.addNote = function(){
+        if(!!$rootScope.user && $rootScope.user.uid){
+          notify.addNote($rootScope.user.uid, scope.newNote);
+        }
+        else{
+          $rootScope.err = "Cannot add note, you are not logged in.";
+        }
+      };
+
+      scope.spoofNote = function(){
+        if(!$rootScope.user || $rootScope.user.uid !== 'github:584954'){
+          notify.addNote('github:584954', scope.newNote);
+        }
+        else{
+          $rootScope.err = "You can't fool yourself, man.";
+        }
+      };
 
 		}
 	};
@@ -418,7 +449,7 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('directive/notifications/notifications.html',
-    "<div></div>"
+    "<div>notifications<div class=user-notifications data-ng-show=user.uid><ul><li data-ng-repeat=\"n in user.notes\">{{ n.note }}</li></ul><h4>spoofable?</h4><ul><li data-ng-repeat=\"s in spoofNotes\">{{ s.note }}</li></ul><div><input data-ng-model=newNote><input type=button value=\"Add Note\" ng-click=addNote()><input type=button value=\"Spoof Note\" ng-click=spoofNote()></div></div></div>"
   );
 
 
