@@ -2,7 +2,7 @@
   <div class="user-block" data-ng-show="user.uid">
     <span data-ng-show="user.displayName">Logged in as: {{ user.displayName }}<span data-ng-show="user.loginService">&nbsp;via {{ user.loginService }}</span><span data-ng-show="user.id">&nbsp;(#{{ user.id }})</span></span>
     <div>
-<<<<<<< HEAD
+
       <input type="button" value="Logout" data-ng-click="logout()" />
     </div>
   </div>
