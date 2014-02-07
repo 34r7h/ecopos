@@ -26,43 +26,16 @@
       <file leaf-file-name="setup.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="17" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2025">
+            <state line="26" column="28" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="2415">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/ecoposResources/directive/map/map.html">
+      <file leaf-file-name="navigation.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/service/navigation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="165">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delivery.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/modules/ecoposResources/partial/delivery/delivery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.4770318" vertical-offset="0" max-vertical-offset="283">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delivery.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/ecoposResources/partial/delivery/delivery.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="4" selection-start="58" selection-end="58" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shop.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partial/shop/shop.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="24" selection-start="121" selection-end="121" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="375">
+            <state line="26" column="6" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="525">
               <folding />
             </state>
           </provider>
@@ -71,7 +44,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="0" selection-start="2339" selection-end="2339" vertical-scroll-proportion="-26.875" vertical-offset="225" max-vertical-offset="1545">
+            <state line="83" column="25" selection-start="3048" selection-end="3048" vertical-scroll-proportion="-6.9166665" vertical-offset="1079" max-vertical-offset="1575">
               <folding />
             </state>
           </provider>
@@ -80,7 +53,45 @@
       <file leaf-file-name="resources.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/partial/resources/resources.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="16" selection-start="97" selection-end="97" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="225">
+            <state line="7" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="225">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partial/header/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="32" selection-start="137" selection-end="137" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="420">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/partial/header/header.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/directive/nav/nav.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="8" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.less" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/directive/nav/nav.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="29" selection-start="97" selection-end="97" vertical-scroll-proportion="-3.0612245" vertical-offset="0" max-vertical-offset="270">
               <folding />
             </state>
           </provider>
@@ -89,25 +100,16 @@
       <file leaf-file-name="app.less" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/app.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="317" column="7" selection-start="7189" selection-end="7189" vertical-scroll-proportion="-5.020408" vertical-offset="4509" max-vertical-offset="5220">
+            <state line="43" column="0" selection-start="1139" selection-end="1139" vertical-scroll-proportion="-1.5306122" vertical-offset="570" max-vertical-offset="6630">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/ecoposResources/directive/calendar/calendar.html">
+      <file leaf-file-name="nav.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/directive/nav/nav.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="14" selection-start="1903" selection-end="1903" vertical-scroll-proportion="-9.541667" vertical-offset="281" max-vertical-offset="630">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calendar.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/ecoposResources/directive/calendar/calendar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="45" selection-start="5088" selection-end="5088" vertical-scroll-proportion="0.0" vertical-offset="2477" max-vertical-offset="2760">
+            <state line="15" column="0" selection-start="497" selection-end="497" vertical-scroll-proportion="0.91463417" vertical-offset="0" max-vertical-offset="330">
               <folding />
             </state>
           </provider>
@@ -123,13 +125,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/modules/ecoposResources/service/editInfo.js" />
-        <option value="$PROJECT_DIR$/modules/ecoposResources/service/deliveryRoute.js" />
-        <option value="$PROJECT_DIR$/modules/ecoposResources/service/deliveryFulfillment.js" />
-        <option value="$PROJECT_DIR$/modules/ecoposResources/directive/info/info.html" />
-        <option value="$PROJECT_DIR$/modules/ecoposResources/partial/delivery/delivery.html" />
-        <option value="$PROJECT_DIR$/modules/ecoposAdmin/partial/inventory/inventory.html" />
-        <option value="$PROJECT_DIR$/modules/ecoposAdmin/directive/stock/stock.js" />
         <option value="$PROJECT_DIR$/modules/ecoposAdmin/directive/stock/stock.html" />
         <option value="$PROJECT_DIR$/modules/ecoposAdmin/service/fairTrade.js" />
         <option value="$PROJECT_DIR$/partial/dashboard/dashboard.js" />
@@ -154,26 +149,33 @@
         <option value="$PROJECT_DIR$/modules/ecoposAdmin/directive/graph/graph.js" />
         <option value="$PROJECT_DIR$/modules/ecoposAdmin/partial/manage/manage.html" />
         <option value="$PROJECT_DIR$/modules/ecoposShop/partial/sunshine/sunshine.html" />
-        <option value="$PROJECT_DIR$/partial/header/header.html" />
         <option value="$PROJECT_DIR$/service/state.js" />
         <option value="$PROJECT_DIR$/modules/ecoposCommon/Gruntfile.js" />
         <option value="$PROJECT_DIR$/modules/ecoposCommon/dist-common/app.full.js" />
         <option value="$PROJECT_DIR$/modules/ecoposCommon/js/setup.js" />
-        <option value="$PROJECT_DIR$/partial/dashboard/dashboard.html" />
-        <option value="$PROJECT_DIR$/partial/resources/resources.html" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/directive/dhx-scheduler.js" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/directive/dhxTemplate.js" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/partial/agenda/agenda.js" />
         <option value="$PROJECT_DIR$/directive/ngHtml.js" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/directive/calendar/calendar.html" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/directive/calendar/calendar.js" />
-        <option value="$PROJECT_DIR$/partial/shop/shop.html" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/index.html" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/setup.js" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/directive/map/map.html" />
-        <option value="$PROJECT_DIR$/css/app.less" />
         <option value="$PROJECT_DIR$/modules/ecoposResources/partial/delivery/delivery.js" />
+        <option value="$PROJECT_DIR$/modules/ecoposresources/partial/delivery/delivery.js" />
+        <option value="$PROJECT_DIR$/partial/header/header.js" />
+        <option value="$PROJECT_DIR$/directive/nav/nav.js" />
+        <option value="$PROJECT_DIR$/partial/header/header.less" />
+        <option value="$PROJECT_DIR$/partial/header/header.html" />
+        <option value="$PROJECT_DIR$/directive/nav/nav.less" />
+        <option value="$PROJECT_DIR$/js/setup.js" />
+        <option value="$PROJECT_DIR$/partial/shop/shop.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/partial/dashboard/dashboard.html" />
+        <option value="$PROJECT_DIR$/partial/resources/resources.html" />
+        <option value="$PROJECT_DIR$/css/app.less" />
+        <option value="$PROJECT_DIR$/service/navigation.js" />
+        <option value="$PROJECT_DIR$/directive/nav/nav.html" />
       </list>
     </option>
   </component>
@@ -209,7 +211,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -252,46 +253,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ecopos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ecopos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ecoposResources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ecopos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ecopos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ecoposResources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="partial" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -306,11 +267,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
+              <option name="myItemId" value="partial" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ecoposResources" />
+              <option name="myItemId" value="shop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -318,7 +289,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="delivery" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -332,15 +303,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
+              <option name="myItemId" value="partial" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ecoposResources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="directive" />
+              <option name="myItemId" value="header" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -354,19 +321,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
+              <option name="myItemId" value="partial" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ecoposResources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="directive" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="map" />
+              <option name="myItemId" value="dashboard" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -397,9 +356,28 @@
               <option name="myItemId" value="directive" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nav" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ecopos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directive" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,6 +394,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -426,23 +412,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -502,10 +480,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="3" y="26" width="1342" height="738" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48297215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48297215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32662538" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981132" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -551,142 +529,107 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/service/confirmPO.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="61" selection-start="123" selection-end="123" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/service/editEmployee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="51" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/service/editStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="45" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partial/dashboard/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="439" selection-end="439" vertical-scroll-proportion="0.30612245" vertical-offset="0" max-vertical-offset="441" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/service/money.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="48" selection-start="106" selection-end="106" vertical-scroll-proportion="0.066079296" vertical-offset="0" max-vertical-offset="454" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/service/fairTrade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="45" selection-start="107" selection-end="107" vertical-scroll-proportion="0.062893085" vertical-offset="0" max-vertical-offset="477" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/partial/inventory/inventory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="454" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/partial/inventory/inventory.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/partial/inventory/inventory.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="0" selection-start="101" selection-end="101" vertical-scroll-proportion="0.09933775" vertical-offset="0" max-vertical-offset="453" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/service/editCustomer.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/service/editCustomer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="51" selection-start="116" selection-end="116" vertical-scroll-proportion="0.062893085" vertical-offset="0" max-vertical-offset="477" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/service/editSupplier.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/service/editSupplier.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="3" selection-start="146" selection-end="146" vertical-scroll-proportion="0.1572327" vertical-offset="0" max-vertical-offset="477" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/partial/acct-prefs/acct-prefs.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/partial/acct-prefs/acct-prefs.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="173" selection-end="173" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="195" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/accounting/accounting.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/accounting/accounting.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/customer/customer.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/customer/customer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/employee/employee.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/employee/employee.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/reports/reports.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/reports/reports.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/stock/stock.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/stock/stock.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="9" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/supplier/supplier.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/supplier/supplier.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="0" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/graph/graph.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/graph/graph.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="0" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/partial/manage/manage.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/partial/manage/manage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="22" selection-start="393" selection-end="393" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="405" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/accounting/accounting.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/accounting/accounting.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="28" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="135" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/customer/customer.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/customer/customer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="18" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="150" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/employee/employee.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/employee/employee.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="18" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="150" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/graph/graph.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/graph/graph.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="32" selection-end="32" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="150" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/reports/reports.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/reports/reports.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="26" selection-start="32" selection-end="32" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="135" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/stock/stock.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/stock/stock.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="150" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposAdmin/directive/supplier/supplier.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposadmin/directive/supplier/supplier.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="6" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="150" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposShop/partial/cafe/cafe.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposshop/partial/cafe/cafe.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="427" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="430" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposShop/partial/sunshine/sunshine.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposshop/partial/sunshine/sunshine.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="6" selection-start="439" selection-end="439" vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="300" />
       </provider>
@@ -696,17 +639,17 @@
         <state line="4" column="35" selection-start="135" selection-end="135" vertical-scroll-proportion="0.13215859" vertical-offset="0" max-vertical-offset="454" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/js/setup.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/js/setup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="3" selection-start="143" selection-end="143" vertical-scroll-proportion="0.18867925" vertical-offset="0" max-vertical-offset="477" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/dist-common/app.full.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/dist-common/app.full.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="81" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/Gruntfile.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="194" column="139" selection-start="5472" selection-end="5472" vertical-scroll-proportion="0.35560346" vertical-offset="2745" max-vertical-offset="3540" />
       </provider>
@@ -716,128 +659,164 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-6.012931" vertical-offset="2790" max-vertical-offset="3630" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partial/header/header.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposcommon/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="82" selection-end="82" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposCommon/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="43" selection-start="1929" selection-end="1929" vertical-scroll-proportion="-9.791667" vertical-offset="395" max-vertical-offset="1110">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partial/dashboard/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="113" selection-end="113" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="390">
-          <folding />
-        </state>
+        <state line="42" column="43" selection-start="1929" selection-end="1929" vertical-scroll-proportion="-9.791667" vertical-offset="395" max-vertical-offset="1110" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/partial/resources/resources.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="36" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
-          <folding />
-        </state>
+        <state line="4" column="36" selection-start="305" selection-end="305" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/service/schedule.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/service/schedule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="3" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-          <folding />
-        </state>
+        <state line="5" column="3" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/partial/agenda/agenda.js">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/partial/agenda/agenda.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="28" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
-          <folding />
-        </state>
+        <state line="1" column="28" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/partial/agenda/agenda.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/partial/agenda/agenda.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="454">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="454" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partial/resources/resources.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/directive/calendar/calendar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="16" selection-start="97" selection-end="97" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="225">
+        <state line="34" column="14" selection-start="1903" selection-end="1903" vertical-scroll-proportion="0.0" vertical-offset="281" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/directive/calendar/calendar.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="14" selection-start="1903" selection-end="1903" vertical-scroll-proportion="-9.541667" vertical-offset="281" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="27" column="90" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.47876447" vertical-offset="281" max-vertical-offset="1200" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/index.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/partial/delivery/delivery.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="90" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.47876447" vertical-offset="281" max-vertical-offset="1200">
+        <state line="2" column="4" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="375">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partial/shop/shop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="24" selection-start="121" selection-end="121" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="2339" selection-end="2339" vertical-scroll-proportion="-26.875" vertical-offset="225" max-vertical-offset="1545">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/setup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="17" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/partial/delivery/delivery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="4" selection-start="58" selection-end="58" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/directive/map/map.html">
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/directive/map/map.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="165">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/partial/delivery/delivery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/header/header.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="234">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/ecoposresources/directive/calendar/calendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="45" selection-start="5088" selection-end="5088" vertical-scroll-proportion="0.0" vertical-offset="2454" max-vertical-offset="2760">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/dashboard/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="318" selection-end="318" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="300">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/shop/shop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="80" selection-start="53" selection-end="80" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="375">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="6" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="25" selection-start="3048" selection-end="3048" vertical-scroll-proportion="-6.9166665" vertical-offset="1079" max-vertical-offset="1575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/header/header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/header/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="32" selection-start="137" selection-end="137" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/app.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="317" column="7" selection-start="7189" selection-end="7189" vertical-scroll-proportion="-5.020408" vertical-offset="4509" max-vertical-offset="5220">
+        <state line="43" column="0" selection-start="1139" selection-end="1139" vertical-scroll-proportion="-1.5306122" vertical-offset="570" max-vertical-offset="6630">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/directive/calendar/calendar.js">
+    <entry file="file://$PROJECT_DIR$/directive/nav/nav.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="45" selection-start="5088" selection-end="5088" vertical-scroll-proportion="0.0" vertical-offset="2477" max-vertical-offset="2760">
+        <state line="4" column="8" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ecoposResources/partial/delivery/delivery.js">
+    <entry file="file://$PROJECT_DIR$/directive/nav/nav.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.4770318" vertical-offset="0" max-vertical-offset="283">
+        <state line="10" column="29" selection-start="97" selection-end="97" vertical-scroll-proportion="-3.0612245" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/setup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="28" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2415">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/partial/resources/resources.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="225">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/directive/nav/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="497" selection-end="497" vertical-scroll-proportion="0.91463417" vertical-offset="0" max-vertical-offset="330">
           <folding />
         </state>
       </provider>

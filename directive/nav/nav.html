@@ -1,4 +1,17 @@
 <div>
 
 
+    <div class="nav">
+        <div class="panel-group">
+
+            <div class="panel panel-default" ng-repeat="(key, state) in dash">
+                <div class="panel-heading"><b class="panel-title">{{key}}</b></div>
+
+                <ul class="panel-body" ng-repeat="(key, link) in state">
+                    <li><a class="btn btn-info" ng-href="{{link}}" ng-click="transitionClass = 'slide-right'">{{key}}</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </div>

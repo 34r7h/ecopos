@@ -12,7 +12,7 @@ angular.module('ecopos', [
     'google-maps'
 ]);
 
-angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider) {
+angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider, $provide) {
     $urlRouterProvider.
         otherwise('/');
 
@@ -108,6 +108,13 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
           }
         });
 
+    // Prevents view jumps on state change
+    $provide.decorator('$uiViewScroll', function ($delegate) {
+        return function (uiViewElement) {
+            console.log("Manually scroll to:", uiViewElement);
+        };
+    });
+
  });
 
 
@@ -116,6 +123,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
   //$rootScope.DBFBref = new Firebase(FB_URL);
   //$rootScope.DBFB = $firebase($rootScope.DBFBref);
+    $rootScope.transitionClass = 'slide-left';
 
     $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
 
@@ -130,8 +138,6 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
     $rootScope.loseAllItems = function(){
         $rootScope.items.$remove();
     };
-
-
 
 
 	$rootScope.safeApply = function(fn) {
