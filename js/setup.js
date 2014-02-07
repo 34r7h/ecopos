@@ -121,8 +121,8 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 
 angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
-  //$rootScope.DBFBref = new Firebase(FB_URL);
-  //$rootScope.DBFB = $firebase($rootScope.DBFBref);
+    $rootScope.DBFBref = new Firebase(FB_URL);
+    $rootScope.DBFB = $firebase($rootScope.DBFBref);
     $rootScope.transitionClass = 'slide-left';
 
     $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
