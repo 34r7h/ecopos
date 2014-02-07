@@ -1,14 +1,23 @@
 <div class="col-md-12" ng-controller="DashboardCtrl" style="background: cornflowerblue">
     <h1>Dashboard Partial</h1>
     <div ui-view></div>
-    <login></login>
-    <accounting></accounting>
-    <customer></customer>
-    <employee></employee>
-    <graph></graph>
-    <reports></reports>
-    <stock></stock>
-    <supplier></supplier>
+    <div class="row">
 
+        <div class="col-lg-6 col-md-6">
+            <graph></graph>
+            <reports></reports>
+            <div ng-include="'partial/inventory/inventory.html'" ng-cloak />
+
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+
+            <accounting></accounting>
+            <customer></customer>
+            <employee></employee>
+            <supplier></supplier>
+        </div>
+
+    </div>
 
 </div>

@@ -9,7 +9,9 @@ angular.module('ecopos', [
     'ecopos.shop',
     'ecopos.common',
     'firebase',
-    'google-maps'
+    'google-maps',
+    'nvd3ChartDirectives',
+    'ngTable'
 ]);
 
 angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider, $provide) {
