@@ -1,4 +1,17 @@
 <div>
 
 
+    <div class="nav">
+
+
+            <div ng-repeat="(key, state) in dash">
+                <b>{{key}}</b>
+                    <span ng-repeat="(key, link) in state">
+                        <span><a ng-href="{{link}}" ng-click="transitionClass = 'slide-right'">{{key}} √</a> | </span>
+                    </span>
+
+            </div>
+
+    </div>
+
 </div>
