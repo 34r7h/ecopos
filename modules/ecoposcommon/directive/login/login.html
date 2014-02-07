@@ -13,6 +13,12 @@
       <label for="displayName">Name: </label><input type="text" name="displayName" id="displayName" data-ng-model="user.displayName" />
     </div>
     <div>
+      <strong>Linked with:</strong>
+      <ul class="socials">
+        <li data-ng-repeat="la in user.linkedAccounts">{{ la.provider }}</li>
+      </ul>
+    </div>
+    <div>
       <input type="button" value="Save Profile" data-ng-click="saveUserData()" />
     </div>
   </div>
