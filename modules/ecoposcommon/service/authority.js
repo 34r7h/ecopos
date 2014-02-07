@@ -30,7 +30,6 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
             d.reject('error loading linked:'+err);
           }
       );
-      //"simplelogin:3","github:584954","facebook:304703258"
 
       return d.promise;
     },
