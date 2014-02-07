@@ -22,6 +22,7 @@ angular.module('ecopos.common').factory('notify',function($rootScope) {
 
 	return notify;
 });
+<<<<<<< HEAD
 angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin, $q) {
   var auth = $firebaseSimpleLogin($rootScope.DBFBref);
 
@@ -114,6 +115,14 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
       }
     },
     createUser: function(email, password, callback){
+=======
+angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin) {
+  var auth = $firebaseSimpleLogin($rootScope.DBFBref);
+
+	var authority = {
+    createUser: function(email, password, callback){
+
+>>>>>>> master
       auth.$createUser(email, password, true).then(
           function(user){
             if(callback){
@@ -130,11 +139,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authUser: function(email, password, callback){
       auth.$login('password', {email: email, password: password}).then(
           function(user){
+<<<<<<< HEAD
+=======
+            console.log('Logged in as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            console.log('Login failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -144,11 +161,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authFacebook: function(callback){
       auth.$login('facebook').then(
           function(user){
+<<<<<<< HEAD
+=======
+            console.log('Logged in via Facebook as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            console.log('Login via Facebook failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -158,11 +183,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authTwitter: function(callback){
       auth.$login('twitter').then(
           function(user){
+<<<<<<< HEAD
+=======
+            //console.log('Logged in via Twitter as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            //console.log('Login via Twitter failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -172,11 +205,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authGitHub: function(callback){
       auth.$login('github').then(
           function(user){
+<<<<<<< HEAD
+=======
+            console.log('Logged in via GitHub as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            console.log('Login via GitHub failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -224,6 +265,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
         if(userData.uid){
           userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
+<<<<<<< HEAD
           var userProfile = null;
           authority.getUserByUID(userData.uid).
               then(
@@ -243,6 +285,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
                   console.log('lose:'+err);
                 }
               );
+=======
+>>>>>>> master
         }
       }
 
@@ -252,7 +296,6 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
 	return authority;
 });
-
 angular.module('ecopos.common').factory('messaging',function() {
 
 	var messaging = {};
@@ -444,7 +487,11 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
+<<<<<<< HEAD
     "<div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout data-ng-click=logout()></div></div><div class=profile-block data-ng-show=user.uid><h3>My Profile</h3><h4>{{ user.displayName }}</h4><div><label for=displayName>Name:</label><input name=displayName id=displayName data-ng-model=user.displayName></div><div><input type=button value=\"Save Profile\" data-ng-click=saveUserData()></div></div><div class=anonymous-block data-ng-hide=user.uid><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" data-ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login data-ng-click=login()></div><div><input type=button value=\"Login with Facebook\" data-ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" data-ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" data-ng-click=loginGitHub()></div></div></div></div>"
+=======
+    "<div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout ng-click=logout()></div></div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login ng-click=login()></div><div><input type=button value=\"Login with Facebook\" ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" ng-click=loginGitHub()></div></div></div>"
+>>>>>>> master
   );
 
 

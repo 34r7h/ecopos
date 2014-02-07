@@ -22,12 +22,98 @@ angular.module('ecopos.common').factory('notify',function($rootScope) {
 
 	return notify;
 });
-angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin) {
+angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin, $q) {
   var auth = $firebaseSimpleLogin($rootScope.DBFBref);
 
 	var authority = {
-    createUser: function(email, password, callback){
+    getUserByUID: function(uid){
+      var d = $q.defer();
 
+      // first, try to load the linkedAccount by its uid
+      $rootScope.DBFBref.child('linkedAccount/'+uid).
+          once('value',
+          function(linkedSnap){
+            var linkedVal = linkedSnap.val();
+            if(linkedVal){
+              // we found the linkedAccount record for uid
+              $rootScope.DBFBref.child('user/'+linkedVal.userID).
+                  once('value',
+                  function(userSnap){
+                    d.resolve(userSnap.val());
+                  },
+                  function(err){
+                    d.reject('error loading user profile:'+err);
+                  });
+            }
+            else{
+              // could not load the linkedAccount
+              d.resolve(null);
+            }
+          },
+          function(err){
+            d.reject('error loading linked:'+err);
+          }
+      );
+      //"simplelogin:3","github:584954","facebook:304703258"
+
+      return d.promise;
+    },
+    saveUserData: function(data){
+      // to avoid accidentally duplicating a user, data.userID must be explicitly set
+      if(data.userID === undefined){ return; } // for a new user, use data.userID = null
+
+      var dbUserRef = $rootScope.DBFBref.child('user');
+
+      // create a new user profile if no userID given
+      if(data.userID === null){ data.userID = dbUserRef.push().name(); }
+
+      // handle linking with accounts
+      if(data.uid){
+        if(!(data.uid instanceof Array)){ data.uid = [data.uid]; } // make it an array
+
+        var linkBools = {};
+
+        // handle every uid we've been told to link with
+        $.each(data.uid, function(key, uid){
+          // break apart the uid to discover its provider and id
+          var uidParts = uid.split(':', 2);
+          var cProv = 'unknown';
+          var cId = 0;
+          if(uidParts.length === 2){
+            cProv = uidParts[0];
+            cId = uidParts[1];
+          }
+
+          // associate this account with userID
+          var cLinkAccount = $rootScope.DBFBref.child('linkedAccount/'+uid);
+          cLinkAccount.once('value',
+              function(snap){
+                var cLinkAccountData = snap.val();
+                if(!cLinkAccountData){
+                  // linkedAccount is not setup
+                  cLinkAccount.set({userID: data.userID, provider: cProv, id: cId});
+                  linkBools[uid] = true; // we'd prefer to have the uid as the index rather than value (more efficient lookups)
+                }
+                else{
+                  // linkedAccount is there...
+                  // TODO: check the userID
+                  //   if it is different from data.userID
+                  //     then this account is already linked to a different profile (throw an error?)
+                  console.log('what is linkedAccount:'+JSON.stringify(cLinkAccountData));
+                }
+              },
+              function(err){
+                console.log('error:'+err);
+              }
+          );
+        });
+
+        // ok, we can update the user profile
+        dbUserRef.child(data.userID).
+            update({displayName: data.name, testing: 'testing 123...', linkedAccounts: linkBools, created: new Date(), lastLogin: new Date()});
+      }
+    },
+    createUser: function(email, password, callback){
       auth.$createUser(email, password, true).then(
           function(user){
             if(callback){
@@ -44,13 +130,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authUser: function(email, password, callback){
       auth.$login('password', {email: email, password: password}).then(
           function(user){
-            console.log('Logged in as: '+ user.uid);
             if(callback){
               callback(null, user);
             }
           },
           function(error){
-            console.log('Login failed: '+ error);
             if(callback){
               callback(error, null);
             }
@@ -60,13 +144,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authFacebook: function(callback){
       auth.$login('facebook').then(
           function(user){
-            console.log('Logged in via Facebook as: '+ user.uid);
             if(callback){
               callback(null, user);
             }
           },
           function(error){
-            console.log('Login via Facebook failed: '+ error);
             if(callback){
               callback(error, null);
             }
@@ -76,13 +158,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authTwitter: function(callback){
       auth.$login('twitter').then(
           function(user){
-            //console.log('Logged in via Twitter as: '+ user.uid);
             if(callback){
               callback(null, user);
             }
           },
           function(error){
-            //console.log('Login via Twitter failed: '+ error);
             if(callback){
               callback(error, null);
             }
@@ -92,13 +172,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authGitHub: function(callback){
       auth.$login('github').then(
           function(user){
-            console.log('Logged in via GitHub as: '+ user.uid);
             if(callback){
               callback(null, user);
             }
           },
           function(error){
-            console.log('Login via GitHub failed: '+ error);
             if(callback){
               callback(error, null);
             }
@@ -146,6 +224,25 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
         if(userData.uid){
           userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
+          var userProfile = null;
+          authority.getUserByUID(userData.uid).
+              then(
+                function(userProfile){
+                  if(userProfile){
+                    console.log('win:'+JSON.stringify(userProfile));
+                    userData.userID = userProfile.userID;
+                    $rootScope.DBFB.$child('user/'+userData.userID+'/lastLogin').
+                        $set(new Date());
+                  }
+                  else{
+                    console.log('creating new user profile for uid:'+userData.uid);
+                    authority.saveUserData({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
+                  }
+                },
+                function(err){
+                  console.log('lose:'+err);
+                }
+              );
         }
       }
 
@@ -155,6 +252,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
 	return authority;
 });
+
 angular.module('ecopos.common').factory('messaging',function() {
 
 	var messaging = {};
@@ -346,7 +444,7 @@ angular.module('ecopos.common').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('directive/login/login.html',
-    "<div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout ng-click=logout()></div></div><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login ng-click=login()></div><div><input type=button value=\"Login with Facebook\" ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" ng-click=loginGitHub()></div></div></div>"
+    "<div><div class=user-block data-ng-show=user.uid><span data-ng-show=user.displayName>Logged in as: {{ user.displayName }}<span data-ng-show=user.loginService>&nbsp;via {{ user.loginService }}</span><span data-ng-show=user.id>&nbsp;(#{{ user.id }})</span></span><div><input type=button value=Logout data-ng-click=logout()></div></div><div class=profile-block data-ng-show=user.uid><h3>My Profile</h3><h4>{{ user.displayName }}</h4><div><label for=displayName>Name:</label><input name=displayName id=displayName data-ng-model=user.displayName></div><div><input type=button value=\"Save Profile\" data-ng-click=saveUserData()></div></div><div class=anonymous-block data-ng-hide=user.uid><div class=register-block><h3>Register</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><label for=passwordConfirm>Confirm password:</label><input type=password name=passwordConfirm id=passwordConfirm data-ng-model=passwordConfirm></div><div><input type=button value=\"Create User\" data-ng-click=addUser()></div></div><div class=login-block><h3>Login</h3><div><label for=email>Email:</label><input name=email id=email data-ng-model=email></div><div><label for=password>Password:</label><input type=password name=password id=password data-ng-model=password></div><div><input type=button value=Login data-ng-click=login()></div><div><input type=button value=\"Login with Facebook\" data-ng-click=loginFacebook()></div><div><input type=button value=\"Login with Twitter\" data-ng-click=loginTwitter()></div><div><input type=button value=\"Login with GitHub\" data-ng-click=loginGitHub()></div></div></div></div>"
   );
 
 

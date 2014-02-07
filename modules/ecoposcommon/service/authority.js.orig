@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin, $q) {
   var auth = $firebaseSimpleLogin($rootScope.DBFBref);
 
@@ -90,6 +91,14 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
       }
     },
     createUser: function(email, password, callback){
+=======
+angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin) {
+  var auth = $firebaseSimpleLogin($rootScope.DBFBref);
+
+	var authority = {
+    createUser: function(email, password, callback){
+
+>>>>>>> master
       auth.$createUser(email, password, true).then(
           function(user){
             if(callback){
@@ -106,11 +115,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authUser: function(email, password, callback){
       auth.$login('password', {email: email, password: password}).then(
           function(user){
+<<<<<<< HEAD
+=======
+            console.log('Logged in as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            console.log('Login failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -120,11 +137,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authFacebook: function(callback){
       auth.$login('facebook').then(
           function(user){
+<<<<<<< HEAD
+=======
+            console.log('Logged in via Facebook as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            console.log('Login via Facebook failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -134,11 +159,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authTwitter: function(callback){
       auth.$login('twitter').then(
           function(user){
+<<<<<<< HEAD
+=======
+            //console.log('Logged in via Twitter as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            //console.log('Login via Twitter failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -148,11 +181,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     authGitHub: function(callback){
       auth.$login('github').then(
           function(user){
+<<<<<<< HEAD
+=======
+            console.log('Logged in via GitHub as: '+ user.uid);
+>>>>>>> master
             if(callback){
               callback(null, user);
             }
           },
           function(error){
+<<<<<<< HEAD
+=======
+            console.log('Login via GitHub failed: '+ error);
+>>>>>>> master
             if(callback){
               callback(error, null);
             }
@@ -200,6 +241,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
         if(userData.uid){
           userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
+<<<<<<< HEAD
           var userProfile = null;
           authority.getUserByUID(userData.uid).
               then(
@@ -219,6 +261,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
                   console.log('lose:'+err);
                 }
               );
+=======
+>>>>>>> master
         }
       }
 

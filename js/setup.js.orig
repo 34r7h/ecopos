@@ -12,7 +12,7 @@ angular.module('ecopos', [
     'google-maps'
 ]);
 
-angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider, $provide) {
+angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider) {
     $urlRouterProvider.
         otherwise('/');
 
@@ -89,6 +89,12 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
                 url:'/map',
                 template: '<map></map>'
             }).
+<<<<<<< HEAD
+            state('testpat', {
+              url: '/testpat',
+              template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
+            });
+=======
         state('testpat', {
           url: '/testpat',
           template: '<div class="error">{{ err }}</div><notifications></notifications><login></login>'
@@ -107,13 +113,7 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             $scope.testData = TestData;
           }
         });
-
-    // Prevents view jumps on state change
-    $provide.decorator('$uiViewScroll', function ($delegate) {
-        return function (uiViewElement) {
-            console.log("Manually scroll to:", uiViewElement);
-        };
-    });
+>>>>>>> master
 
  });
 
@@ -121,9 +121,13 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
 
 
 angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
-    $rootScope.DBFBref = new Firebase(FB_URL);
-    $rootScope.DBFB = $firebase($rootScope.DBFBref);
-    $rootScope.transitionClass = 'slide-left';
+<<<<<<< HEAD
+  $rootScope.DBFBref = new Firebase(FB_URL);
+  $rootScope.DBFB = $firebase($rootScope.DBFBref);
+=======
+  //$rootScope.DBFBref = new Firebase(FB_URL);
+  //$rootScope.DBFB = $firebase($rootScope.DBFBref);
+>>>>>>> master
 
     $rootScope.items = $firebase(new Firebase('https://ecopos.firebaseio.com/items'));
 
@@ -138,6 +142,8 @@ angular.module('ecopos').run(function($rootScope, $firebase, Firebase, FB_URL) {
     $rootScope.loseAllItems = function(){
         $rootScope.items.$remove();
     };
+
+
 
 
 	$rootScope.safeApply = function(fn) {
