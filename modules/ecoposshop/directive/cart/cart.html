@@ -1,4 +1,32 @@
 <div>
 <h4>Cart Directive</h4>
-{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}
+
+
+    <div ng-repeat="(key, item) in cart.buy">
+        <div>
+            <table ng-table="tableParams" class="table">
+                <tr>
+                    <td data-title="Products">{{key}}</td>
+                    <td data-title="'Quantity'">{{item.qty.num+item.qty.unitCt}}</td>
+                    <td data-title="'Price'">{{item.price}}</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+    <table ng-table="tableParams" class="table">
+        <tr>
+            <td data-title="Coupons">{{key}}</td>
+            <td data-title="'Adjustments'">{{item.qty.num+item.qty.unitCt}}</td>
+            <td data-title="'Total'">{{item.price}}</td>
+        </tr>
+
+    </table>
+
+    <button type="button" class="btn btn-lg btn-primary" data-animation="am-fade-and-scale" data-placement="center" bs-modal="modal">Click to toggle modal
+        <br />
+        <small>(using an object)</small>
+    </button>
 </div>

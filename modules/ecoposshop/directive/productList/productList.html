@@ -1,5 +1,28 @@
 <div>
-  <h4>Product List Directive</h4>
+
+
+<div ng-repeat="(key, item) in cafe.items" class="col-lg-4" ng-class="{'col-lg-12': itemDetail, 'col-lg-4': itemList}">
+
+
+    <a ng-href="#" class="panel panel-default" ng-click="$parent.itemDetail">
+        <div class="panel-body">
+            <img
+                ng-src="{{item.img}}"
+                width="100%"
+                height="auto"
+            />
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">{{key}}!</h3>
+        </div>
+        <div class="panel-body">{{item.desc}} for just ${{item.price}}.</div>
+
+    </a>
+
+</div>
+
+
+    <h4>Product List Directive</h4>
   <p>{{bins}}, {{payment}}, {{purchaseOrders}}, {{specialOrders}}, {{updateCart}}</p>
 
   <div>

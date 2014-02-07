@@ -5,6 +5,9 @@ angular.module('ecopos.shop').directive('productList', function() {
 
 		templateUrl: 'directive/productList/productList.html',
 		link: function(scope, element, attrs, fn) {
+
+
+
 		}
 	};
 });

@@ -11,10 +11,11 @@ angular.module('ecopos', [
     'firebase',
     'google-maps',
     'nvd3ChartDirectives',
-    'ngTable'
+    'ngTable',
+    'mgcrea.ngStrap'
 ]);
 
-angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider, $provide) {
+angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider, $provide, $modalProvider) {
     $urlRouterProvider.
         otherwise('/');
 
@@ -109,7 +110,9 @@ angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRou
             $scope.testData = TestData;
           }
         });
-
+    angular.extend($modalProvider.defaults, {
+        html: true
+    });
     // Prevents view jumps on state change
     $provide.decorator('$uiViewScroll', function ($delegate) {
         return function (uiViewElement) {

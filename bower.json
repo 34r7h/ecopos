@@ -26,6 +26,7 @@
     "highcharts": "~3",
     "d3": "~3.4.1",
     "nvd3": "~1.1.15-beta",
-    "angularjs-nvd3-directives": "~0.0.5-beta"
+    "angularjs-nvd3-directives": "~0.0.5-beta",
+    "angular-strap": "~2.0.0"
   }
 }
