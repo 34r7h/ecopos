@@ -7,8 +7,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
 
       // first, try to load the linkedAccount by its uid
       $rootScope.DBFBref.child('linkedAccount/'+uid).
-          once('value',
-          function(linkedSnap){
+          once('value',function(linkedSnap){
             var linkedAccount = linkedSnap.val();
             if(linkedAccount){
               // we found the linkedAccount record for uid
@@ -27,7 +26,12 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
 
       return d.promise;
     },
-    saveUserData: function(data){
+    saveUserData: function(){
+      $rootScope.user.$save();
+    },
+    createUserData: function(data){
+      // TODO: need to write this
+
       // to avoid accidentally duping/recreating a user, data.userID must be explicitly set
       if(data.userID === undefined){ return; } // for a new user, use data.userID = null
 
@@ -153,7 +157,59 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
     logout: function(){
       auth.$logout();
     },
-    getUserData: function(){
+    loadUserData: function(){
+      // load up the user data into $rootScope based on currently authenticated user
+      if(auth.user && auth.user.id){
+        authority.getUserByUID(auth.user.uid).
+            then(function loadUserProfile(userProfile){
+              if(userProfile){
+                /**
+                 * TODO: we will have a look at notes linking to user profile
+                if(userData.uid){
+                  userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
+                }
+                 */
+
+                userProfile.$on('loaded', function(){
+                  $rootScope.user = userProfile;
+                  $rootScope.testing = userProfile.displayName;
+
+                  // TODO: this level of data probably doesn't need to be exposed
+                  $rootScope.linkedAccounts = {};
+                  $.each(userProfile.linkedAccounts, function(key, value){
+                    if(value){
+                      $rootScope.linkedAccounts[key] = $firebase($rootScope.DBFBref.child('linkedAccount/'+key));
+                    }
+                  });
+
+                  userProfile.lastLogin = new Date();
+                  userProfile.$save('lastLogin');
+
+                  console.log('win:'+JSON.stringify(userProfile));
+                });
+
+
+              }
+              else{
+                var userData = authority.getDefaultUserData();
+                console.log('creating new user profile for uid:'+userData.uid);
+                authority.createUserData({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
+              }
+            },
+            function(err){
+              console.log('lose:'+err);
+            }
+        );
+      }
+      else{
+        console.log('No authenticated user to load data for.');
+      }
+    },
+    unloadUserData: function(){
+      // clear the user data from $rootScope (should be called when user logs out)
+      $rootScope.user = null;
+    },
+    getDefaultUserData: function(){
       var userData = {};
 
       if(auth.user && auth.user.id){
@@ -187,46 +243,6 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
           userData.username = auth.user.username;
           userData.email = auth.user.email;
           userData.displayName = (auth.user.displayName?auth.user.displayName:auth.user.username);
-        }
-
-        if(userData.uid){
-          userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
-          var userProfile = null;
-          authority.getUserByUID(userData.uid).
-              then(
-                function loadUserProfile(userProfile){
-                  if(userProfile){
-                    userProfile.$on('loaded', function(){
-                      console.log('win:'+JSON.stringify(userProfile));
-                      userData.userID = userProfile.userID;
-                      //userData.displayName = userProfile.displayName;
-                      //$rootScope.user.displayName = userProfile.displayName;
-                      $rootScope.testing = userProfile.displayName;
-                      userData.linkedAccounts = {};
-                      $.each(userProfile.linkedAccounts, function(key, value){
-                        if(value){
-                          $rootScope.DBFBref.child('linkedAccount/'+key).once('value', function(snap){
-                                userData.linkedAccounts[key] = snap.val();
-                              },
-                              function(err){
-                                console.log('could not load the linkedAccount:'+key);
-                              });
-                        }
-                      });
-
-                    //$rootScope.DBFB.$child('user/'+userData.userID+'/lastLogin').
-                    //    $set(new Date());
-                    });
-                  }
-                  else{
-                    console.log('creating new user profile for uid:'+userData.uid);
-                    authority.saveUserData({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
-                  }
-                },
-                function(err){
-                  console.log('lose:'+err);
-                }
-              );
         }
       }
 

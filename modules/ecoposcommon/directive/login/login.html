@@ -1,12 +1,12 @@
 <div>
-  <div class="user-block" data-ng-show="user.uid">
+  <div class="user-block" data-ng-show="user">
     <span data-ng-show="user.displayName">Logged in as: {{ user.displayName }}<span data-ng-show="user.loginService">&nbsp;via {{ user.loginService }}</span><span data-ng-show="user.id">&nbsp;(#{{ user.id }})</span></span>
     <div>
       <input type="button" value="Logout" data-ng-click="logout()" />
     </div>
   </div>
 
-  <div class="profile-block" data-ng-show="user.uid">
+  <div class="profile-block" data-ng-show="user">
     <h3>My Profile</h3>
     <h4>{{ user.displayName }}</h4>
     <div>
@@ -15,15 +15,15 @@
     <div>
       <strong>Linked with:</strong>
       <ul class="socials">
-        <li data-ng-repeat="la in user.linkedAccounts">{{ la.provider }}</li>
+        <li data-ng-repeat="(key,la) in user.linkedAccounts">{{ linkedAccounts[key].provider }}</li>
       </ul>
     </div>
     <div>
-      <input type="button" value="Save Profile" data-ng-click="saveUserData()" />
+      <input type="button" value="Save Profile" data-ng-click="saveUser()" />
     </div>
   </div>
 
-  <div class="anonymous-block" data-ng-hide="user.uid">
+  <div class="anonymous-block" data-ng-hide="user">
     <div class="register-block">
       <h3>Register</h3>
       <div>

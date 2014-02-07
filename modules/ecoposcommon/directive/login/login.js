@@ -11,11 +11,17 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.password = '';
 
 
+      /**
+       *  Perhaps authority should manage these handlers instead?
+       *  login directive is for a specific display - what about other login methods?
+       * */
       $rootScope.$on('$firebaseSimpleLogin:login', function(event){
-        $rootScope.user = authority.getUserData();
+        //$rootScope.user = authority.getUserData();
+        authority.loadUserData();
       });
       $rootScope.$on('$firebaseSimpleLogin:logout', function(event){
-        $rootScope.user = authority.getUserData();
+        //$rootScope.user = authority.getUserData();
+        authority.unloadUserData();
       });
 
       scope.addUser = function(){
@@ -40,6 +46,10 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 
           });
         }
+      };
+
+      scope.saveUser = function(){
+        authority.saveUserData();
       };
 
       scope.login = function(){
