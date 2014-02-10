@@ -15,4 +15,5 @@ npm-debug.log
 node_modules
 dist
 .idea/
-bower_components/.DS_Store
+.idea/scopes/
+bower_components
