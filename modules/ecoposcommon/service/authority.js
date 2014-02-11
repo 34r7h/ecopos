@@ -36,7 +36,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
     saveUserData: function(){
       $rootScope.user.$save();
     },
-    createUserData: function(data){
+    createUserProfile: function(data){
       // TODO: need to write this
 
       // to avoid accidentally duping/recreating a user, data.userID must be explicitly set
@@ -162,13 +162,29 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
     },
     logout: function(){
+      $rootScope.DBFBref.unauth();
       auth.$logout();
+    },
+    loadUserAuth: function(userProfile){
+      // loads our custom user authentication token
+      var tokenGenerator = new FirebaseTokenGenerator('JAtgnifGwqpLO4vYXScMFe9M9oW9Rj8VOWVLfe3E');
+      var token = tokenGenerator.createToken({role: userProfile.roles});
+      console.log('token:'+token+':');
+      $rootScope.DBFBref.auth(token, function(err){
+        if(err){
+          console.log('error:'+err+':');
+        }
+        else{
+          console.log('auth success!');
+        }
+      });
+
     },
     loadUserData: function(){
       // load up the user data into $rootScope based on currently authenticated user
       if(auth.user && auth.user.id){
         authority.getUserByUID(auth.user.uid).
-            then(function loadUserProfile(userProfile){
+            then(function(userProfile){
               if(userProfile){
                 /**
                  * TODO: we will have a look at notes linking to user profile
@@ -178,8 +194,9 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
                  */
 
                 userProfile.$on('loaded', function(){
+                  authority.loadUserAuth(userProfile);
+
                   $rootScope.user = userProfile;
-                  $rootScope.testing = userProfile.displayName;
 
                   // TODO: this level of data probably doesn't need to be exposed
                   $rootScope.linkedAccounts = {};
@@ -200,7 +217,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
               else{
                 var userData = authority.getDefaultUserData();
                 console.log('creating new user profile for uid:'+userData.uid);
-                authority.createUserData({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
+                authority.createUserProfile({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
+                // TODO: now we need to load the userProfile... refactor instead of else, put it first (if !userProfile) -- needs testing
               }
             },
             function(err){
@@ -215,7 +233,6 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
     unloadUserData: function(){
       // clear the user data from $rootScope (should be called when user logs out)
       $rootScope.user = null;
-      console.log('bye bye');
     },
     getDefaultUserData: function(){
       var userData = {};

@@ -1,14 +1,23 @@
-angular.module('ecopos.common').directive('login', function(authority, $rootScope) {
+angular.module('ecopos.common').directive('login', function(authority, $rootScope, $firebase) {
 	return {
 		restrict: 'E',
 		replace: true,
 		templateUrl: 'directive/login/login.html',
 		link: function(scope, element, attrs, fn) {
+      // TODO: these should be somewhere else...
       $rootScope.user = null;
       $rootScope.err = 'no errors.';
 
       scope.email = '';
       scope.password = '';
+
+      scope.loadTestData = function(){
+        var testData = $firebase($rootScope.DBFBref.child('test')); //$rootScope.DBFB.$child('test');
+        testData.$on("loaded", function(){
+          console.log('testData:'+JSON.stringify(testData));
+        });
+
+      };
 
       scope.addUser = function(){
         if( !scope.email ) {
