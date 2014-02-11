@@ -10,14 +10,6 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.email = '';
       scope.password = '';
 
-
-      $rootScope.$on('$firebaseSimpleLogin:login', function(event){
-        $rootScope.user = authority.getUserData();
-      });
-      $rootScope.$on('$firebaseSimpleLogin:logout', function(event){
-        $rootScope.user = authority.getUserData();
-      });
-
       scope.addUser = function(){
         if( !scope.email ) {
           $rootScope.err = 'Please enter an email address';

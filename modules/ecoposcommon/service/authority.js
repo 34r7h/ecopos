@@ -1,5 +1,12 @@
-angular.module('ecopos.common').factory('authority',function($rootScope, $firebaseSimpleLogin, $q) {
+angular.module('ecopos.common').factory('authority',function($rootScope, $q, $firebase, $firebaseSimpleLogin) {
   var auth = $firebaseSimpleLogin($rootScope.DBFBref);
+
+  $rootScope.$on('$firebaseSimpleLogin:login', function(event){
+    authority.loadUserData();
+  });
+  $rootScope.$on('$firebaseSimpleLogin:logout', function(event){
+    authority.unloadUserData();
+  });
 
 	var authority = {
     getUserByUID: function(uid){
@@ -7,19 +14,12 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
       // first, try to load the linkedAccount by its uid
       $rootScope.DBFBref.child('linkedAccount/'+uid).
-          once('value',
-          function(linkedSnap){
-            var linkedVal = linkedSnap.val();
-            if(linkedVal){
+          once('value',function(linkedSnap){
+            var linkedAccount = linkedSnap.val();
+            if(linkedAccount){
               // we found the linkedAccount record for uid
-              $rootScope.DBFBref.child('user/'+linkedVal.userID).
-                  once('value',
-                  function(userSnap){
-                    d.resolve(userSnap.val());
-                  },
-                  function(err){
-                    d.reject('error loading user profile:'+err);
-                  });
+              var profile = $firebase($rootScope.DBFBref.child('user/'+linkedAccount.userID));
+              d.resolve(profile);
             }
             else{
               // could not load the linkedAccount
@@ -30,12 +30,16 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
             d.reject('error loading linked:'+err);
           }
       );
-      //"simplelogin:3","github:584954","facebook:304703258"
 
       return d.promise;
     },
-    saveUserData: function(data){
-      // to avoid accidentally duplicating a user, data.userID must be explicitly set
+    saveUserData: function(){
+      $rootScope.user.$save();
+    },
+    createUserData: function(data){
+      // TODO: need to write this
+
+      // to avoid accidentally duping/recreating a user, data.userID must be explicitly set
       if(data.userID === undefined){ return; } // for a new user, use data.userID = null
 
       var dbUserRef = $rootScope.DBFBref.child('user');
@@ -46,9 +50,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
       // handle linking with accounts
       if(data.uid){
         if(!(data.uid instanceof Array)){ data.uid = [data.uid]; } // make it an array
-
-        var linkBools = {};
-
+        var linkedAccounts = {};
         // handle every uid we've been told to link with
         $.each(data.uid, function(key, uid){
           // break apart the uid to discover its provider and id
@@ -68,13 +70,13 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
                 if(!cLinkAccountData){
                   // linkedAccount is not setup
                   cLinkAccount.set({userID: data.userID, provider: cProv, id: cId});
-                  linkBools[uid] = true; // we'd prefer to have the uid as the index rather than value (more efficient lookups)
+                  linkedAccounts[uid] = true; // we'd prefer to have the uid as the index rather than value (more efficient lookups)
                 }
                 else{
-                  // linkedAccount is there...
+                  // linkedAccount is already there...
                   // TODO: check the userID
                   //   if it is different from data.userID
-                  //     then this account is already linked to a different profile (throw an error?)
+                  //     then this account is already linked to a different profile (throw an error? ask for overwrite?)
                   console.log('what is linkedAccount:'+JSON.stringify(cLinkAccountData));
                 }
               },
@@ -86,7 +88,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
 
         // ok, we can update the user profile
         dbUserRef.child(data.userID).
-            update({displayName: data.name, testing: 'testing 123...', linkedAccounts: linkBools, created: new Date(), lastLogin: new Date()});
+            update({displayName: data.name, testing: 'testing 123...', linkedAccounts: linkedAccounts, created: new Date(), lastLogin: new Date()});
       }
     },
     createUser: function(email, password, callback){
@@ -162,7 +164,60 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
     logout: function(){
       auth.$logout();
     },
-    getUserData: function(){
+    loadUserData: function(){
+      // load up the user data into $rootScope based on currently authenticated user
+      if(auth.user && auth.user.id){
+        authority.getUserByUID(auth.user.uid).
+            then(function loadUserProfile(userProfile){
+              if(userProfile){
+                /**
+                 * TODO: we will have a look at notes linking to user profile
+                if(userData.uid){
+                  userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
+                }
+                 */
+
+                userProfile.$on('loaded', function(){
+                  $rootScope.user = userProfile;
+                  $rootScope.testing = userProfile.displayName;
+
+                  // TODO: this level of data probably doesn't need to be exposed
+                  $rootScope.linkedAccounts = {};
+                  $.each(userProfile.linkedAccounts, function(key, value){
+                    if(value){
+                      $rootScope.linkedAccounts[key] = $firebase($rootScope.DBFBref.child('linkedAccount/'+key));
+                    }
+                  });
+
+                  userProfile.lastLogin = new Date();
+                  userProfile.$save('lastLogin');
+
+                  console.log('win:'+JSON.stringify(userProfile));
+                });
+
+
+              }
+              else{
+                var userData = authority.getDefaultUserData();
+                console.log('creating new user profile for uid:'+userData.uid);
+                authority.createUserData({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
+              }
+            },
+            function(err){
+              console.log('lose:'+err);
+            }
+        );
+      }
+      else{
+        console.log('No authenticated user to load data for.');
+      }
+    },
+    unloadUserData: function(){
+      // clear the user data from $rootScope (should be called when user logs out)
+      $rootScope.user = null;
+      console.log('bye bye');
+    },
+    getDefaultUserData: function(){
       var userData = {};
 
       if(auth.user && auth.user.id){
@@ -196,29 +251,6 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $fireba
           userData.username = auth.user.username;
           userData.email = auth.user.email;
           userData.displayName = (auth.user.displayName?auth.user.displayName:auth.user.username);
-        }
-
-        if(userData.uid){
-          userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
-          var userProfile = null;
-          authority.getUserByUID(userData.uid).
-              then(
-                function(userProfile){
-                  if(userProfile){
-                    console.log('win:'+JSON.stringify(userProfile));
-                    userData.userID = userProfile.userID;
-                    $rootScope.DBFB.$child('user/'+userData.userID+'/lastLogin').
-                        $set(new Date());
-                  }
-                  else{
-                    console.log('creating new user profile for uid:'+userData.uid);
-                    authority.saveUserData({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
-                  }
-                },
-                function(err){
-                  console.log('lose:'+err);
-                }
-              );
         }
       }
 

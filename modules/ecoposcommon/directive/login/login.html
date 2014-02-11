@@ -1,14 +1,14 @@
 <div>
 <div style="text-align: right" class="panel panel-default panel-body">
 
-    <div class="user-block" data-ng-show="user.uid">
+    <div class="user-block" data-ng-show="user">
     <span data-ng-show="user.displayName">Logged in as: {{ user.displayName }}<span data-ng-show="user.loginService">&nbsp;via {{ user.loginService }}</span><span data-ng-show="user.id">&nbsp;(#{{ user.id }})</span></span>
     <span>
       <input type="button" value="Logout" data-ng-click="logout()" />
     </span>
   </div>
 
-  <div class="profile-block" data-ng-show="user.uid">
+  <div class="profile-block" data-ng-show="user">
 
 
     <span>
@@ -19,7 +19,7 @@
     </span>
   </div>
 
-  <div class="anonymous-block" data-ng-hide="user.uid" >
+  <div class="anonymous-block" data-ng-hide="user" >
     <div class="register-block" ng-show="reg">
       <div class="col-lg-3">
         <label for="email">Email: </label><input type="text" name="email" id="email" data-ng-model="email" />
