@@ -1,5 +1,5 @@
-angular.module('ecopos.common').factory('authority',function($rootScope, $q, $firebase, $firebaseSimpleLogin) {
-  var auth = $firebaseSimpleLogin($rootScope.DBFBref);
+angular.module('ecopos.common').factory('authority',function($rootScope, $q, $firebase, $firebaseSimpleLogin, $timeout) {
+  var fbLogin = $firebaseSimpleLogin($rootScope.DBFBref);
 
   $rootScope.$on('$firebaseSimpleLogin:login', function(event){
     authority.loadUserData();
@@ -16,8 +16,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
             var linkedAccount = linkedSnap.val();
             if(linkedAccount){
               // we found the linkedAccount record for uid, load the user profile
-              var profile = $firebase($rootScope.DBFBref.child('user/'+linkedAccount.username));
-              d.resolve(profile);
+              var user = $firebase($rootScope.DBFBref.child('user/'+linkedAccount.username));
+              d.resolve(user);
             }
             else{
               // could not load the linkedAccount
@@ -86,7 +86,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
               // link the account
               cLinkAccount.set({username: username, provider: cProv, id: cId}, function(err){
                 if(!err){
-                  $rootScope.DBFBref.child('user/'+username+'/linkedAccounts/'+uid).set(true);
+                  $rootScope.DBFBref.child('user/'+username+'/linkedAccount/'+uid).set(true);
                 }
               });
 
@@ -194,7 +194,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
     },
     createUser: function(email, password, callback){
       // TODO: remove optional third argument (true) if we want to auto-login after creation
-      auth.$createUser(email, password, true).then(
+      fbLogin.$createUser(email, password, true).then(
           function(user){
             if(callback){
               callback(null, user);
@@ -208,7 +208,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
     },
     authUser: function(email, password, callback){
-      auth.$login('password', {email: email, password: password}).then(
+      fbLogin.$login('password', {email: email, password: password}).then(
           function(user){
             if(callback){
               callback(null, user);
@@ -222,7 +222,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
     },
     authFacebook: function(callback){
-      auth.$login('facebook').then(
+      fbLogin.$login('facebook').then(
           function(user){
             if(callback){
               callback(null, user);
@@ -236,7 +236,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
     },
     authTwitter: function(callback){
-      auth.$login('twitter').then(
+      fbLogin.$login('twitter').then(
           function(user){
             if(callback){
               callback(null, user);
@@ -250,7 +250,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
     },
     authGitHub: function(callback){
-      auth.$login('github').then(
+      fbLogin.$login('github').then(
           function(user){
             if(callback){
               callback(null, user);
@@ -265,34 +265,33 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
     },
     logout: function(){
       $rootScope.DBFBref.unauth();
-      auth.$logout();
+      fbLogin.$logout();
     },
     loadUserAuth: function(user){
-      console.log('creating token for:'+JSON.stringify(user)+':');
       // loads our custom user authentication token
       var tokenGenerator = new FirebaseTokenGenerator('JAtgnifGwqpLO4vYXScMFe9M9oW9Rj8VOWVLfe3E');
-      var token = tokenGenerator.createToken({username: user.$id, role: user.roles});
+      var tokenData = {uid: fbLogin.user.uid, username: user.$id, role: user.roles};
+      console.log('creating token for:'+JSON.stringify(tokenData)+':');
+      var token = tokenGenerator.createToken(tokenData);
       console.log('token:'+token+':');
-      $rootScope.DBFBref.auth(token, function(err){
+      $rootScope.DBFBref.auth(token, function(err, result){
         if(err){
           console.log('error:'+err+':');
         }
         else{
-          console.log('auth success!');
+          console.log('auth success!'+JSON.stringify(result.auth)+':');
         }
       });
 
     },
     loadUserData: function(){
       // load up the user data into $rootScope based on currently authenticated user
-      if(auth.user && auth.user.id){
-        authority.getUserByUID(auth.user.uid).
+      if(fbLogin.user && fbLogin.user.id){
+        authority.getUserByUID(fbLogin.user.uid).
             then(function(user){
               if(user){
                 user.$on('loaded', function(){
                     authority.loadUserAuth(user);
-
-                    $rootScope.user = user;
 
                     // TODO: this level of data probably doesn't need to be exposed
                     /**
@@ -304,10 +303,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
                   });
                      */
 
-                    user.lastLogin = new Date();
-                    user.$save('lastLogin');
+                  $rootScope.user = user;
 
-                    console.log('win:'+JSON.stringify(user));
+                  user.lastLogin = new Date();
+                  user.$save('lastLogin');
+                  console.log('win:'+JSON.stringify(user));
                 });
               }
               else{
@@ -340,38 +340,38 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       // TODO: move to users service
       var userData = {};
 
-      if(auth.user && auth.user.id){
+      if(fbLogin.user && fbLogin.user.id){
         userData = {
-          provider: auth.user.provider,
-          id: auth.user.id,
-          uid: auth.user.uid,
-          authToken: auth.user.firebaseAuthToken,
+          provider: fbLogin.user.provider,
+          id: fbLogin.user.id,
+          uid: fbLogin.user.uid,
+          authToken: fbLogin.user.firebaseAuthToken,
           roles: {admin: false, manager: false, employee: false, supplier: false, customer: true}
         };
 
-        if(auth.user.provider === 'password'){
+        if(fbLogin.user.provider === 'password'){
           userData.loginService = 'User Account';
-          userData.username = auth.user.email;
-          userData.email = auth.user.email;
-          userData.displayName = auth.user.email;
+          userData.username = fbLogin.user.email;
+          userData.email = fbLogin.user.email;
+          userData.displayName = fbLogin.user.email;
         }
-        else if(auth.user.provider === 'facebook'){
+        else if(fbLogin.user.provider === 'facebook'){
           userData.loginService = 'Facebook';
-          userData.username = auth.user.username;
-          userData.email = auth.user.email;
-          userData.displayName = auth.user.displayName;
+          userData.username = fbLogin.user.username;
+          userData.email = fbLogin.user.email;
+          userData.displayName = fbLogin.user.displayName;
         }
-        else if(auth.user.provider === 'twitter'){
+        else if(fbLogin.user.provider === 'twitter'){
           userData.loginService = 'Twitter';
-          userData.username = auth.user.username;
-          userData.email = auth.user.email;
-          userData.displayName = auth.user.displayName;
+          userData.username = fbLogin.user.username;
+          userData.email = fbLogin.user.email;
+          userData.displayName = fbLogin.user.displayName;
         }
-        else if(auth.user.provider === 'github'){
+        else if(fbLogin.user.provider === 'github'){
           userData.loginService = 'GitHub';
-          userData.username = auth.user.username;
-          userData.email = auth.user.email;
-          userData.displayName = (auth.user.displayName?auth.user.displayName:auth.user.username);
+          userData.username = fbLogin.user.username;
+          userData.email = fbLogin.user.email;
+          userData.displayName = (fbLogin.user.displayName?fbLogin.user.displayName:fbLogin.user.username);
         }
       }
 
