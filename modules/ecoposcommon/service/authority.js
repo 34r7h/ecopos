@@ -11,14 +11,12 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
 	var authority = {
     getUserByUID: function(uid){
       var d = $q.defer();
-
-      // first, try to load the linkedAccount by its uid
       $rootScope.DBFBref.child('linkedAccount/'+uid).
           once('value',function(linkedSnap){
             var linkedAccount = linkedSnap.val();
             if(linkedAccount){
-              // we found the linkedAccount record for uid
-              var profile = $firebase($rootScope.DBFBref.child('user/'+linkedAccount.userID));
+              // we found the linkedAccount record for uid, load the user profile
+              var profile = $firebase($rootScope.DBFBref.child('user/'+linkedAccount.username));
               d.resolve(profile);
             }
             else{
@@ -33,65 +31,169 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
 
       return d.promise;
     },
+    assignUserRole: function(username, role){
+      var cRole = $rootScope.DBFBref.child('roles/'+role+'/'+username);
+      cRole.once('value',
+          function(snap){
+            var cRoleData = snap.val();
+            if(!cRoleData){
+              // not assigned yet, let's assign it
+              cRole.set(true, function(err){
+                if(!err){
+                  $rootScope.DBFBref.child('user/'+username+'/roles/'+role).set(true);
+                }
+              });
+            }
+            else{
+              // user is already in that role.  good, do nothing.
+            }
+          },
+          function(err){
+            console.log('error assigning role:'+err);
+          }
+      );
+    },
+    unassignUserRole: function(username, role){
+      var cRole = $rootScope.DBFBref.child('roles/'+role+'/'+username);
+      cRole.remove(function(err){
+        if(!err){
+          $rootScope.DBFBref.child('user/'+username+'/roles/'+role).set(false);
+        }
+        else{
+          console.log('error unassigning role:'+err);
+        }
+      });
+    },
+    linkUserAccount: function(username, uid){
+      // username is our unique id
+      // uid is from simpleLogin as <provider>:<id>
+
+      // break apart the uid to discover its provider and id
+      // TODO: we don't need this if we don't care to store the provider and id as elements
+      var uidParts = uid.split(':', 2);
+      var cProv = 'unknown';
+      var cId = 0;
+      if(uidParts.length === 2){
+        cProv = uidParts[0];
+        cId = uidParts[1];
+      }
+
+      var cLinkAccount = $rootScope.DBFBref.child('linkedAccount/'+uid);
+      cLinkAccount.once('value',
+          function(snap){
+            var cLinkAccountData = snap.val();
+            if(!cLinkAccountData){ // linkedAccount is not setup yet
+              // link the account
+              cLinkAccount.set({username: username, provider: cProv, id: cId}, function(err){
+                if(!err){
+                  $rootScope.DBFBref.child('user/'+username+'/linkedAccounts/'+uid).set(true);
+                }
+              });
+
+            }
+            else{
+              // linkedAccount is already there...
+              // TODO: check the username
+              //   if it is different from snap.username
+              //     then this account is already linked to a different profile (throw an error? confirm an overwrite?)
+              console.log('what is linkedAccount:'+JSON.stringify(cLinkAccountData));
+            }
+          },
+          function(err){
+            console.log('error with linkedAccount:'+err);
+          }
+      );
+
+
+    },
     saveUserData: function(){
       $rootScope.user.$save();
     },
-    createUserProfile: function(data){
-      // TODO: need to write this
+    saveUserProfile: function(data){
+      // TODO: move to users service
 
-      // to avoid accidentally duping/recreating a user, data.userID must be explicitly set
-      if(data.userID === undefined){ return; } // for a new user, use data.userID = null
+      if(!data.username){ return; } // no username, who the hell are ya then?
 
-      var dbUserRef = $rootScope.DBFBref.child('user');
+      var dbUserRef = $rootScope.DBFBref.child('user/'+data.username);
 
+      // TODO: blah blah, we are making our own name now.
       // create a new user profile if no userID given
-      if(data.userID === null){ data.userID = dbUserRef.push().name(); }
+      //if(data.userID === null){ data.userID = dbUserRef.push().name(); }
 
-      // handle linking with accounts
+      // massage any provided data before building the userData object that will be written
+      if(data.uid && !(data.uid instanceof Array)){ data.uid = [data.uid]; } // data.uid are the linkedAccounts
+      if(data.phone && !(data.phone instanceof Array)){ data.phone = [data.phone]; }
+      if(data.email && !(data.email instanceof Array)){ data.email = [data.email]; }
+
+      // TODO: conscious of who is injecting what where into user tree
+      /** CORE userProfile:
+       name: "",
+       roles: [],
+       phones: [],
+       emails: [],
+       mailingAddress: {type and value}, (this will be used for default transaction.billingAddress and order.shippingAddress)
+       preferences: {type and value},
+       linkedAccounts: {type and details},
+       */
+
+      /** messaging/notification system:
+       messages: {content and time},
+       notifications: {content and time},
+       */
+
+      /** customer shopping system:
+       billingAddress: {type and value}, (this should be part of payment method?)
+       transactions: {date and details},
+       payment methods: {type and details},
+       */
+
+      /** calendar system:
+       calendar: {type and time},
+       */
+
+      var userData = {
+        displayName: data.displayName?data.displayName:data.username,
+        roles: data.roles?data.roles:{},
+        phones: data.phone?data.phone:[],
+        emails: data.email?data.email:[],
+        preferences: data.preferences?data.preferences:{},
+        linkedAccounts: {},
+        mailingAddress: data.mailingAddress?data.mailingAddress:{}
+      };
+
+      if(data.created){
+        userData.created = data.created;
+      }
+
+      // handle linking with accounts (uid are from simpleLogin as <provider>:<id>)
       if(data.uid){
-        if(!(data.uid instanceof Array)){ data.uid = [data.uid]; } // make it an array
-        var linkedAccounts = {};
-        // handle every uid we've been told to link with
-        $.each(data.uid, function(key, uid){
-          // break apart the uid to discover its provider and id
-          var uidParts = uid.split(':', 2);
-          var cProv = 'unknown';
-          var cId = 0;
-          if(uidParts.length === 2){
-            cProv = uidParts[0];
-            cId = uidParts[1];
-          }
+        // TODO: can we create a user if there is not at least 1 simpleLogin?
+        //    - seems maybe if we ever need to store "dummy" users that don't have a login
+        //    - or we ever want to disable all login for a user
 
-          // associate this account with userID
-          var cLinkAccount = $rootScope.DBFBref.child('linkedAccount/'+uid);
-          cLinkAccount.once('value',
-              function(snap){
-                var cLinkAccountData = snap.val();
-                if(!cLinkAccountData){
-                  // linkedAccount is not setup
-                  cLinkAccount.set({userID: data.userID, provider: cProv, id: cId});
-                  linkedAccounts[uid] = true; // we'd prefer to have the uid as the index rather than value (more efficient lookups)
-                }
-                else{
-                  // linkedAccount is already there...
-                  // TODO: check the userID
-                  //   if it is different from data.userID
-                  //     then this account is already linked to a different profile (throw an error? ask for overwrite?)
-                  console.log('what is linkedAccount:'+JSON.stringify(cLinkAccountData));
-                }
-              },
-              function(err){
-                console.log('error:'+err);
+        console.log('update:'+JSON.stringify(userData)+':'+JSON.stringify(data.uid)+':');
+
+        // update the user profile
+        dbUserRef.update(userData, function(err){
+          if(!err){
+            // TODO: it seems like it would be bandwidth cheaper to pack them into one call
+            //    - maybe a version of linkUserAccount that returns the array to pack into userData before update
+            // handle every uid we've been told to link with
+            $.each(data.uid, function(key, uid){
+              authority.linkUserAccount(data.username, uid);
+            });
+
+            $.each(data.roles, function(key, assigned){
+              if(assigned){
+                authority.assignUserRole(data.username, key);
               }
-          );
+            });
+          }
         });
-
-        // ok, we can update the user profile
-        dbUserRef.child(data.userID).
-            update({displayName: data.name, testing: 'testing 123...', linkedAccounts: linkedAccounts, created: new Date(), lastLogin: new Date()});
       }
     },
     createUser: function(email, password, callback){
+      // TODO: remove optional third argument (true) if we want to auto-login after creation
       auth.$createUser(email, password, true).then(
           function(user){
             if(callback){
@@ -165,10 +267,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       $rootScope.DBFBref.unauth();
       auth.$logout();
     },
-    loadUserAuth: function(userProfile){
+    loadUserAuth: function(user){
+      console.log('creating token for:'+JSON.stringify(user)+':');
       // loads our custom user authentication token
       var tokenGenerator = new FirebaseTokenGenerator('JAtgnifGwqpLO4vYXScMFe9M9oW9Rj8VOWVLfe3E');
-      var token = tokenGenerator.createToken({role: userProfile.roles});
+      var token = tokenGenerator.createToken({username: user.$id, role: user.roles});
       console.log('token:'+token+':');
       $rootScope.DBFBref.auth(token, function(err){
         if(err){
@@ -184,41 +287,39 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       // load up the user data into $rootScope based on currently authenticated user
       if(auth.user && auth.user.id){
         authority.getUserByUID(auth.user.uid).
-            then(function(userProfile){
-              if(userProfile){
-                /**
-                 * TODO: we will have a look at notes linking to user profile
-                if(userData.uid){
-                  userData.notes = $rootScope.DBFB.$child('notes/'+userData.uid);
-                }
-                 */
+            then(function(user){
+              if(user){
+                user.$on('loaded', function(){
+                    authority.loadUserAuth(user);
 
-                userProfile.$on('loaded', function(){
-                  authority.loadUserAuth(userProfile);
+                    $rootScope.user = user;
 
-                  $rootScope.user = userProfile;
-
-                  // TODO: this level of data probably doesn't need to be exposed
-                  $rootScope.linkedAccounts = {};
-                  $.each(userProfile.linkedAccounts, function(key, value){
+                    // TODO: this level of data probably doesn't need to be exposed
+                    /**
+                     $rootScope.linkedAccounts = {};
+                     $.each(user.linkedAccounts, function(key, value){
                     if(value){
                       $rootScope.linkedAccounts[key] = $firebase($rootScope.DBFBref.child('linkedAccount/'+key));
                     }
                   });
+                     */
 
-                  userProfile.lastLogin = new Date();
-                  userProfile.$save('lastLogin');
+                    user.lastLogin = new Date();
+                    user.$save('lastLogin');
 
-                  console.log('win:'+JSON.stringify(userProfile));
+                    console.log('win:'+JSON.stringify(user));
                 });
-
-
               }
               else{
+                // this means getUserByUID resolved null (ie. linkedAccount record does not exist for uid)
                 var userData = authority.getDefaultUserData();
                 console.log('creating new user profile for uid:'+userData.uid);
-                authority.createUserProfile({userID: null, uid: userData.uid, name: userData.displayName, lastLogin: new Date()});
-                // TODO: now we need to load the userProfile... refactor instead of else, put it first (if !userProfile) -- needs testing
+                userData.created = new Date();
+                authority.saveUserProfile(userData);
+                authority.loadUserData(); // oh haha, we are recursing here...
+                // TODO: now we need to loadUserData, which in turn loadUserAuth... refactor instead of else, put it first (if !userProfile) -- needs testing
+
+                // TODO: consider how to rename the username and make sure that it stays unique and doesn't dupe (doesn't think it's a new one)
               }
             },
             function(err){
@@ -235,6 +336,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       $rootScope.user = null;
     },
     getDefaultUserData: function(){
+      // generates a new user profile, pulling default values based on auth provider
+      // TODO: move to users service
       var userData = {};
 
       if(auth.user && auth.user.id){
@@ -242,7 +345,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
           provider: auth.user.provider,
           id: auth.user.id,
           uid: auth.user.uid,
-          authToken: auth.user.firebaseAuthToken
+          authToken: auth.user.firebaseAuthToken,
+          roles: {admin: false, manager: false, employee: false, supplier: false, customer: true}
         };
 
         if(auth.user.provider === 'password'){
