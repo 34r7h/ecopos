@@ -12,7 +12,8 @@ angular.module('ecopos', [
     'google-maps',
     'nvd3ChartDirectives',
     'ngTable',
-    'mgcrea.ngStrap'
+    'mgcrea.ngStrap',
+    'angular-md5'
 ]);
 
 angular.module('ecopos').config(function($routeProvider, $stateProvider, $urlRouterProvider, $provide, $modalProvider) {
