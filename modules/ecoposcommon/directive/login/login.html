@@ -2,7 +2,7 @@
 <div style="text-align: right" class="panel panel-default panel-body">
   <input type="button" value="Load Test" data-ng-click="loadTestData()" />
     <div class="user-block" data-ng-show="user">
-    <span data-ng-show="user.displayName">Logged in as: {{ user.displayName }}<span data-ng-show="user.loginService">&nbsp;via {{ user.loginService }}</span><span data-ng-show="user.id">&nbsp;(#{{ user.id }})</span></span>
+    <span data-ng-show="user.displayName">Logged in as: {{ user.$id }}</span>
     <span>
       <input type="button" value="Logout" data-ng-click="logout()" />
     </span>
@@ -15,7 +15,7 @@
       <label for="displayName">Name: </label><input type="text" name="displayName" id="displayName" data-ng-model="user.displayName" />
     </span>
     <span>
-      <input type="button" value="Save Profile" data-ng-click="saveUserData()" />
+      <input type="button" value="Save Profile" data-ng-click="saveUser()" />
     </span>
   </div>
 

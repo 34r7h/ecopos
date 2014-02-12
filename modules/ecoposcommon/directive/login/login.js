@@ -11,6 +11,7 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       scope.email = '';
       scope.password = '';
 
+      // TODO: test function, remember to clean up
       scope.loadTestData = function(){
         var testData = $firebase($rootScope.DBFBref.child('test')); //$rootScope.DBFB.$child('test');
         testData.$on("loaded", function(){
@@ -32,7 +33,7 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
               $rootScope.err = err.message;
             }
             else if(user){
-              // TODO: visual notify of user creation
+              // TODO: visual notify of user creation, do we want to auto-login? (look at authority.createUser(..))
               console.log('created user:'+user.id);
             }
             else{
@@ -41,6 +42,10 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
 
           });
         }
+      };
+
+      scope.saveUser = function(){
+        authority.saveUserData();
       };
 
       scope.login = function(){
