@@ -1,32 +1,81 @@
-angular.module('ecopos.common').factory('authority',function($rootScope, $q, $firebase, $firebaseSimpleLogin) {
+angular.module('ecopos.common').factory('authority',function($rootScope, $q, $firebase, $firebaseSimpleLogin, md5, $timeout) {
   var fbLogin = $firebaseSimpleLogin($rootScope.DBFBref);
 
-  $rootScope.$on('$firebaseSimpleLogin:login', function(event){
-    //console.log('fbemail:'+JSON.stringify(fbLogin.user)+':');
+  $rootScope.$on('$firebaseSimpleLogin:login', function(err, user){
+    //console.log('login event:'+err+':'+JSON.stringify(user)+':');
     authority.loadUserData();
   });
-  $rootScope.$on('$firebaseSimpleLogin:logout', function(event){
+  $rootScope.$on('$firebaseSimpleLogin:logout', function(err, user){
+    //console.log('logout event:'+err+':'+JSON.stringify(user)+':');
     authority.unloadUserData();
   });
 
 	var authority = {
+    REGSTATE: {CLEAR: 0, STARTED: 1, CONFIRM: 2, COMPLETE: 3},
+    regStateWatch: null,
+    startRegistration: function(){
+      console.log('starting registration...');
+      $rootScope.regState = authority.REGSTATE.STARTED;
+    },
+    completeRegistration: function(){
+      console.log('completing registration...');
+      $rootScope.regState = authority.REGSTATE.COMPLETE;
+
+      $timeout(function(){
+        console.log('clearing...');
+        $rootScope.regState = authority.REGSTATE.CLEAR;
+      }, 10000);
+    },
+    validateUsername: function(username){
+      var d = $q.defer();
+      if(!username){
+        d.reject('Username may not be empty.');
+      }
+      else{
+        authority.userHashExists(username).then(function(exists){
+          if(exists){
+            d.reject('Username exists.');
+          }
+          else{
+            d.resolve(true);
+          }
+        });
+      }
+      return d.promise;
+    },
     getUserByUID: function(uid){
       var d = $q.defer();
       $rootScope.DBFBref.child('linkedAccount/'+uid).
-          once('value',function(linkedSnap){
-            var linkedAccount = linkedSnap.val();
+          once('value',function(snap){
+            var linkedAccount = snap.val();
             if(linkedAccount){
               // we found the linkedAccount record for uid, load the user profile
               var user = $firebase($rootScope.DBFBref.child('user/'+linkedAccount.username));
               d.resolve(user);
             }
             else{
-              // could not load the linkedAccount
-              var userData = authority.getDefaultUserData();
-              console.log('creating new user profile for uid:'+userData.uid);
-              userData.created = new Date();
-              var newUser = authority.saveUserProfile(userData);
-              d.resolve($firebase(newUser));
+              // no user exists for this account, if regState is triggered to start a registration process, go for it
+              if($rootScope.regState === authority.REGSTATE.STARTED){
+                var userData = authority.getDefaultUserData();
+
+                // open up the registration finalization box by changing the regState
+                $rootScope.username = userData.username; // let's start with what the auth gave us
+                $rootScope.regState = authority.REGSTATE.CONFIRM;
+                $rootScope.$apply(); // because the regState STARTED chain is triggered by a UI
+
+                // now watch the regState to see if we move on with user registration/creation
+                authority.regStateWatch = $rootScope.$watch('regState', function(newValue, oldValue){
+                  if(newValue === authority.REGSTATE.COMPLETE){
+                    userData.username = $rootScope.username;
+                    userData.created = new Date();
+                    var newUser = authority.saveUserProfile(userData);
+                    d.resolve($firebase(newUser));
+
+                    authority.regStateWatch(); // no more watching, deregister
+                  }
+                });
+              }
+
             }
           },
           function(err){
@@ -35,6 +84,22 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
 
       return d.promise;
+    },
+    addUserHash: function(username){
+      $rootScope.DBFBref.child('userHash/'+md5.createHash(username)).set(true);
+    },
+    userHashExists: function(username){
+      var d = $q.defer();
+      $rootScope.DBFBref.child('userHash/'+md5.createHash(username)).once('value', function(snap){
+        d.resolve(snap.val()); // found it, what does it say?
+      },
+      function(err){
+        d.resolve(false); // not found, doesn't exist
+      });
+      return d.promise;
+    },
+    removeUserHash: function(username){
+      $rootScope.DBFBref.child('userHash/'+md5.createHash(username)).remove();
     },
     assignUserRole: function(username, role){
       var cRole = $rootScope.DBFBref.child('roles/'+role+'/'+username);
@@ -117,7 +182,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
     saveUserProfile: function(data){
       // TODO: move to users service
 
-      if(!data.username){ return null; } // no username, who the hell are ya then?
+      if(!data.username){ return null; } // no username, who does that?
 
       var dbUserRef = $rootScope.DBFBref.child('user/'+data.username);
 
@@ -176,11 +241,13 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
         //    - seems maybe if we ever need to store "dummy" users that don't have a login
         //    - or we ever want to disable all login for a user
 
-        console.log('update:'+JSON.stringify(userData)+':'+JSON.stringify(data.uid)+':');
+        console.log('update:'+JSON.stringify(userData)+':');
 
         // update the user profile
         dbUserRef.update(userData, function(err){
           if(!err){
+            authority.addUserHash(data.username);
+
             // TODO: it seems like it would be bandwidth cheaper to pack them into one call
             //    - maybe a version of linkUserAccount that returns the array to pack into userData before update
             // handle every uid we've been told to link with
@@ -199,8 +266,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       return dbUserRef;
     },
     createUser: function(email, password, callback){
-      // TODO: remove optional third argument (true) if we want to auto-login after creation
-      fbLogin.$createUser(email, password, true).then(
+      // TODO: set optional third argument as true to disable auto-login - this would be inconsistent with the 1-click access for other providers
+      fbLogin.$createUser(email, password, false).then(
           function(user){
             if(callback){
               callback(null, user);
@@ -228,8 +295,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
     },
     authFacebook: function(callback){
-      //, {scope:'email,user_likes'}
-      fbLogin.$login('facebook').then(
+      fbLogin.$login('facebook', {scope:'email,user_likes'}).then(
           function(user){
             if(callback){
               callback(null, user);
@@ -343,14 +409,14 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
 
         if(fbLogin.user.provider === 'password'){
           userData.loginService = 'User Account';
-          userData.username = fbLogin.user.email;
+          userData.username = fbLogin.user.email.split('@', 2)[0];
           userData.email = fbLogin.user.email;
           userData.displayName = fbLogin.user.email;
         }
         else if(fbLogin.user.provider === 'facebook'){
           userData.loginService = 'Facebook';
           userData.username = fbLogin.user.username;
-          userData.email = fbLogin.user.email;
+          userData.email = fbLogin.user.emails[0].value?fbLogin.user.emails[0].value:null;
           userData.displayName = fbLogin.user.displayName;
         }
         else if(fbLogin.user.provider === 'twitter'){

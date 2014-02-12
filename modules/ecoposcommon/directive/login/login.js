@@ -1,4 +1,4 @@
-angular.module('ecopos.common').directive('login', function(authority, $rootScope, $firebase) {
+angular.module('ecopos.common').directive('login', function(authority, $rootScope, $firebase, $q) {
 	return {
 		restrict: 'E',
 		replace: true,
@@ -7,6 +7,7 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       // TODO: these should be somewhere else...
       $rootScope.user = null;
       $rootScope.err = 'no errors.';
+      $rootScope.regState = authority.REGSTATE.CLEAR;
 
       scope.email = '';
       scope.password = '';
@@ -18,6 +19,35 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
           console.log('testData:'+JSON.stringify(testData));
         });
 
+        var badTouch = $rootScope.DBFBref.child('user/plong0').once('value', function(snap){
+          console.log('o rly?<o.O>++++++++)))))))>>>>>>'+JSON.stringify(snap.val())+'.,\'^^^.*.^^^*.*^^^.*.^^^*.*^^^.*.^^^\',.');
+        },
+        function(err){
+          console.log(')<(o,0)>(0o-|'+err+'|-o0');
+        });
+      };
+
+      scope.startRegistration = function(){
+        authority.startRegistration();
+      };
+      scope.completeRegistration = function(){
+        if(scope.username){
+          authority.validateUsername(scope.username).then(function(valid){
+            if(valid){
+              $rootScope.username = scope.username;
+              authority.completeRegistration();
+            }
+            else{
+              // invalid username
+            }
+          },
+          function(err){
+            console.log('invalid username:'+err);
+          });
+        }
+        else{
+          $rootScope.err = 'Please enter a username';
+        }
       };
 
       scope.addUser = function(){
@@ -33,8 +63,6 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
               $rootScope.err = err.message;
             }
             else if(user){
-              // TODO: visual notify of user creation, do we want to auto-login? (look at authority.createUser(..))
-              console.log('created user:'+user.id);
             }
             else{
               $rootScope.err = 'Unknown error (Add user)';

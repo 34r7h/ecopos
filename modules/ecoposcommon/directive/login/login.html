@@ -2,15 +2,13 @@
 <div style="text-align: right" class="panel panel-default panel-body">
   <input type="button" value="Load Test" data-ng-click="loadTestData()" />
     <div class="user-block" data-ng-show="user">
-    <span data-ng-show="user.displayName">Logged in as: {{ user.$id }}</span>
+    <span data-ng-show="user.$id">Logged in as: {{ user.$id }}</span>
     <span>
       <input type="button" value="Logout" data-ng-click="logout()" />
     </span>
   </div>
 
   <div class="profile-block" data-ng-show="user">
-
-
     <span>
       <label for="displayName">Name: </label><input type="text" name="displayName" id="displayName" data-ng-model="user.displayName" />
     </span>
@@ -19,24 +17,56 @@
     </span>
   </div>
 
+  <div>regState: {{ regState }}</div>
+  <div data-ng-show="regState===3">
+    successfully registered as {{ username }}!
+  </div>
+
   <div class="anonymous-block" data-ng-hide="user" >
     <div class="register-block" ng-show="reg">
-      <div class="col-lg-3">
-        <label for="email">Email: </label><input type="text" name="email" id="email" data-ng-model="email" />
+      <div data-ng-show="regState===2">
+        <strong>Please select a username to complete registration...</strong>
+        <div>
+          <label for="username">Username: </label><input type="text" name="username" id="username" data-ng-model="username" />
+        </div>
+        <div>
+          <input type="button" value="Accept" data-ng-click="completeRegistration()" />
+        </div>
       </div>
-      <div class="col-lg-3">
-        <label for="password">Password: </label><input type="password" name="password" id="password" data-ng-model="password" />
-      </div>
-      <div class="col-lg-3">
-        <span>
-            <label for="passwordConfirm">Confirm password: </label><input type="password" name="passwordConfirm" id="passwordConfirm" data-ng-model="passwordConfirm" />
+
+      <div data-ng-show="regState<=1">
+        <div>
+          <div class="col-lg-3">
+            <label for="email">Email: </label><input type="text" name="email" id="email" data-ng-model="email" />
+          </div>
+          <div class="col-lg-3">
+            <label for="password">Password: </label><input type="password" name="password" id="password" data-ng-model="password" />
+          </div>
+          <div class="col-lg-3">
+            <span>
+                <label for="passwordConfirm">Confirm password: </label><input type="password" name="passwordConfirm" id="passwordConfirm" data-ng-model="passwordConfirm" />
             </span>
 
-      </div>
-        <div class="col-lg-2">
-            <label></label>
-            <input type="button" value="Create User" data-ng-click="addUser()" />
+          </div>
+            <div class="col-lg-2">
+                <input type="button" value="Create User" data-ng-click="startRegistration();addUser()" />
+            </div>
         </div>
+        <div>
+          <strong>OR Connect with:</strong>
+          <span class="col-lg-4">
+            <input type="button" value="Facebook" data-ng-click="startRegistration();loginFacebook()" />
+          </span>
+          <span class="col-lg-3">
+            <input type="button" value="Twitter" data-ng-click="startRegistration();loginTwitter()" />
+          </span>
+          <span class="col-lg-3">
+            <input type="button" value="GitHub" data-ng-click="startRegistration();loginGitHub()" />
+          </span>
+        </div>
+      </div>
+
+
       <div class="col-lg-12">
           <a ng-href="#" ng-click="reg=false">Already Registered?</a>
 
