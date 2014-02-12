@@ -142,6 +142,8 @@
       var self = this;
       var object = {};
 
+      object.$id = self._fRef.ref().name();
+
       // Establish a 3-way data binding (implicit sync) with the specified
       // Firebase location and a model on $scope. To be used from a controller
       // to automatically synchronize *all* local changes. It take two
