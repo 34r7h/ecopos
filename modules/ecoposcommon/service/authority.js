@@ -1,7 +1,8 @@
-angular.module('ecopos.common').factory('authority',function($rootScope, $q, $firebase, $firebaseSimpleLogin, $timeout) {
+angular.module('ecopos.common').factory('authority',function($rootScope, $q, $firebase, $firebaseSimpleLogin) {
   var fbLogin = $firebaseSimpleLogin($rootScope.DBFBref);
 
   $rootScope.$on('$firebaseSimpleLogin:login', function(event){
+    //console.log('fbemail:'+JSON.stringify(fbLogin.user)+':');
     authority.loadUserData();
   });
   $rootScope.$on('$firebaseSimpleLogin:logout', function(event){
@@ -21,7 +22,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
             }
             else{
               // could not load the linkedAccount
-              d.resolve(null);
+              var userData = authority.getDefaultUserData();
+              console.log('creating new user profile for uid:'+userData.uid);
+              userData.created = new Date();
+              var newUser = authority.saveUserProfile(userData);
+              d.resolve($firebase(newUser));
             }
           },
           function(err){
@@ -112,7 +117,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
     saveUserProfile: function(data){
       // TODO: move to users service
 
-      if(!data.username){ return; } // no username, who the hell are ya then?
+      if(!data.username){ return null; } // no username, who the hell are ya then?
 
       var dbUserRef = $rootScope.DBFBref.child('user/'+data.username);
 
@@ -157,7 +162,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
         phones: data.phone?data.phone:[],
         emails: data.email?data.email:[],
         preferences: data.preferences?data.preferences:{},
-        linkedAccounts: {},
+        linkedAccount: data.linkedAccount?data.linkedAccount:{},
         mailingAddress: data.mailingAddress?data.mailingAddress:{}
       };
 
@@ -191,6 +196,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
           }
         });
       }
+      return dbUserRef;
     },
     createUser: function(email, password, callback){
       // TODO: remove optional third argument (true) if we want to auto-login after creation
@@ -222,6 +228,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
       );
     },
     authFacebook: function(callback){
+      //, {scope:'email,user_likes'}
       fbLogin.$login('facebook').then(
           function(user){
             if(callback){
@@ -293,16 +300,6 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
                 user.$on('loaded', function(){
                     authority.loadUserAuth(user);
 
-                    // TODO: this level of data probably doesn't need to be exposed
-                    /**
-                     $rootScope.linkedAccounts = {};
-                     $.each(user.linkedAccounts, function(key, value){
-                    if(value){
-                      $rootScope.linkedAccounts[key] = $firebase($rootScope.DBFBref.child('linkedAccount/'+key));
-                    }
-                  });
-                     */
-
                   $rootScope.user = user;
 
                   user.lastLogin = new Date();
@@ -311,15 +308,8 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
                 });
               }
               else{
-                // this means getUserByUID resolved null (ie. linkedAccount record does not exist for uid)
-                var userData = authority.getDefaultUserData();
-                console.log('creating new user profile for uid:'+userData.uid);
-                userData.created = new Date();
-                authority.saveUserProfile(userData);
-                authority.loadUserData(); // oh haha, we are recursing here...
-                // TODO: now we need to loadUserData, which in turn loadUserAuth... refactor instead of else, put it first (if !userProfile) -- needs testing
-
-                // TODO: consider how to rename the username and make sure that it stays unique and doesn't dupe (doesn't think it's a new one)
+                // this means getUserByUID resolved null (ie. linkedAccount record does not exist and was not created for uid)
+                console.log('lose :(');
               }
             },
             function(err){
@@ -346,8 +336,10 @@ angular.module('ecopos.common').factory('authority',function($rootScope, $q, $fi
           id: fbLogin.user.id,
           uid: fbLogin.user.uid,
           authToken: fbLogin.user.firebaseAuthToken,
-          roles: {admin: false, manager: false, employee: false, supplier: false, customer: true}
+          roles: {admin: false, manager: false, employee: false, supplier: false, customer: true},
+          linkedAccount: {}
         };
+        userData.linkedAccount[fbLogin.user.uid] = true;
 
         if(fbLogin.user.provider === 'password'){
           userData.loginService = 'User Account';
