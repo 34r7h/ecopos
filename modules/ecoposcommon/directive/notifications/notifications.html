@@ -1,26 +1,33 @@
 <div>
-  notifications
-  <div class="user-notifications" data-ng-show="user.uid">
-    <ul>
-      <li data-ng-repeat="n in user.notes">
-        {{ n.note }}
+  <strong>notifications</strong>
+  <div class="user-notifications">
+    <ul data-ng-show="user.messages">
+      <li data-ng-repeat="n in user.messages">
+        {{ n.text }}
       </li>
     </ul>
 
-    <h4>spoofable?</h4>
-    <ul>
-      <li data-ng-repeat="s in spoofNotes">
-        {{ s.note }}
-      </li>
-    </ul>
-
-    <div>
-      <input type="text" data-ng-model="newNote" />
-      <input type="button" value="Add Note" ng-click="addNote()" />
-      <input type="button" value="Spoof Note" ng-click="spoofNote()" />
+    <div data-ng-hide="user.messages">
+      Your inbox is empty.
     </div>
+  </div>
 
+  <strong>spoofs</strong>
+  <div class="spoof-notifications">
+    <ul data-ng-show="spoofNotes">
+      <li data-ng-repeat="s in spoofNotes">
+        {{ s.text }}
+      </li>
+    </ul>
 
+    <div data-ng-hide="spoofNotes">
+      No spoof for you.
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="text" data-ng-model="newNote" />
+    <input type="button" value="Add Note" ng-click="addNote()" />
   </div>
 
 </div>
