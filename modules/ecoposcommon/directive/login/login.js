@@ -1,16 +1,21 @@
-angular.module('ecopos.common').directive('login', function(authority, $rootScope, $firebase, $q) {
+angular.module('ecopos.common').directive('login', function(authority, ecoUser, $rootScope, $firebase, $q) {
 	return {
 		restrict: 'E',
 		replace: true,
 		templateUrl: 'directive/login/login.html',
 		link: function(scope, element, attrs, fn) {
       // TODO: these should be somewhere else...
-      $rootScope.user = null;
       $rootScope.err = 'no errors.';
       $rootScope.regState = authority.REGSTATE.CLEAR;
 
+      scope.user = ecoUser.getActiveUser();
       scope.email = '';
       scope.password = '';
+
+      scope.$on('newActiveUser', function(activeUser){
+        console.log('new active:'+activeUser+':');
+        scope.user = activeUser; // TODO: sort out why login/logout not happening
+      });
 
       // TODO: test function, remember to clean up
       scope.loadTestData = function(){
@@ -73,7 +78,8 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
       };
 
       scope.saveUser = function(){
-        authority.saveUserData();
+        scope.user.$save();
+        //ecoUser.saveActiveUserData();
       };
 
       scope.login = function(){
@@ -84,6 +90,7 @@ angular.module('ecopos.common').directive('login', function(authority, $rootScop
           $rootScope.err = 'Please enter a password';
         }
         else{
+          // TODO: these callbacks on authority.auth* are not necessary if we use ecoUser events
           authority.authUser(scope.email, scope.password, function(err, user){
             if(err){
               $rootScope.err = err.message;

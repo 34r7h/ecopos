@@ -1,7 +1,7 @@
 <div>
 <div style="text-align: right" class="panel panel-default panel-body">
   <input type="button" value="Load Test" data-ng-click="loadTestData()" />
-  <div class="user-block" data-ng-show="user">
+  <div class="user-block" data-ng-show="user.$id">
     <span data-ng-show="user.$id">Logged in as: {{ user.$id }}</span>
     <span>
       <input type="button" value="Logout" data-ng-click="logout()" />
