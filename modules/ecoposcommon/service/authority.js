@@ -1,5 +1,5 @@
-angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser, $q, $firebase, $firebaseSimpleLogin, md5, $timeout) {
-  var fbLogin = $firebaseSimpleLogin($rootScope.DBFBref);
+angular.module('ecopos.common').factory('authority',function($rootScope, DB, ecoUser, $q, $firebaseSimpleLogin, md5, $timeout) {
+  var fbLogin = $firebaseSimpleLogin(DB.FB);
 
   $rootScope.$on('$firebaseSimpleLogin:login', function(err, user){
     //console.log('login event:'+err+':'+JSON.stringify(user)+':');
@@ -47,20 +47,19 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
     },
     getUserByUID: function(uid){
       var d = $q.defer();
-      $rootScope.DBFBref.child('linkedAccount/'+uid).
+      DB.FB.child('linkedAccount/'+uid).
           once('value',function(snap){
             var linkedAccount = snap.val();
             if(linkedAccount){
               // we found the linkedAccount record for uid, load the user profile
-              var user = $firebase($rootScope.DBFBref.child('user/'+linkedAccount.username));
+              var user = DB.firebind(DB.FB.child('user/'+linkedAccount.username));
               d.resolve(user);
             }
             else{
               // no user exists for this account, if regState is triggered to start a registration process, go for it
               if($rootScope.regState === authority.REGSTATE.STARTED){
                 // load whatever user data was given by the simpleLogin auth provider
-                var userData = ecoUser.getAuthenticatedUserData(fbLogin);
-
+                var userData = ecoUser.getAuthenticatedUserData(fbLogin.user);
 
                 // need to apply because this would have been triggered by UI-scope
                 $rootScope.$apply(function(){
@@ -83,7 +82,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
                     console.log('golly:'+userData.username+':');
                     var newUser = ecoUser.saveUserProfile(userData);
                     console.log('newUser:'+newUser);
-                    d.resolve($firebase(newUser));
+                    d.resolve(DB.firebind(newUser));
 
                     console.log('great!');
                     authority.regStateWatch(); // no more watching, deregister
@@ -102,11 +101,11 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
       return d.promise;
     },
     addUserHash: function(username){
-      $rootScope.DBFBref.child('userHash/'+md5.createHash(username)).set(true);
+      DB.FB.child('userHash/'+md5.createHash(username)).set(true);
     },
     userHashExists: function(username){
       var d = $q.defer();
-      $rootScope.DBFBref.child('userHash/'+md5.createHash(username)).once('value', function(snap){
+      DB.FB.child('userHash/'+md5.createHash(username)).once('value', function(snap){
         d.resolve(snap.val()); // found it, what does it say?
       },
       function(err){
@@ -115,7 +114,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
       return d.promise;
     },
     removeUserHash: function(username){
-      $rootScope.DBFBref.child('userHash/'+md5.createHash(username)).remove();
+      DB.FB.child('userHash/'+md5.createHash(username)).remove();
     },
     createUser: function(email, password, callback){
       // TODO: set optional third argument as true to disable auto-login - this would be inconsistent with the 1-click access for other providers
@@ -190,7 +189,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
     },
     logout: function(){
       ecoUser.setActiveUser(null);
-      $rootScope.DBFBref.unauth();
+      DB.FB.unauth();
       fbLogin.$logout();
     },
     loadUserAuth: function(user){
@@ -201,7 +200,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
       console.log('creating token for:'+JSON.stringify(tokenData)+':');
       var token = tokenGenerator.createToken(tokenData);
       console.log('token:'+token+':');
-      $rootScope.DBFBref.auth(token, function(err, result){
+      DB.FB.auth(token, function(err, result){
         if(err){
           console.log('error:'+err+':');
           d.reject(err);

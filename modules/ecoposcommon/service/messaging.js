@@ -1,8 +1,8 @@
-angular.module('ecopos.common').factory('messaging',function($rootScope, $q, $firebase) {
+angular.module('ecopos.common').factory('messaging',function($rootScope, DB, $q) {
 	var messaging = {
 
     addNote: function(username, text){
-      var userMessages = $rootScope.DBFBref.child('user/'+username+'/messages');
+      var userMessages = DB.FB.child('user/'+username+'/messages');
       var msgID = userMessages.push().name();
       userMessages.child(msgID).set({text: text}, function(err){
         if(!err){
@@ -14,7 +14,7 @@ angular.module('ecopos.common').factory('messaging',function($rootScope, $q, $fi
       });
     },
     getUserMessages: function(username){
-      return $firebase($rootScope.DBFBref.child('user/'+username+'/messages'));
+      return DB.firebind(DB.FB.child('user/'+username+'/messages'));
     }
 
   };

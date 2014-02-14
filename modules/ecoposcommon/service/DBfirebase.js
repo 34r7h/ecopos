@@ -1,6 +1,17 @@
-angular.module('ecopos.common').factory('DBfirebase',function() {
+angular.module('ecopos.common').factory('DB',function(Firebase, FB_URL, $firebase) {
+	var DB = {
+    FB: new Firebase(FB_URL),
 
-	var DBfirebase = {};
+    firebind: function(fbRef){
+      // fbRef should be a Firebase reference
+      return $firebase(fbRef);
+    },
 
-	return DBfirebase;
+    goOffline: function(){
+    },
+    goOnline: function(){
+    }
+  };
+
+	return DB;
 });

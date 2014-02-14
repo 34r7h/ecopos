@@ -1,4 +1,4 @@
-angular.module('ecopos.common').directive('login', function(authority, ecoUser, $rootScope, $firebase, $q) {
+angular.module('ecopos.common').directive('login', function($rootScope, authority, ecoUser, DB, $q) {
 	return {
 		restrict: 'E',
 		replace: true,
@@ -8,7 +8,7 @@ angular.module('ecopos.common').directive('login', function(authority, ecoUser, 
       $rootScope.err = 'no errors.';
       $rootScope.regState = authority.REGSTATE.CLEAR;
 
-      scope.user = null; //ecoUser.getActiveUser();
+      scope.user = ecoUser.getActiveUser();
       scope.email = '';
       scope.password = '';
 
@@ -18,12 +18,12 @@ angular.module('ecopos.common').directive('login', function(authority, ecoUser, 
 
       // TODO: test function, remember to clean up
       scope.loadTestData = function(){
-        var testData = $firebase($rootScope.DBFBref.child('test')); //$rootScope.DBFB.$child('test');
+        var testData = DB.firebind(DB.FB.child('test'));
         testData.$on("loaded", function(){
           console.log('testData:'+JSON.stringify(testData));
         });
 
-        var badTouch = $rootScope.DBFBref.child('user/plong0').once('value', function(snap){
+        var badTouch = DB.FB.child('user/plong0').once('value', function(snap){
           console.log('o rly?<o.O>++++++++)))))))>>>>>>'+JSON.stringify(snap.val())+'.,\'^^^.*.^^^*.*^^^.*.^^^*.*^^^.*.^^^\',.');
         },
         function(err){

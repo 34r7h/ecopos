@@ -1,4 +1,4 @@
-angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
+angular.module('ecopos.admin').factory('ecoUser',function($rootScope, DB) {
   var activeUser = null; // at the bottom we set it after we teach ecoUser how
 
 	var ecoUser = {
@@ -21,45 +21,45 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
       };
       return userData;
     },
-    getAuthenticatedUserData: function(simpleAuth){
+    getAuthenticatedUserData: function(fbSimpleUser){
       // loads authenticated user data, loaded up by the various simpleLogin providers
       // note this is not the user/<username> record - leave that to authority to load and set with ecoUser.setActiveUser()
       var userData = {};
 
-      if(simpleAuth.user && simpleAuth.user.id){
+      if(fbSimpleUser && fbSimpleUser.id){
         userData = {
-          provider: simpleAuth.user.provider,
-          id: simpleAuth.user.id,
-          uid: simpleAuth.user.uid,
-          authToken: simpleAuth.user.firebaseAuthToken,
+          provider: fbSimpleUser.provider,
+          id: fbSimpleUser.id,
+          uid: fbSimpleUser.uid,
+          authToken: fbSimpleUser.firebaseAuthToken,
           roles: {admin: false, manager: false, employee: false, supplier: false, customer: true},
           linkedAccount: {}
         };
-        userData.linkedAccount[simpleAuth.user.uid] = true;
+        userData.linkedAccount[fbSimpleUser.uid] = true;
 
-        if(simpleAuth.user.provider === 'password'){
+        if(fbSimpleUser.provider === 'password'){
           userData.loginService = 'User Account';
-          userData.username = simpleAuth.user.email.split('@', 2)[0];
-          userData.email = simpleAuth.user.email;
-          userData.displayName = simpleAuth.user.email;
+          userData.username = fbSimpleUser.email.split('@', 2)[0];
+          userData.email = fbSimpleUser.email;
+          userData.displayName = fbSimpleUser.email;
         }
-        else if(simpleAuth.user.provider === 'facebook'){
+        else if(fbSimpleUser.provider === 'facebook'){
           userData.loginService = 'Facebook';
-          userData.username = simpleAuth.user.username;
-          userData.email = simpleAuth.user.emails[0].value?simpleAuth.user.emails[0].value:null;
-          userData.displayName = simpleAuth.user.displayName;
+          userData.username = fbSimpleUser.username;
+          userData.email = fbSimpleUser.emails[0].value?fbSimpleUser.emails[0].value:null;
+          userData.displayName = fbSimpleUser.displayName;
         }
-        else if(simpleAuth.user.provider === 'twitter'){
+        else if(fbSimpleUser.provider === 'twitter'){
           userData.loginService = 'Twitter';
-          userData.username = simpleAuth.user.username;
-          userData.email = simpleAuth.user.email;
-          userData.displayName = simpleAuth.user.displayName;
+          userData.username = fbSimpleUser.username;
+          userData.email = fbSimpleUser.email;
+          userData.displayName = fbSimpleUser.displayName;
         }
-        else if(simpleAuth.user.provider === 'github'){
+        else if(fbSimpleUser.provider === 'github'){
           userData.loginService = 'GitHub';
-          userData.username = simpleAuth.user.username;
-          userData.email = simpleAuth.user.email;
-          userData.displayName = (simpleAuth.user.displayName?simpleAuth.user.displayName:simpleAuth.user.username);
+          userData.username = fbSimpleUser.username;
+          userData.email = fbSimpleUser.email;
+          userData.displayName = (fbSimpleUser.displayName?fbSimpleUser.displayName:fbSimpleUser.username);
         }
       }
       return userData;
@@ -119,7 +119,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
         //    - seems maybe if we ever need to store "dummy" users that don't have a login
         //    - or we ever want to disable all login for a user
 
-        dbUserRef = $rootScope.DBFBref.child('user/'+userData.username);
+        dbUserRef = DB.FB.child('user/'+userData.username);
 
         // update the user profile
         dbUserRef.update(userData, function(err){
@@ -142,7 +142,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
       return dbUserRef;
     },
     assignUserRole: function(username, role){
-      var cRole = $rootScope.DBFBref.child('roles/'+role+'/'+username);
+      var cRole = DB.FB.child('roles/'+role+'/'+username);
       cRole.once('value',
           function(snap){
             var cRoleData = snap.val();
@@ -150,7 +150,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
               // not assigned yet, let's assign it
               cRole.set(true, function(err){
                 if(!err){
-                  $rootScope.DBFBref.child('user/'+username+'/roles/'+role).set(true);
+                  DB.FB.child('user/'+username+'/roles/'+role).set(true);
                 }
               });
             }
@@ -164,10 +164,10 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
       );
     },
     unassignUserRole: function(username, role){
-      var cRole = $rootScope.DBFBref.child('roles/'+role+'/'+username);
+      var cRole = DB.FB.child('roles/'+role+'/'+username);
       cRole.remove(function(err){
         if(!err){
-          $rootScope.DBFBref.child('user/'+username+'/roles/'+role).set(false);
+          DB.FB.child('user/'+username+'/roles/'+role).set(false);
         }
         else{
           console.log('error unassigning role:'+err);
@@ -188,7 +188,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
         cId = uidParts[1];
       }
 
-      var cLinkAccount = $rootScope.DBFBref.child('linkedAccount/'+uid);
+      var cLinkAccount = DB.FB.child('linkedAccount/'+uid);
       cLinkAccount.once('value',
           function(snap){
             var cLinkAccountData = snap.val();
@@ -196,7 +196,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
               // link the account
               cLinkAccount.set({username: username, provider: cProv, id: cId}, function(err){
                 if(!err){
-                  $rootScope.DBFBref.child('user/'+username+'/linkedAccount/'+uid).set(true);
+                  DB.FB.child('user/'+username+'/linkedAccount/'+uid).set(true);
                 }
               });
 
