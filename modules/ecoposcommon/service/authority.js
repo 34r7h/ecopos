@@ -20,7 +20,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
       $rootScope.regState = authority.REGSTATE.STARTED;
     },
     completeRegistration: function(){
-      console.log('completing registration...');
+      console.log('completing registration ('+$rootScope.username+')...');
       $rootScope.regState = authority.REGSTATE.COMPLETE;
 
       $timeout(function(){
@@ -61,26 +61,35 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
                 // load whatever user data was given by the simpleLogin auth provider
                 var userData = ecoUser.getAuthenticatedUserData(fbLogin);
 
-                // open up the registration finalization box by changing the regState
-                $rootScope.username = userData.username; // let's start with what the auth gave us
-                $rootScope.regState = authority.REGSTATE.CONFIRM;
-                $rootScope.$apply(); // because the regState STARTED chain is triggered by a UI
+
+                // need to apply because this would have been triggered by UI-scope
+                $rootScope.$apply(function(){
+                  $rootScope.username = userData.username; // let's start with what the auth gave us
+                  $rootScope.regState = authority.REGSTATE.CONFIRM;  // go to registration confirmation box
+                });
 
                 // now watch the regState to see if we move on with user registration/creation
                 authority.regStateWatch = $rootScope.$watch('regState', function(newValue, oldValue){
+                  console.log('regState changed?'+newValue+':'+oldValue+':'+$rootScope.username+':');
                   if(newValue === authority.REGSTATE.COMPLETE){
                     // claim our place in the userHash list
                     authority.addUserHash($rootScope.username);
 
                     // final bits of data that ecoUser will want
                     userData.username = $rootScope.username;
+                    userData.displayName = userData.username;
                     userData.created = new Date();
+                    console.log('ok good:'+JSON.stringify(userData)+'.');
+                    console.log('golly:'+userData.username+':');
                     var newUser = ecoUser.saveUserProfile(userData);
+                    console.log('newUser:'+newUser);
                     d.resolve($firebase(newUser));
 
+                    console.log('great!');
                     authority.regStateWatch(); // no more watching, deregister
                   }
                 });
+
               }
 
             }
@@ -185,6 +194,7 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
       fbLogin.$logout();
     },
     loadUserAuth: function(user){
+      var d = $q.defer();
       // loads our custom user authentication token
       var tokenGenerator = new FirebaseTokenGenerator('JAtgnifGwqpLO4vYXScMFe9M9oW9Rj8VOWVLfe3E');
       var tokenData = {uid: fbLogin.user.uid, username: user.$id, role: user.roles};
@@ -194,12 +204,14 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
       $rootScope.DBFBref.auth(token, function(err, result){
         if(err){
           console.log('error:'+err+':');
+          d.reject(err);
         }
         else{
           console.log('auth success!'+JSON.stringify(result.auth)+':');
+          d.resolve(result.auth);
         }
       });
-
+      return d.promise;
     },
     loadUserData: function(){
       // load up the user data into $rootScope based on currently authenticated user
@@ -208,15 +220,18 @@ angular.module('ecopos.common').factory('authority',function($rootScope, ecoUser
             then(function(user){
               if(user){
                 user.$on('loaded', function(){
-                  authority.loadUserAuth(user);
+                  authority.loadUserAuth(user).then(function(){
+                    console.log('set active:'+JSON.stringify(user)+':');
+                    //$rootScope.user = user;
+                    ecoUser.setActiveUser(user); // potent line
 
-                  console.log('set active:'+JSON.stringify(user)+':');
-                  //$rootScope.user = user;
-                  ecoUser.setActiveUser(user); // potent line
-
-                  user.lastLogin = new Date();
-                  user.$save('lastLogin');
-                  console.log('win:'+JSON.stringify(user));
+                    user.lastLogin = new Date();
+                    user.$save('lastLogin');
+                    console.log('win:'+JSON.stringify(user));
+                  },
+                  function(err){
+                    console.log('could not make custom token:'+err);
+                  });
                 });
               }
               else{

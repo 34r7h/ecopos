@@ -8,13 +8,12 @@ angular.module('ecopos.common').directive('login', function(authority, ecoUser, 
       $rootScope.err = 'no errors.';
       $rootScope.regState = authority.REGSTATE.CLEAR;
 
-      scope.user = ecoUser.getActiveUser();
+      scope.user = null; //ecoUser.getActiveUser();
       scope.email = '';
       scope.password = '';
 
-      scope.$on('newActiveUser', function(activeUser){
-        console.log('new active:'+activeUser+':');
-        scope.user = activeUser; // TODO: sort out why login/logout not happening
+      $rootScope.$on('ecoUser:newActiveUser', function(event, activeUser){
+        scope.user = activeUser;
       });
 
       // TODO: test function, remember to clean up
@@ -36,6 +35,7 @@ angular.module('ecopos.common').directive('login', function(authority, ecoUser, 
         authority.startRegistration();
       };
       scope.completeRegistration = function(){
+
         if(scope.username){
           authority.validateUsername(scope.username).then(function(valid){
             if(valid){
@@ -43,7 +43,7 @@ angular.module('ecopos.common').directive('login', function(authority, ecoUser, 
               authority.completeRegistration();
             }
             else{
-              // invalid username
+              // invalid username should be handled by the reject (err function)
             }
           },
           function(err){

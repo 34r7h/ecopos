@@ -1,14 +1,15 @@
 <div>
 <div style="text-align: right" class="panel panel-default panel-body">
-  <input type="button" value="Load Test" data-ng-click="loadTestData()" />
-  <div class="user-block" data-ng-show="user.$id">
-    <span data-ng-show="user.$id">Logged in as: {{ user.$id }}</span>
+  <div ng-data-show="user.displayName">
+    Hello, {{ user.displayName }}.
+  </div>
+  <div class="user-block" data-ng-show="user.$id && user.$id !== 'anonymous'">
     <span>
       <input type="button" value="Logout" data-ng-click="logout()" />
     </span>
   </div>
 
-  <div class="profile-block" data-ng-show="user">
+  <div class="profile-block" data-ng-show="user.$id && user.$id !== 'anonymous'">
     <span>
       <label for="displayName">Name: </label><input type="text" name="displayName" id="displayName" data-ng-model="user.displayName" />
     </span>
@@ -17,17 +18,17 @@
     </span>
   </div>
 
-  <notifications class="notifications-block" data-ng-show="user"></notifications>
+  <notifications class="notifications-block" data-ng-show="user.$id && user.$id !== 'anonymous'"></notifications>
 
   <div data-ng-show="regState!==0">regState: {{ regState }}</div>
   <div data-ng-show="regState===3">
-    successfully registered as {{ username }}!
+    Successfully registered as {{ username }}!
   </div>
 
-  <div class="anonymous-block" data-ng-hide="user" >
+  <div class="anonymous-block" data-ng-show="!user.$id || user.$id === 'anonymous'" >
     <div class="register-block" ng-show="reg">
       <div data-ng-show="regState===2">
-        <strong>Please select a username to complete registration...</strong>
+        <strong>Confirm username:</strong>
         <div>
           <label for="username">Username: </label><input type="text" name="username" id="username" data-ng-model="username" />
         </div>
@@ -37,6 +38,7 @@
       </div>
 
       <div data-ng-show="regState<=1">
+        <strong>Register:</strong>
         <div>
           <div class="col-lg-3">
             <label for="email">Email: </label><input type="text" name="email" id="email" data-ng-model="email" />
@@ -77,7 +79,7 @@
     </div>
 
     <div class="login-block" ng-hide="reg">
-
+      <strong>Login:</strong>
       <div class="col-lg-5">
           <label for="email">Email: </label><input type="text" name="email" id="email" data-ng-model="email" />
       </div>
@@ -109,3 +111,4 @@
     </div>
   </div>
 </div>
+  <input type="button" value="Load Test" data-ng-click="loadTestData()" />

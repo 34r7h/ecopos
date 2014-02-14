@@ -3,11 +3,11 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
 
 	var ecoUser = {
     setActiveUser: function(user){
-      //if(!user){
-      //  user = ecoUser.getAnonymousUserData();
-      //}
+      if(!user){
+        user = ecoUser.getAnonymousUserData();
+      }
       activeUser = user;
-      $rootScope.$broadcast('newActiveUser', activeUser);
+      $rootScope.$broadcast('ecoUser:newActiveUser', activeUser);
     },
     getActiveUser: function(){
       // any time we need activeUser in a scope, we should be able to load it with ecoUser.getActiveUser()
@@ -16,7 +16,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
 
     getAnonymousUserData: function(){
       var userData = {
-        username: "anonymous",
+        $id: "anonymous",
         displayName: "Anonymous"
       };
       return userData;
@@ -66,9 +66,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
     },
     saveUserProfile: function(data){
       if(!data.username){ return null; } // no username, who does that?
-
-      var dbUserRef = $rootScope.DBFBref.child('user/'+data.username);
-
+      var dbUserRef = null;
       // massage any provided data before building the userData object that will be written
       if(data.uid && !(data.uid instanceof Array)){ data.uid = [data.uid]; } // data.uid are the linkedAccounts
       if(data.phone && !(data.phone instanceof Array)){ data.phone = [data.phone]; }
@@ -101,6 +99,7 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
        */
 
       var userData = {
+        username: data.username,
         displayName: data.displayName?data.displayName:data.username,
         roles: data.roles?data.roles:{},
         phones: data.phone?data.phone:[],
@@ -115,12 +114,12 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
       }
 
       // handle linking with accounts (uid are from simpleLogin as <provider>:<id>)
-      if(data.uid){
+      if(userData.username){
         // TODO: can we create a user if there is not at least 1 simpleLogin?
         //    - seems maybe if we ever need to store "dummy" users that don't have a login
         //    - or we ever want to disable all login for a user
 
-        console.log('update:'+JSON.stringify(userData)+':');
+        dbUserRef = $rootScope.DBFBref.child('user/'+userData.username);
 
         // update the user profile
         dbUserRef.update(userData, function(err){
@@ -129,12 +128,12 @@ angular.module('ecopos.admin').factory('ecoUser',function($rootScope) {
             //    - maybe a version of linkUserAccount that returns the array to pack into userData before update
             // handle every uid we've been told to link with
             $.each(data.uid, function(key, uid){
-              activeUser.linkUserAccount(data.username, uid);
+              ecoUser.linkUserAccount(userData.username, uid);
             });
 
             $.each(data.roles, function(key, assigned){
               if(assigned){
-                activeUser.assignUserRole(data.username, key);
+                ecoUser.assignUserRole(userData.username, key);
               }
             });
           }
